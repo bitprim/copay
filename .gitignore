@@ -90,3 +90,6 @@ Temporary Items
 Session.vim
 .netrwhist
 *~
+
+# Config file
+app-template/bitpay/appConfig.json
