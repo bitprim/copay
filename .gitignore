@@ -93,3 +93,4 @@ Session.vim
 
 # Config file
 app-template/bitpay/appConfig.json
+config/default.json
