@@ -96,22 +96,5 @@ module.exports = {
 };
 
 // Custom step: get config values and inject them in build files
-console.log('Injecting configurable values in build files...');
-let fileConfig = require('config');
-let fileReplacer = require('replace-in-file');
-let bwsUrl = fileConfig.get('bws.url');
-const options = {
-  //Single file
-  files: 'www/build/main.js',
-
-  //Replacement to make (string or regex)
-  from: /__BWS_URL_PLACEHOLDER__/g,
-  to: bwsUrl
-};
-try {
-  let changedFiles = fileReplacer.sync(options);
-  console.log('Modified files:', changedFiles.join(', '));
-} catch (error) {
-  console.error('Error occurred:', error);
-}
-console.log('Configurable values injected!');
+let configInjector = require('./inject.config.js');
+configInjector.injectConfigValues();
