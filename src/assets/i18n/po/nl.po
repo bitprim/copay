@@ -23,7 +23,7 @@ msgstr "(mogelijk dubbel besteed)"
 msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 10 minutes have passed since the proposal was created."
 msgstr ""
 
-msgid "5-star ratings help us get BitPay Wallet into more hands, and more users means more resources can be committed to the app!"
+msgid "5-star ratings help us get Bitprim Wallet into more hands, and more users means more resources can be committed to the app!"
 msgstr ""
 
 msgid "A total of {{amountAboveMaxSizeStr}} {{coin}} were excluded. The maximum size allowed for a transaction was exceeded."
@@ -233,8 +233,8 @@ msgstr ""
 msgid "Bitcoin Cash URI"
 msgstr ""
 
-msgid "Bitcoin Cash Wallets"
-msgstr "Bitcoin Cash Portemonnees"
+msgid "Bitcoin Cash Keoken Wallets"
+msgstr "Bitcoin Cash Keoken Portemonnees"
 
 msgid "Bitcoin Network Fee Policy"
 msgstr "Transactiekostenbeleid Bitcoin-netwerk"
@@ -245,13 +245,13 @@ msgstr ""
 msgid "Bitcoin Wallets"
 msgstr "Bitcoin Portemonnees"
 
-msgid "Bitcoin is a currency."
-msgstr "Bitcoin is een valuta."
+msgid "Bitcoin Cash is a currency."
+msgstr "BitcoinCash is een valuta."
 
-msgid "Bitcoin is different - it cannot be safely held with a bank or web service."
+msgid "Bitcoin Cash is different - it cannot be safely held with a bank or web service."
 msgstr ""
 
-msgid "Bitcoin is secure, digital money."
+msgid "Bitcoin Cash is secure, digital money."
 msgstr ""
 
 msgid "Bitcoin miner fee:"
@@ -287,7 +287,7 @@ msgstr "Bitcoin kopen..."
 msgid "Buying Gift Card..."
 msgstr ""
 
-msgid "By providing your email address, you give explicit consent to BitPay to use your email address to send you email notifications about payments."
+msgid "By providing your email address, you give explicit consent to Bitprim to use your email address to send you email notifications about payments."
 msgstr ""
 
 msgid "CANCELED"
@@ -425,8 +425,8 @@ msgstr "Ga verder"
 msgid "Contribute translations"
 msgstr ""
 
-msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "Copay ondersteunt Bitcoin Cash alleen met gebruik van nieuwe versienummer adressen"
+msgid "Keoken only supports Bitcoin Cash using new version numbers addresses"
+msgstr "Keoken ondersteunt Bitcoin Cash alleen met gebruik van nieuwe versienummer adressen"
 
 msgid "Copayer already in this wallet"
 msgstr "Copayer reeds in deze portemonnee"
@@ -980,7 +980,7 @@ msgstr ""
 msgid "I agree to the Terms and certify that I am the beneficial owner of the input assets and the destination address."
 msgstr ""
 
-msgid "I give explicit consent to BitPay to use my email address to send me email notifications about payments (and, if selected, email updates and news about the wallet)."
+msgid "I give explicit consent to Bitprim to use my email address to send me email notifications about payments (and, if selected, email updates and news about the wallet)."
 msgstr ""
 
 msgid "I have read, understood, and agree to the Terms of Use"
@@ -992,7 +992,7 @@ msgstr ""
 msgid "I understand"
 msgstr "Ik begrijp het"
 
-msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase"
+msgid "I understand that if this app is moved to another device or deleted, my Bitcoin Cash can only be recovered with the backup phrase"
 msgstr ""
 
 msgid "I understand that my funds are held securely on this device, not by a company"
@@ -1019,7 +1019,7 @@ msgstr "Indien ingeschakeld, zal de Recente Transacties kaart - een lijst van tr
 msgid "If enabled, wallets will also try to spend unconfirmed funds."
 msgstr ""
 
-msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
+msgid "If this device is replaced or this app is deleted, neither you nor Bitprim can recover your funds without a backup."
 msgstr ""
 
 msgid "If you have funds stored on a website then you should move them into a secure wallet... like this one!"
@@ -1268,8 +1268,8 @@ msgstr ""
 msgid "No access key defined"
 msgstr "Geen toegangsknop ingesteld"
 
-msgid "No backup, no bitcoin."
-msgstr "Geen backup, geen bitcoin."
+msgid "No backup, no Bitcoin Cash."
+msgstr "Geen backup, geen BitcoinCash."
 
 msgid "No contacts yet"
 msgstr "Nog geen contactpersonen"
@@ -1328,8 +1328,8 @@ msgstr ""
 msgid "Not enough funds for fee"
 msgstr "Onvoldoende saldo voor transactiekosten"
 
-msgid "Not even BitPay can access it."
-msgstr "Zelfs BitPay heeft geen toegang."
+msgid "Not even Bitprim can access it."
+msgstr "Zelfs Bitprim heeft geen toegang."
 
 msgid "Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so funds will not be accessible from the export."
 msgstr ""
@@ -1397,8 +1397,8 @@ msgstr "GitHub openen"
 msgid "Open GitHub Project"
 msgstr "GitHub Project openen"
 
-msgid "Open Insight"
-msgstr "Insight openen"
+msgid "Open Blockdozer"
+msgstr "Blockdozer openen"
 
 msgid "Open Translation Community"
 msgstr "Vertalings Gemeenschap openen"
@@ -1526,8 +1526,8 @@ msgstr ""
 msgid "Please tap each word in the correct order."
 msgstr "Druk a.u.b. op elk woord in de juiste volgorde."
 
-msgid "Please upgrade Copay to perform this action"
-msgstr "Upgrade Copay om deze actie uit te voeren"
+msgid "Please upgrade Keoken to perform this action"
+msgstr "Upgrade Keoken om deze actie uit te voeren"
 
 msgid "Please wait..."
 msgstr ""
@@ -1754,7 +1754,7 @@ msgstr ""
 msgid "See transaction"
 msgstr ""
 
-msgid "Select a coin"
+msgid "Select coin"
 msgstr ""
 
 msgid "Select a wallet"
@@ -1955,7 +1955,7 @@ msgstr "Saldo Portemonnee opnemen..."
 msgid "THIS ACTION CANNOT BE REVERSED"
 msgstr "DEZE ACTIE IS ONOMKEERBAAR"
 
-msgid "Take control of your money, get started with bitcoin."
+msgid "Take control of your money, get started with Bitcoin Cash."
 msgstr ""
 
 msgid "Tap and hold to show"
@@ -2051,8 +2051,8 @@ msgstr ""
 msgid "This app is not available for your device."
 msgstr ""
 
-msgid "This app stores your bitcoin with cutting-edge security."
-msgstr "Deze app bewaart uw bitcoin met de nieuwste beveiliging."
+msgid "This app stores your Bitcoin Cash with cutting-edge security."
+msgstr "Deze app bewaart uw BitcoinCash met de nieuwste beveiliging."
 
 msgid "This bitcoin payment request has expired."
 msgstr "Dit bitcoin betalingsverzoek is verlopen."
@@ -2240,8 +2240,8 @@ msgstr ""
 msgid "View Privacy Policy"
 msgstr ""
 
-msgid "View Transaction on Insight"
-msgstr "Bekijk Transactie op Insight"
+msgid "View Transaction on Blockdozer"
+msgstr "Bekijk Transactie op Blockdozer"
 
 msgid "View Update"
 msgstr "Update Bekijken"
@@ -2435,14 +2435,14 @@ msgstr ""
 msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
 msgstr "U kunt een bijdrage leveren door u aan te melden bij onze Crowdin gemeenschap vertalings website. Wij kijken er naar uit om van u te horen!"
 
-msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
-msgstr "U kunt bitcoin adressen scannen, betalingsverzoeken, papieren portemonnees, en meer."
+msgid "You can scan Bitcoin Cash addresses, payment requests, paper wallets, and more."
+msgstr "U kunt BitcoinCash adressen scannen, betalingsverzoeken, papieren portemonnees, en meer."
 
 msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
 msgstr "U kunt de laatste ontwikkelingen volgen en bijdragen aan deze open source app door onze project pagina te bezoeken op GitHub."
 
-msgid "You can spend bitcoin at millions of websites and stores worldwide."
-msgstr "U kunt met bitcoin betalen bij miljoenen websites en winkels over de hele wereld."
+msgid "You can spend Bitcoin Cash at millions of websites and stores worldwide."
+msgstr "U kunt met BitcoinCash betalen bij miljoenen websites en winkels over de hele wereld."
 
 msgid "You can still export it from Advanced &gt; Export."
 msgstr "U kunt deze nog steeds exporteren vanuit Geavanceerd &gt; Exporteren."
@@ -2450,8 +2450,8 @@ msgstr "U kunt deze nog steeds exporteren vanuit Geavanceerd &gt; Exporteren."
 msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
 msgstr "U kunt het inwisselen voor valuta's zoals de Amerikaanse Dollar, de Euro, of Ponden."
 
-msgid "You control your bitcoin."
-msgstr "U heeft de controle over uw bitcoin."
+msgid "You control your Bitcoin Cash."
+msgstr "U heeft de controle over uw BitcoinCash."
 
 msgid "You could sign the transaction later in your wallet details"
 msgstr ""
@@ -2468,10 +2468,10 @@ msgstr "Uw BitPay Kaart is gereed. Voeg saldo toe aan uw kaart om deze te kunnen
 msgid "Your Gift Cards"
 msgstr "Uw Cadeaubonnen"
 
-msgid "Your bitcoin wallet is ready!"
-msgstr "Uw bitcoin portemonnee is gereed!"
+msgid "Your Bitcoin Cash wallet is ready!"
+msgstr "Uw BitcoinCash portemonnee is gereed!"
 
-msgid "Your extended private keys are all that is needed to access your bitcoin funds. Be sure to protect your private keys and store them only on secure devices. BitPay does not have access to your private keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach. Only advanced users should handle extended private keys directly."
+msgid "Your extended private keys are all that is needed to access your bitcoin funds. Be sure to protect your private keys and store them only on secure devices. Bitprim does not have access to your private keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach. Only advanced users should handle extended private keys directly."
 msgstr ""
 
 msgid "Your fee is lower than recommended."
@@ -2519,7 +2519,7 @@ msgstr "voorbereiden..."
 msgid "{appName} BCH wallets use the CashAddr format by default"
 msgstr ""
 
-msgid "{coinName} miner fees are high due to record demand for limited space on the {coinName} network. BitPay does not receive and does not control {coinName} miner fees."
+msgid "{coinName} miner fees are high due to record demand for limited space on the {coinName} network. Bitprim does not receive and does not control {coinName} miner fees."
 msgstr ""
 
 msgid "{coinName} miner fees unusually high"
@@ -2528,7 +2528,7 @@ msgstr ""
 msgid "{{amountUnitStr}} Gift Card"
 msgstr ""
 
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.testnet.keoken.io (Bitprim's public BWS instance)."
 msgstr ""
 
 msgid "{{btx.feeRateStr}} of the total amount"

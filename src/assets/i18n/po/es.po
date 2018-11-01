@@ -233,8 +233,8 @@ msgstr "Dirección Bitcoin Cash"
 msgid "Bitcoin Cash URI"
 msgstr "URI de Bitcoin Cash"
 
-msgid "Bitcoin Cash Wallets"
-msgstr "Billeteras Bitcoin Cash"
+msgid "Bitcoin Cash Keoken Wallets"
+msgstr "Billeteras Keoken Bitcoin Cash"
 
 msgid "Bitcoin Network Fee Policy"
 msgstr "Política de Comisión de la Red Bitcoin"
@@ -245,14 +245,14 @@ msgstr "URI de Bitcoin"
 msgid "Bitcoin Wallets"
 msgstr "Billeteras Bitcoin"
 
-msgid "Bitcoin is a currency."
-msgstr "Bitcoin es una moneda."
+msgid "Bitcoin Cash is a currency."
+msgstr "Bitcoin Cash es una moneda."
 
-msgid "Bitcoin is different - it cannot be safely held with a bank or web service."
-msgstr "Bitcoin es diferente - no se puede resguardar con ningún servicio web o banco."
+msgid "Bitcoin Cash is different - it cannot be safely held with a bank or web service."
+msgstr "Bitcoin Cash es diferente - no se puede resguardar con ningún servicio web o banco."
 
-msgid "Bitcoin is secure, digital money."
-msgstr "Bitcoin es seguro, es dinero digital."
+msgid "Bitcoin Cash is secure, digital money."
+msgstr "Bitcoin Cash es seguro, es dinero digital."
 
 msgid "Bitcoin miner fee:"
 msgstr "Comisión de minero bitcoin:"
@@ -287,8 +287,8 @@ msgstr "Comprando Bitcoins..."
 msgid "Buying Gift Card..."
 msgstr "Comprando Tarjeta de Regalo..."
 
-msgid "By providing your email address, you give explicit consent to BitPay to use your email address to send you email notifications about payments."
-msgstr "Al proporcionar su dirección de correo electrónico, usted da consentimiento explícito a BitPay de usar su dirección de correo electrónico para enviarle notificaciones sobre pagos."
+msgid "By providing your email address, you give explicit consent to Bitprim to use your email address to send you email notifications about payments."
+msgstr "Al proporcionar su dirección de correo electrónico, usted da consentimiento explícito a Bitprim de usar su dirección de correo electrónico para enviarle notificaciones sobre pagos."
 
 msgid "CANCELED"
 msgstr "CANCELADO"
@@ -425,8 +425,8 @@ msgstr "Continuar"
 msgid "Contribute translations"
 msgstr "Contribuye en las traducciones"
 
-msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "Copay solo soporta Bitcoin Cash utilizando la nueva versión de direcciones"
+msgid "Keoken only supports Bitcoin Cash using new version numbers addresses"
+msgstr "Keoken solo soporta Bitcoin Cash utilizando la nueva versión de direcciones"
 
 msgid "Copayer already in this wallet"
 msgstr "Ya se encuentra en esta billetera"
@@ -980,8 +980,8 @@ msgstr "¿Cuán satisfecho está con la billetera {{appName}}?"
 msgid "I agree to the Terms and certify that I am the beneficial owner of the input assets and the destination address."
 msgstr "Acepto los Términos y certifico que soy el propio beneficiario de los fondos y la dirección de destino."
 
-msgid "I give explicit consent to BitPay to use my email address to send me email notifications about payments (and, if selected, email updates and news about the wallet)."
-msgstr "Doy consentimiento explícito a BitPay para usar mi dirección de correo electrónico para enviarme notificaciones de pagos (y, si está seleccionado, noticias acerca de la billetera)."
+msgid "I give explicit consent to Bitprim to use my email address to send me email notifications about payments (and, if selected, email updates and news about the wallet)."
+msgstr "Doy consentimiento explícito a Bitprim para usar mi dirección de correo electrónico para enviarme notificaciones de pagos (y, si está seleccionado, noticias acerca de la billetera)."
 
 msgid "I have read, understood, and agree to the Terms of Use"
 msgstr "He leído, entiendo y acepto los Términos de Uso"
@@ -992,7 +992,7 @@ msgstr "Ya he anotado"
 msgid "I understand"
 msgstr "Entiendo"
 
-msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase"
+msgid "I understand that if this app is moved to another device or deleted, my Bitcoin Cash can only be recovered with the backup phrase"
 msgstr "Entiendo que si esta aplicación es borrada, mis fondos pueden recuperarse únicamente con la frase de recuperación"
 
 msgid "I understand that my funds are held securely on this device, not by a company"
@@ -1019,8 +1019,8 @@ msgstr "Si se habilita, aparecerá una lista de las transacciones recientes de l
 msgid "If enabled, wallets will also try to spend unconfirmed funds."
 msgstr "Si se habilita, los monederos intentarán gastar fondos sin confirmar."
 
-msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
-msgstr "Si pierdes este dispositivo o esta aplicación es eliminada, ni tú ni BitPay podrán recuperar el dinero."
+msgid "If this device is replaced or this app is deleted, neither you nor Bitprim can recover your funds without a backup."
+msgstr "Si pierdes este dispositivo o esta aplicación es eliminada, ni tú ni Bitprim podrán recuperar el dinero."
 
 msgid "If you have funds stored on a website then you should move them into a secure wallet... like this one!"
 msgstr "Si usted tiene fondos almacenados en un sitio web debería moverlos a una billetera segura... ¡como esta!"
@@ -1268,8 +1268,8 @@ msgstr "Sin clave privada"
 msgid "No access key defined"
 msgstr "No se ha definido la llave de acceso"
 
-msgid "No backup, no bitcoin."
-msgstr "Sin frase de recuperación no hay bitcoins."
+msgid "No backup, no Bitcoin Cash."
+msgstr "Sin frase de recuperación no hay Bitcoin Cash."
 
 msgid "No contacts yet"
 msgstr "Aun no hay contactos"
@@ -1328,8 +1328,8 @@ msgstr "Fondos insuficientes"
 msgid "Not enough funds for fee"
 msgstr "No hay suficientes fondos para la comisión"
 
-msgid "Not even BitPay can access it."
-msgstr "Ni siquiera BitPay puede acceder a ellos."
+msgid "Not even Bitprim can access it."
+msgstr "Ni siquiera Bitprim puede acceder a ellos."
 
 msgid "Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so funds will not be accessible from the export."
 msgstr "No incluir la clave privada permite verificar el saldo de la billetera, historial de transacciones y crear propuestas de pago. Sin embargo, no permite aprobar (firmar) propuestas, por lo tanto, los fondos no serán accesibles al exportar."
@@ -1397,8 +1397,8 @@ msgstr "Abrir GitHub"
 msgid "Open GitHub Project"
 msgstr "Abrir Proyecto en GitHub"
 
-msgid "Open Insight"
-msgstr "Abrir Insight"
+msgid "Open Blockdozer"
+msgstr "Abrir Blockdozer"
 
 msgid "Open Translation Community"
 msgstr "Abrir Comunidad de Traducciones"
@@ -1526,8 +1526,8 @@ msgstr "Por favor ingresa tu PIN"
 msgid "Please tap each word in the correct order."
 msgstr "Escoje las palabras en el orden correcto."
 
-msgid "Please upgrade Copay to perform this action"
-msgstr "Por favor actualiza Copay para realizar esta acción"
+msgid "Please upgrade Keoken to perform this action"
+msgstr "Por favor actualiza Keoken para realizar esta acción"
 
 msgid "Please wait..."
 msgstr "Espera por favor..."
@@ -1754,7 +1754,7 @@ msgstr "Ver factura &rarr;"
 msgid "See transaction"
 msgstr "Ver transacción"
 
-msgid "Select a coin"
+msgid "Select coin"
 msgstr "Seleccionar una moneda"
 
 msgid "Select a wallet"
@@ -1955,8 +1955,8 @@ msgstr "Leyendo la Billetera..."
 msgid "THIS ACTION CANNOT BE REVERSED"
 msgstr "ESTA ACCIÓN NO SE PUEDE REVERTIR"
 
-msgid "Take control of your money, get started with bitcoin."
-msgstr "Toma control de tu dinero, comienza a utilizar bitcoin."
+msgid "Take control of your money, get started with Bitcoin Cash."
+msgstr "Toma control de tu dinero, comienza a utilizar Bitcoin Cash."
 
 msgid "Tap and hold to show"
 msgstr "Tocar y mantener para mostrar"
@@ -2051,8 +2051,8 @@ msgstr "Obviamente hay algo que estamos haciendo mal. ¿Cómo podríamos mejorar
 msgid "This app is not available for your device."
 msgstr "Esta aplicación no está disponible para su dispositivo."
 
-msgid "This app stores your bitcoin with cutting-edge security."
-msgstr "Esta aplicación almacena tus bitcoins con seguridad avanzada."
+msgid "This app stores your Bitcoin Cash with cutting-edge security."
+msgstr "Esta aplicación almacena tus Bitcoin Cash con seguridad avanzada."
 
 msgid "This bitcoin payment request has expired."
 msgstr "Esta solicitud de pago ha caducado."
@@ -2241,8 +2241,8 @@ msgstr "Ver Estado de Confirmación"
 msgid "View Privacy Policy"
 msgstr "Ver política de privacidad"
 
-msgid "View Transaction on Insight"
-msgstr "Ver Transacción en Insight"
+msgid "View Transaction on Blockdozer"
+msgstr "Ver Transacción en Blockdozer"
 
 msgid "View Update"
 msgstr "Ver Actualización"
@@ -2436,14 +2436,14 @@ msgstr "Puede crear un respaldo luego desde la configuración de su billetera."
 msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
 msgstr "Se pueden hacer contribuciones al registrarse en nuestro proyecto de traducciones en Crowdin. ¡Esperamos tener noticias suyas!"
 
-msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
-msgstr "Puedes escanear direcciones bitcoin, solicitudes de pago, billeteras de papel y más."
+msgid "You can scan Bitcoin Cash addresses, payment requests, paper wallets, and more."
+msgstr "Puedes escanear direcciones Bitcoin Cash, solicitudes de pago, billeteras de papel y más."
 
 msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
 msgstr "Puede ver las últimas novedades y contribuir a nuestra aplicación de código abierto visitando nuestro proyecto en GitHub."
 
-msgid "You can spend bitcoin at millions of websites and stores worldwide."
-msgstr "Puedes utilizar bitcoin en millones de páginas web y tiendas de todo el mundo."
+msgid "You can spend Bitcoin Cash at millions of websites and stores worldwide."
+msgstr "Puedes utilizar Bitcoin Cash en millones de páginas web y tiendas de todo el mundo."
 
 msgid "You can still export it from Advanced &gt; Export."
 msgstr "Todavía puede exportar en Avanzados &gt; Exportar."
@@ -2451,8 +2451,8 @@ msgstr "Todavía puede exportar en Avanzados &gt; Exportar."
 msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
 msgstr "Puedes cambiarlo por otras monedas como Dólares, Euros o Libras."
 
-msgid "You control your bitcoin."
-msgstr "Controlas tus bitcoins."
+msgid "You control your Bitcoin Cash."
+msgstr "Controlas tus Bitcoin Cash."
 
 msgid "You could sign the transaction later in your wallet details"
 msgstr "Podría firmar la transacción más tarde en los detalles de la Billetera"
@@ -2469,11 +2469,11 @@ msgstr "Tu Tarjeta BitPay ya esta lista. Agrega fondos para comenzar a utilizarl
 msgid "Your Gift Cards"
 msgstr "Tus Tarjetas de Regalo"
 
-msgid "Your bitcoin wallet is ready!"
-msgstr "¡Su billetera bitcoin está lista!"
+msgid "Your Bitcoin Cash wallet is ready!"
+msgstr "¡Su billetera Bitcoin Cash está lista!"
 
-msgid "Your extended private keys are all that is needed to access your bitcoin funds. Be sure to protect your private keys and store them only on secure devices. BitPay does not have access to your private keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach. Only advanced users should handle extended private keys directly."
-msgstr "Sus claves privadas extendidas es todo lo que necesita para acceder a sus bitcoins. Asegúrese de proteger sus claves privadas y almacenarlas en dispositivos seguros. BitPay no tiene acceso a sus claves privadas, por lo que usted es responsable de sus claves. Si comparte el acceso a claves con servicios externos, usted asume la responsabilidad por el riesgo de robo o violación. Solo los usuarios avanzados deberían manipular directamente las claves privadas extendidas."
+msgid "Your extended private keys are all that is needed to access your bitcoin funds. Be sure to protect your private keys and store them only on secure devices. Bitprim does not have access to your private keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach. Only advanced users should handle extended private keys directly."
+msgstr "Sus claves privadas extendidas es todo lo que necesita para acceder a sus bitcoins. Asegúrese de proteger sus claves privadas y almacenarlas en dispositivos seguros. Bitprim no tiene acceso a sus claves privadas, por lo que usted es responsable de sus claves. Si comparte el acceso a claves con servicios externos, usted asume la responsabilidad por el riesgo de robo o violación. Solo los usuarios avanzados deberían manipular directamente las claves privadas extendidas."
 
 msgid "Your fee is lower than recommended."
 msgstr "Tu comisión es inferior a la recomendada."
@@ -2520,8 +2520,8 @@ msgstr "preparando..."
 msgid "{appName} BCH wallets use the CashAddr format by default"
 msgstr "Las billeteras {appName} utilizan el formato CashAddr por defecto"
 
-msgid "{coinName} miner fees are high due to record demand for limited space on the {coinName} network. BitPay does not receive and does not control {coinName} miner fees."
-msgstr "Las comisiones {coinName} de los mineros son altas debido a la demanda por el espacio limitado en la red {coinName}. BitPay no recibe ni controla las comisiones de los mineros en la red {coinName}."
+msgid "{coinName} miner fees are high due to record demand for limited space on the {coinName} network. Bitprim does not receive and does not control {coinName} miner fees."
+msgstr "Las comisiones {coinName} de los mineros son altas debido a la demanda por el espacio limitado en la red {coinName}. Bitprim no recibe ni controla las comisiones de los mineros en la red {coinName}."
 
 msgid "{coinName} miner fees unusually high"
 msgstr "Comisiones de minero {coinName} inusualmente alta"
@@ -2529,8 +2529,8 @@ msgstr "Comisiones de minero {coinName} inusualmente alta"
 msgid "{{amountUnitStr}} Gift Card"
 msgstr "{{amountUnitStr}} Gift Card"
 
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} depende de Bitcore Wallet Service (BWS) para obtener información sobre blockchain y sincronización del Copayer. La configuración por defecto apunta a https://bws.bitpay.com (instancia BWS pública de BitPay)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.testnet.keoken.io (Bitprim's public BWS instance)."
+msgstr "{{appName}} depende de Bitcore Wallet Service (BWS) para obtener información sobre blockchain y sincronización del Copayer. La configuración por defecto apunta a https://bws.testnet.keoken.io (instancia BWS pública de Bitprim)."
 
 msgid "{{btx.feeRateStr}} of the total amount"
 msgstr "{{btx.feeRateStr}} de la cantidad total"
