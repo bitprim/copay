@@ -1754,7 +1754,7 @@ msgstr "Voir la facture &rarr;"
 msgid "See transaction"
 msgstr "Voir la transaction"
 
-msgid "Select a coin"
+msgid "Select coin"
 msgstr "Sélectionnez une crypto-monnaie"
 
 msgid "Select a wallet"

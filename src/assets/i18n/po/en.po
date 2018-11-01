@@ -1933,8 +1933,8 @@ msgstr "See invoice &rarr;"
 msgid "See transaction"
 msgstr "See transaction"
 
-msgid "Select a coin"
-msgstr "Select a coin"
+msgid "Select coin"
+msgstr "Select coin"
 
 msgid "Select a wallet"
 msgstr "Select a wallet"

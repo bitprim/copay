@@ -1754,7 +1754,7 @@ msgstr "查看发票"
 msgid "See transaction"
 msgstr "查看交易"
 
-msgid "Select a coin"
+msgid "Select coin"
 msgstr "选择币种"
 
 msgid "Select a wallet"
