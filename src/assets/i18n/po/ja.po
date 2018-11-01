@@ -1756,7 +1756,7 @@ msgstr ""
 msgid "See transaction"
 msgstr ""
 
-msgid "Select a coin"
+msgid "Select coin"
 msgstr ""
 
 msgid "Select a wallet"
