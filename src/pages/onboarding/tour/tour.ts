@@ -9,7 +9,7 @@ import {
 import { Logger } from '../../../providers/logger/logger';
 
 // pages
-import { CollectEmailPage } from '../collect-email/collect-email';
+import { BackupRequestPage } from '../backup-request/backup-request';
 
 // providers
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
@@ -48,11 +48,11 @@ export class TourPage {
     private popupProvider: PopupProvider
   ) {
     this.currentIndex = 0;
-    this.rateProvider.whenRatesAvailable('btc').then(() => {
+    this.rateProvider.whenRatesAvailable('bch').then(() => {
       let btcAmount = 1;
       this.localCurrencySymbol = '$';
       this.localCurrencyPerBtc = this.txFormatProvider.formatAlternativeStr(
-        'btc',
+        'bch',
         btcAmount * 1e8
       );
     });
@@ -90,7 +90,7 @@ export class TourPage {
       .then(wallet => {
         this.onGoingProcessProvider.clear();
         this.persistenceProvider.setOnboardingCompleted();
-        this.navCtrl.push(CollectEmailPage, { walletId: wallet.id });
+        this.navCtrl.push(BackupRequestPage, { walletId: wallet.id });
       })
       .catch(err => {
         setTimeout(() => {

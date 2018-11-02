@@ -143,10 +143,10 @@ const configDefault: Config = {
 
   download: {
     bitpay: {
-      url: 'https://bitpay.com/wallet'
+      url: 'https://keoken.io'
     },
     copay: {
-      url: 'https://copay.io/#download'
+      url: 'https://keoken.io'
     }
   },
 
@@ -155,12 +155,13 @@ const configDefault: Config = {
       ios:
         'https://itunes.apple.com/app/bitpay-secure-bitcoin-wallet/id1149581638',
       android:
-        'https://play.google.com/store/apps/details?id=com.bitpay.wallet',
+        'https://play.google.com/store/apps/details?id=com.bitprim.keoken',
       wp: ''
     },
     copay: {
       ios: 'https://itunes.apple.com/app/copay-bitcoin-wallet/id951330296',
-      android: 'https://play.google.com/store/apps/details?id=com.bitpay.copay',
+      android:
+        'https://play.google.com/store/apps/details?id=com.bitprim.keoken',
       wp: ''
     }
   },
@@ -209,8 +210,8 @@ const configDefault: Config = {
   },
 
   blockExplorerUrl: {
-    btc: 'insight.bitpay.com',
-    bch: 'bch-insight.bitpay.com/#'
+    btc: 'btc.blockdozer.com',
+    bch: 'bch.blockdozer.com'
   }
 };
 

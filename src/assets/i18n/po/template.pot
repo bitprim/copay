@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"5-star ratings help us get BitPay Wallet into more hands, and more users "
+"5-star ratings help us get Bitprim Wallet into more hands, and more users "
 "means more resources can be committed to the app!"
 msgstr ""
 
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Bitcoin Cash URI"
 msgstr ""
 
-msgid "Bitcoin Cash Wallets"
+msgid "Bitcoin Cash Keoken Wallets"
 msgstr ""
 
 msgid "Bitcoin Network Fee Policy"
@@ -266,13 +266,13 @@ msgstr ""
 msgid "Bitcoin Wallets"
 msgstr ""
 
-msgid "Bitcoin is a currency."
+msgid "Bitcoin Cash is a currency."
 msgstr ""
 
-msgid "Bitcoin is different - it cannot be safely held with a bank or web service."
+msgid "Bitcoin Cash is different - it cannot be safely held with a bank or web service."
 msgstr ""
 
-msgid "Bitcoin is secure, digital money."
+msgid "Bitcoin Cash is secure, digital money."
 msgstr ""
 
 msgid "Bitcoin miner fee:"
@@ -309,7 +309,7 @@ msgid "Buying Gift Card..."
 msgstr ""
 
 msgid ""
-"By providing your email address, you give explicit consent to BitPay to use "
+"By providing your email address, you give explicit consent to Bitprim to use "
 "your email address to send you email notifications about payments."
 msgstr ""
 
@@ -451,7 +451,7 @@ msgstr ""
 msgid "Contribute translations"
 msgstr ""
 
-msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
+msgid "Keoken only supports Bitcoin Cash using new version numbers addresses"
 msgstr ""
 
 msgid "Copayer already in this wallet"
@@ -1020,7 +1020,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"I give explicit consent to BitPay to use my email address to send me email "
+"I give explicit consent to Bitprim to use my email address to send me email "
 "notifications about payments (and, if selected, email updates and news "
 "about the wallet)."
 msgstr ""
@@ -1036,7 +1036,7 @@ msgstr ""
 
 msgid ""
 "I understand that if this app is moved to another device or deleted, my "
-"bitcoin can only be recovered with the backup phrase"
+"Bitcoin Cash can only be recovered with the backup phrase"
 msgstr ""
 
 msgid ""
@@ -1070,7 +1070,7 @@ msgid "If enabled, wallets will also try to spend unconfirmed funds."
 msgstr ""
 
 msgid ""
-"If this device is replaced or this app is deleted, neither you nor BitPay "
+"If this device is replaced or this app is deleted, neither you nor Bitprim "
 "can recover your funds without a backup."
 msgstr ""
 
@@ -1336,7 +1336,7 @@ msgstr ""
 msgid "No access key defined"
 msgstr ""
 
-msgid "No backup, no bitcoin."
+msgid "No backup, no Bitcoin Cash."
 msgstr ""
 
 msgid "No contacts yet"
@@ -1396,7 +1396,7 @@ msgstr ""
 msgid "Not enough funds for fee"
 msgstr ""
 
-msgid "Not even BitPay can access it."
+msgid "Not even Bitprim can access it."
 msgstr ""
 
 msgid ""
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "Open GitHub Project"
 msgstr ""
 
-msgid "Open Insight"
+msgid "Open Blockdozer"
 msgstr ""
 
 msgid "Open Translation Community"
@@ -1604,7 +1604,7 @@ msgstr ""
 msgid "Please tap each word in the correct order."
 msgstr ""
 
-msgid "Please upgrade Copay to perform this action"
+msgid "Please upgrade Keoken to perform this action"
 msgstr ""
 
 msgid "Please wait..."
@@ -1834,7 +1834,7 @@ msgstr ""
 msgid "See transaction"
 msgstr ""
 
-msgid "Select a coin"
+msgid "Select coin"
 msgstr ""
 
 msgid "Select a wallet"
@@ -2037,7 +2037,7 @@ msgstr ""
 msgid "THIS ACTION CANNOT BE REVERSED"
 msgstr ""
 
-msgid "Take control of your money, get started with bitcoin."
+msgid "Take control of your money, get started with Bitcoin Cash."
 msgstr ""
 
 msgid "Tap and hold to show"
@@ -2161,7 +2161,7 @@ msgstr ""
 msgid "This app is not available for your device."
 msgstr ""
 
-msgid "This app stores your bitcoin with cutting-edge security."
+msgid "This app stores your Bitcoin Cash with cutting-edge security."
 msgstr ""
 
 msgid "This bitcoin payment request has expired."
@@ -2368,7 +2368,7 @@ msgstr ""
 msgid "View Privacy Policy"
 msgstr ""
 
-msgid "View Transaction on Insight"
+msgid "View Transaction on Blockdozer"
 msgstr ""
 
 msgid "View Update"
@@ -2585,7 +2585,7 @@ msgid ""
 "translation website. We’re looking forward to hearing from you!"
 msgstr ""
 
-msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
+msgid "You can scan Bitcoin Cash addresses, payment requests, paper wallets, and more."
 msgstr ""
 
 msgid ""
@@ -2593,7 +2593,7 @@ msgid ""
 "by visiting our project on GitHub."
 msgstr ""
 
-msgid "You can spend bitcoin at millions of websites and stores worldwide."
+msgid "You can spend Bitcoin Cash at millions of websites and stores worldwide."
 msgstr ""
 
 msgid "You can still export it from Advanced &gt; Export."
@@ -2602,7 +2602,7 @@ msgstr ""
 msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
 msgstr ""
 
-msgid "You control your bitcoin."
+msgid "You control your Bitcoin Cash."
 msgstr ""
 
 msgid "You could sign the transaction later in your wallet details"
@@ -2622,13 +2622,13 @@ msgstr ""
 msgid "Your Gift Cards"
 msgstr ""
 
-msgid "Your bitcoin wallet is ready!"
+msgid "Your Bitcoin Cash wallet is ready!"
 msgstr ""
 
 msgid ""
 "Your extended private keys are all that is needed to access your bitcoin "
 "funds. Be sure to protect your private keys and store them only on secure "
-"devices. BitPay does not have access to your private keys, so you alone are "
+"devices. Bitprim does not have access to your private keys, so you alone are "
 "responsible for your keys. If you share key access with external services, "
 "you take responsibility for the risk of theft or breach. Only advanced "
 "users should handle extended private keys directly."
@@ -2687,7 +2687,7 @@ msgstr ""
 
 msgid ""
 "{coinName} miner fees are high due to record demand for limited space on "
-"the {coinName} network. BitPay does not receive and does not control "
+"the {coinName} network. Bitprim does not receive and does not control "
 "{coinName} miner fees."
 msgstr ""
 
@@ -2700,7 +2700,7 @@ msgstr ""
 msgid ""
 "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain "
 "information, networking and Copayer synchronization. The default "
-"configuration points to https://bws.bitpay.com (BitPay's public BWS "
+"configuration points to https://bws.testnet.keoken.io (Bitprim's public BWS "
 "instance)."
 msgstr ""
 

@@ -254,14 +254,14 @@ export class TxDetailsPage {
     let btx = this.btx;
     let url =
       'https://' +
-      (this.getShortNetworkName() == 'test' ? 'test-' : '') +
+      (this.getShortNetworkName() == 'test' ? 't' : '') +
       this.blockexplorerUrl +
       '/tx/' +
       btx.txid;
     let optIn = true;
     let title = null;
-    let message = this.translate.instant('View Transaction on Insight');
-    let okText = this.translate.instant('Open Insight');
+    let message = this.translate.instant('View Transaction on Blockdozer');
+    let okText = this.translate.instant('Open Blockdozer');
     let cancelText = this.translate.instant('Go Back');
     this.externalLinkProvider.open(
       url,

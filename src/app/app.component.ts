@@ -19,7 +19,7 @@ import { AppProvider } from '../providers/app/app';
 import { BitPayCardProvider } from '../providers/bitpay-card/bitpay-card';
 import { CoinbaseProvider } from '../providers/coinbase/coinbase';
 import { ConfigProvider } from '../providers/config/config';
-import { EmailNotificationsProvider } from '../providers/email-notifications/email-notifications';
+// import { EmailNotificationsProvider } from '../providers/email-notifications/email-notifications';
 import { GlideraProvider } from '../providers/glidera/glidera';
 import { IncomingDataProvider } from '../providers/incoming-data/incoming-data';
 import { Logger } from '../providers/logger/logger';
@@ -29,6 +29,10 @@ import { ProfileProvider } from '../providers/profile/profile';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
 import { ShapeshiftProvider } from '../providers/shapeshift/shapeshift';
 import { TouchIdProvider } from '../providers/touchid/touchid';
+
+import { FaucetProvider } from '../providers/faucet/faucet';
+
+import { ExplorerProvider } from '../providers/explorer/explorer';
 
 // pages
 import { CopayersPage } from '../pages/add/copayers/copayers';
@@ -106,7 +110,9 @@ export class CopayApp {
     private bitPayCardProvider: BitPayCardProvider,
     private mercadoLibreProvider: MercadoLibreProvider,
     private shapeshiftProvider: ShapeshiftProvider,
-    private emailNotificationsProvider: EmailNotificationsProvider,
+    private faucetProvider: FaucetProvider,
+    private explorerProvider: ExplorerProvider,
+    // private emailNotificationsProvider: EmailNotificationsProvider,
     private screenOrientation: ScreenOrientation,
     private popupProvider: PopupProvider,
     private pushNotificationsProvider: PushNotificationsProvider,
@@ -216,7 +222,8 @@ export class CopayApp {
   }
 
   private onProfileLoad(profile) {
-    this.emailNotificationsProvider.init(); // Update email subscription if necessary
+    // TODO Crashes and prevents push notifications from working when uncommented
+    // this.emailNotificationsProvider.init(); // Update email subscription if necessary
     this.initPushNotifications();
 
     if (profile) {
@@ -277,6 +284,14 @@ export class CopayApp {
   }
 
   private registerIntegrations(): void {
+    if (this.appProvider.info._enabledExtensions.faucet) {
+      this.faucetProvider.register();
+    }
+
+    if (this.appProvider.info._enabledExtensions.explorer) {
+      this.explorerProvider.register();
+    }
+
     // Mercado Libre
     if (this.appProvider.info._enabledExtensions.mercadolibre)
       this.mercadoLibreProvider.register();

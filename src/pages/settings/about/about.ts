@@ -27,7 +27,7 @@ export class AboutPage {
     private externalLinkProvider: ExternalLinkProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
     private translate: TranslateService
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     this.logger.debug('ionViewDidLoad AboutPage');
@@ -41,11 +41,7 @@ export class AboutPage {
 
   public openExternalLink(): void {
     let url =
-      'https://github.com/bitpay/' +
-      this.appProvider.info.gitHubRepoName +
-      '/tree/' +
-      this.appProvider.info.commitHash +
-      '';
+      'https://github.com/bitprim/copay/';
     let optIn = true;
     let title = this.translate.instant('Open GitHub Project');
     let message = this.translate.instant(
@@ -64,7 +60,7 @@ export class AboutPage {
   }
 
   public openTermsOfUse() {
-    let url = 'https://bitpay.com/about/terms#wallet';
+    let url = 'https://www.keoken.io/W_Terms_of_use.html';
     let optIn = true;
     let title = null;
     let message = this.translate.instant('View Wallet Terms of Use');
@@ -81,7 +77,7 @@ export class AboutPage {
   }
 
   public openPrivacyPolicy() {
-    let url = 'https://bitpay.com/about/privacy';
+    let url = 'https://www.keoken.io/W_Privacy_Policy.html';
     let optIn = true;
     let title = null;
     let message = this.translate.instant('View Privacy Policy');
