@@ -44,13 +44,7 @@ export class PushNotificationsProvider {
 
       this.logger.debug('Starting push notification registration...');
 
-      // Keep in mind the function will return null if the token has not been established yet.
-      this.FCMPlugin.getToken().then(token => {
-        this.logger.debug('Get token for push notifications: ' + token);
-        this._token = token;
-        this.enable();
-        this.handlePushNotifications();
-      });
+      setTimeout(this._getFCMToken.bind(this), 0);
     });
   }
 
@@ -123,6 +117,23 @@ export class PushNotificationsProvider {
   public unsubscribe(walletClient): void {
     if (!this._token) return;
     this._unsubscribe(walletClient);
+  }
+
+  private _getFCMToken(): void {
+    this.logger.debug('Requesting FCM token...');
+    // FCMPlugin.getToken will return null if the token has not been established yet.
+    // Therefore, we retry until we succeed.
+    this.FCMPlugin.getToken().then(token => {
+      if (token == null) {
+        this.logger.debug('Null FCM token, retrying...');
+        setTimeout(this._getFCMToken.bind(this), 1000);
+      } else {
+        this.logger.debug('Successfully obtained FCM token: ' + token);
+        this._token = token;
+        this.enable();
+        this.handlePushNotifications();
+      }
+    });
   }
 
   private _subscribe(walletClient): void {
