@@ -11,6 +11,30 @@
 <ion-content no-bounce>
   <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
     <ion-slide>
+      <h3 class="title top-">Select language:</h3>
+      <div style="display:flex; height: 100%; flex-direction: column; white-space: nowrap;">
+        <ion-scroll scrollY="true" style="flex: 1 0 0; white-space: nowrap;">
+          <ion-list>
+            <ion-list radio-group [(ngModel)]="currentLanguage" class="settings-list">
+              <ion-item *ngFor="let language of languages">
+                <ion-label>
+                  {{ language.name }}
+                </ion-label>
+                <ion-radio (click)="save(language.isoCode)" [value]="language.isoCode"></ion-radio>
+              </ion-item>
+            </ion-list>
+          </ion-list>
+        </ion-scroll>
+
+        <div padding>
+          <button ion-button clear class="button-standard btn-transparent primary-color e2e-got-it" (click)="slideNext()">
+            {{'OK' | translate}}
+          </button>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
       <h3 class="title" translate>Bitcoin Cash is secure, digital money.</h3>
       <p translate class="top-description">You can spend Bitcoin Cash at millions of websites and stores worldwide.</p>
       <img src='assets/img/app/onboarding/tour-phone.svg' />

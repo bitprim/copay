@@ -12,6 +12,7 @@ import { Logger } from '../../../providers/logger/logger';
 import { BackupRequestPage } from '../backup-request/backup-request';
 
 // providers
+import { LanguageProvider } from '../../../providers/language/language';
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
 import { PersistenceProvider } from '../../../providers/persistence/persistence';
 import { PopupProvider } from '../../../providers/popup/popup';
@@ -32,11 +33,14 @@ export class TourPage {
   public localCurrencySymbol: string;
   public localCurrencyPerBtc: string;
   public currentIndex: number;
+  public currentLanguage;
+  public languages;
 
   private retryCount: number = 0;
 
   constructor(
     public navCtrl: NavController,
+    private languageProvider: LanguageProvider,
     public loadingCtrl: LoadingController,
     private logger: Logger,
     private translate: TranslateService,
@@ -48,6 +52,8 @@ export class TourPage {
     private popupProvider: PopupProvider
   ) {
     this.currentIndex = 0;
+    this.currentLanguage = this.languageProvider.getCurrent();
+    this.languages = this.languageProvider.getAvailables();
     this.rateProvider.whenRatesAvailable('bch').then(() => {
       let btcAmount = 1;
       this.localCurrencySymbol = '$';
@@ -110,5 +116,9 @@ export class TourPage {
           }
         }, 2000);
       });
+  }
+
+  public save(newLang: string): void {
+    this.languageProvider.set(newLang);
   }
 }
