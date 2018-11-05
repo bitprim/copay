@@ -19,6 +19,9 @@ export class PushNotificationsProvider {
   private isAndroid: boolean;
   private usePushNotifications: boolean;
   private _token = null;
+  private _getTokenRetries: number;
+  static readonly MAX_GET_TOKEN_RETRIES: number = 10;
+  static readonly GET_TOKEN_RETRY_WAIT: number = 1000;
 
   constructor(
     public http: HttpClient,
@@ -35,15 +38,26 @@ export class PushNotificationsProvider {
     this.isIOS = this.platformProvider.isIOS;
     this.isAndroid = this.platformProvider.isAndroid;
     this.usePushNotifications = this.platformProvider.isCordova;
+    this._getTokenRetries = 0;
   }
 
   public init(): void {
-    if (!this.usePushNotifications || this._token) return;
+    if (!this.usePushNotifications || this._token) {
+      if (!this.usePushNotifications) {
+        this.logger.warn('Push notifications disabled for this platform');
+      } else {
+        this.logger.warn('FCM token already obtained: ' + this._token);
+      }
+      return;
+    }
     this.configProvider.load().then(() => {
-      if (!this.configProvider.get().pushNotificationsEnabled) return;
+      if (!this.configProvider.get().pushNotificationsEnabled) {
+        this.logger.warn('Push notifications disabled at config level.');
+        return;
+      }
 
       this.logger.debug('Starting push notification registration...');
-
+      this._getTokenRetries = 1;
       setTimeout(this._getFCMToken.bind(this), 0);
     });
   }
@@ -120,13 +134,31 @@ export class PushNotificationsProvider {
   }
 
   private _getFCMToken(): void {
-    this.logger.debug('Requesting FCM token...');
+    this.logger.debug(
+      'Requesting FCM token, attempt ' +
+        this._getTokenRetries +
+        '/' +
+        PushNotificationsProvider.MAX_GET_TOKEN_RETRIES
+    );
     // FCMPlugin.getToken will return null if the token has not been established yet.
     // Therefore, we retry until we succeed.
     this.FCMPlugin.getToken().then(token => {
       if (token == null) {
-        this.logger.debug('Null FCM token, retrying...');
-        setTimeout(this._getFCMToken.bind(this), 1000);
+        this._getTokenRetries++;
+        if (
+          this._getTokenRetries ==
+          PushNotificationsProvider.MAX_GET_TOKEN_RETRIES
+        ) {
+          this.logger.error(
+            'Max retries reached for FCM token retrieval; check FCM configuration, and internet connection'
+          );
+        } else {
+          this.logger.debug('Null FCM token, retrying...');
+          setTimeout(
+            this._getFCMToken.bind(this),
+            PushNotificationsProvider.GET_TOKEN_RETRY_WAIT
+          );
+        }
       } else {
         this.logger.debug('Successfully obtained FCM token: ' + token);
         this._token = token;
