@@ -141,7 +141,7 @@ export class PushNotificationsProvider {
         PushNotificationsProvider.MAX_GET_TOKEN_RETRIES
     );
     // FCMPlugin.getToken will return null if the token has not been established yet.
-    // Therefore, we retry until we succeed.
+    // Therefore, we retry until we succeed or reach max retries.
     this.FCMPlugin.getToken().then(token => {
       if (token == null) {
         this._getTokenRetries++;
