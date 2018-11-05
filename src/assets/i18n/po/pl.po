@@ -1361,6 +1361,9 @@ msgstr "Powiadom mnie, gdy transakcja zostanie potwierdzona"
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
 msgstr "Nadszedł czas, aby sprawdzić swoje otoczenie. Czy jesteś w pobliżu okna? Czy są gdzieś ukryte kamery? Osoby zerkające przez ramię?"
 
+msgid "Select language (scroll for more)"
+msgstr "Wybierz język (przewiń, aby uzyskać więcej)"
+
 msgid "OK"
 msgstr "OK"
 

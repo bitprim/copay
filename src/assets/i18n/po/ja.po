@@ -1363,6 +1363,9 @@ msgstr "取引が承認されたら通知する。"
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
 msgstr "今一度周りの環境をよく見てみましょう。隠しカメラ、窓、覗いてくる人などありませんか？"
 
+msgid "Select language (scroll for more)"
+msgstr "言語を選択する（詳細は下にスクロールしてください）"
+
 msgid "OK"
 msgstr "OK"
 

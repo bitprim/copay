@@ -1437,6 +1437,9 @@ msgid ""
 "cameras? Shoulder-spies?"
 msgstr ""
 
+msgid "Select language (scroll for more)"
+msgstr ""
+
 msgid "OK"
 msgstr ""
 
