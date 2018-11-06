@@ -127,7 +127,7 @@ describe('SessionLogPage', () => {
         const log = instance.prepareLogs();
 
         expect(log).toEqual(
-          'Copay Session Logs\n Be careful, this could contain sensitive private data\n\n\n\n[01/07/2008][1]msg'
+          'Keoken Session Logs\n Be careful, this could contain sensitive private data\n\n\n\n[01/07/2008][1]msg'
         );
       });
     });
