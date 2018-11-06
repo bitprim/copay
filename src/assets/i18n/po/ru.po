@@ -1361,6 +1361,9 @@ msgstr "Уведомить меня, когда транзакции подтв�
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
 msgstr "Самое время оценить окружение. Окна поблизости? Скрытые камеры? Плечешпионы?"
 
+msgid "Select language (scroll for more)"
+msgstr "выберите язык (прокрутите для большего)"
+
 msgid "OK"
 msgstr "ХОРОШО"
 

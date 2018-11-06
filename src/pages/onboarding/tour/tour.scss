@@ -75,4 +75,10 @@ page-tour {
   .back-button-icon {
     color: $onboarding-primary-color;
   }
+  #language-selector {
+    width: 100%;
+    height: 65vh;
+    overflow: auto;
+    white-space: nowrap;
+  }
 }

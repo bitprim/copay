@@ -1531,6 +1531,9 @@ msgstr ""
 "Now is a perfect time to assess your surroundings. Nearby windows? Hidden "
 "cameras? Shoulder-spies?"
 
+msgid "Select language (scroll for more)"
+msgstr "Select language (scroll for more)"
+
 msgid "OK"
 msgstr "OK"
 
