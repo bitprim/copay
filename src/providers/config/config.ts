@@ -138,7 +138,7 @@ const configDefault: Config = {
 
   // Bitcore wallet service URL
   bws: {
-    url: 'https://bws.testnet.keoken.io:3232/bws/api'
+    url: '__BWS_URL_PLACEHOLDER__'
   },
 
   download: {

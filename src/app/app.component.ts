@@ -19,7 +19,7 @@ import { AppProvider } from '../providers/app/app';
 import { BitPayCardProvider } from '../providers/bitpay-card/bitpay-card';
 import { CoinbaseProvider } from '../providers/coinbase/coinbase';
 import { ConfigProvider } from '../providers/config/config';
-import { EmailNotificationsProvider } from '../providers/email-notifications/email-notifications';
+// import { EmailNotificationsProvider } from '../providers/email-notifications/email-notifications';
 import { GlideraProvider } from '../providers/glidera/glidera';
 import { IncomingDataProvider } from '../providers/incoming-data/incoming-data';
 import { Logger } from '../providers/logger/logger';
@@ -112,7 +112,7 @@ export class CopayApp {
     private shapeshiftProvider: ShapeshiftProvider,
     private faucetProvider: FaucetProvider,
     private explorerProvider: ExplorerProvider,
-    private emailNotificationsProvider: EmailNotificationsProvider,
+    // private emailNotificationsProvider: EmailNotificationsProvider,
     private screenOrientation: ScreenOrientation,
     private popupProvider: PopupProvider,
     private pushNotificationsProvider: PushNotificationsProvider,
@@ -157,13 +157,13 @@ export class CopayApp {
   private onAppLoad(readySource) {
     this.logger.info(
       'Platform ready (' +
-      readySource +
-      '): ' +
-      this.appProvider.info.nameCase +
-      ' - v' +
-      this.appProvider.info.version +
-      ' #' +
-      this.appProvider.info.commitHash
+        readySource +
+        '): ' +
+        this.appProvider.info.nameCase +
+        ' - v' +
+        this.appProvider.info.version +
+        ' #' +
+        this.appProvider.info.commitHash
     );
 
     if (this.platform.is('cordova')) {
@@ -172,15 +172,15 @@ export class CopayApp {
       // Set User-Agent
       this.userAgent.set(
         this.appProvider.info.name +
-        ' ' +
-        this.appProvider.info.version +
-        ' (' +
-        this.device.platform +
-        ' ' +
-        this.device.version +
-        ' - ' +
-        this.device.model +
-        ')'
+          ' ' +
+          this.appProvider.info.version +
+          ' (' +
+          this.device.platform +
+          ' ' +
+          this.device.version +
+          ' - ' +
+          this.device.model +
+          ')'
       );
 
       // Set to portrait
@@ -222,7 +222,8 @@ export class CopayApp {
   }
 
   private onProfileLoad(profile) {
-    this.emailNotificationsProvider.init(); // Update email subscription if necessary
+    // TODO Crashes and prevents push notifications from working when uncommented
+    // this.emailNotificationsProvider.init(); // Update email subscription if necessary
     this.initPushNotifications();
 
     if (profile) {

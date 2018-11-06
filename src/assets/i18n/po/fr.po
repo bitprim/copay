@@ -1361,6 +1361,9 @@ msgstr "Me notifier quand les transactions se confirment"
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
 msgstr "C'est le moment d'observer autour de vous ! Personne aux fenêtres ? Derrière vous ? Aucune caméra cachée ?"
 
+msgid "Select language (scroll for more)"
+msgstr "Sélectionnez la langue (faites défiler pour plus)"
+
 msgid "OK"
 msgstr "Ok"
 
@@ -1754,7 +1757,7 @@ msgstr "Voir la facture &rarr;"
 msgid "See transaction"
 msgstr "Voir la transaction"
 
-msgid "Select a coin"
+msgid "Select coin"
 msgstr "Sélectionnez une crypto-monnaie"
 
 msgid "Select a wallet"
@@ -2528,8 +2531,8 @@ msgstr "Les frais miniers {coinName} sont anormalement élevés"
 msgid "{{amountUnitStr}} Gift Card"
 msgstr "{{amountUnitStr}} carte(s)-cadeau(x)"
 
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (Bitprim's public BWS instance)."
-msgstr "{{appName}} repose sur Bitcore Wallet Service (BWS) pour les informations de blockchain, le réseau et la synchronisation des Copayers. La configuration par défaut est orientée vers https://bws.bitpay.com (instance BWS publique de Bitprim)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.testnet.keoken.io (Bitprim's public BWS instance)."
+msgstr "{{appName}} repose sur Bitcore Wallet Service (BWS) pour les informations de blockchain, le réseau et la synchronisation des Copayers. La configuration par défaut est orientée vers https://bws.testnet.keoken.io (instance BWS publique de Bitprim)."
 
 msgid "{{btx.feeRateStr}} of the total amount"
 msgstr "{{btx.feeRateStr}} du montant total"
