@@ -1361,6 +1361,9 @@ msgstr "거래 확인 시 알림 받기"
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
 msgstr "주변 환경을 평가하기에 완벽한 시기입니다. 창문가이신가요? 숨겨진 카메라가 있지는 않나요? 스파이는 없나요?"
 
+msgid "Select language (scroll for more)"
+msgstr "언어 선택 (더 많은 것을 위해 스크롤)"
+
 msgid "OK"
 msgstr "OK"
 

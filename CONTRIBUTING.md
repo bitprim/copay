@@ -1,4 +1,4 @@
-# Contributing to Copay
+# Contributing to Keoken
 
 Please take a moment to review this document in order to make the contribution
 process easy and effective for everyone involved.
@@ -72,20 +72,18 @@ provide as much detail and context as possible.
 
 ## Support requests
 
-If you are having particular problem with your Copay instalation, please first [search older
-issues](https://github.com/bitpay/copay/issues) in order to learn if the issue is already reported. It could be fixed already.
-
-Please also check our [FAQ](https://github.com/bitpay/copay/wiki/COPAY---FAQ).
+If you are having a particular problem with your Keoken instalation, please first [search older
+issues](https://github.com/bitprim/copay/issues) in order to learn if the issue is already reported. It could be fixed already.
 
 When requesting support describe the issue as much in detail as possible. Consider to
 provide the following information:
 
 - Which platform are you using? (Which device and operating system)
-- Which version of Copay are you using? (Check Copay version on the side menu)
+- Which version of Keoken are you using? (Check Keoken version on the side menu)
 - Please import your wallet on a different platform. Does the problem persist?
 - What type of wallet are you using? (multisig or singlesig)
-- When the wallet was created? On which device / operating system
-- Please check Copay logs (General Settings -> About Copay -> Session Logs). Look for
+- When was the wallet created? On which device / operating system
+- Please check Keoken logs (General Settings -> About Keoken -> Session Logs). Look for
   any errors reported there (errors are shown in red)
 - If possible, please provide a screenshot of the error / issue.
 
