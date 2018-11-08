@@ -40,7 +40,7 @@ describe('CreateWalletPage', () => {
         myName: 'test',
         networkName: 'livenet',
         bwsurl: '__BWS_URL_PLACEHOLDER__',
-        singleAddress: false,
+        singleAddress: true,
         coin: 'btc',
         mnemonic: 'mom mom mom mom mom mom mom mom mom mom mom mom',
         derivationStrategy: 'BIP44'
@@ -52,7 +52,7 @@ describe('CreateWalletPage', () => {
       instance.createForm.value.totalCopayers = 3;
       instance.createForm.value.testnetEnabled = 'livenet';
       instance.createForm.value.bwsURL = '__BWS_URL_PLACEHOLDER__';
-      instance.createForm.value.singleAddress = false;
+      instance.createForm.value.singleAddress = true;
       instance.createForm.value.coin = 'btc';
       instance.createForm.value.selectedSeed = 'set';
       instance.createForm.value.recoveryPhrase =
