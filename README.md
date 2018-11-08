@@ -186,7 +186,7 @@ _Gracias totales!_
 
 ## Release Schedules
 
-Keoken uses the `MAJOR.MINOR.BATCH` convention for versioning. Any release that adds features should modify the MINOR or MAJOR number.
+Keoken uses the `MAJOR.MINOR.PATCH` convention for versioning. Any release that adds features should modify the MINOR or MAJOR number.
 
 ### Bug Fixing Releases
 
