@@ -993,7 +993,7 @@ export class ProfileProvider {
               opts.n,
               {
                 network: opts.networkName,
-                singleAddress: opts.singleAddress,
+                singleAddress: true,
                 walletPrivKey: opts.walletPrivKey,
                 coin: opts.coin
               },
