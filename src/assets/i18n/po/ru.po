@@ -557,8 +557,8 @@ msgstr "Создать новый кошелек"
 msgid "Create a new wallet to start using this app."
 msgstr ""
 
-msgid "Create bitcoin wallet"
-msgstr "Создать биткойн-кошелёк"
+msgid "Create Keoken wallet"
+msgstr "Создать Keoken кошелёк"
 
 msgid "Create personal wallet"
 msgstr "Создать личный кошелек"

@@ -557,8 +557,8 @@ msgstr "创建一个新的钱包"
 msgid "Create a new wallet to start using this app."
 msgstr ""
 
-msgid "Create bitcoin wallet"
-msgstr "创建比特币的钱包"
+msgid "Create Keoken wallet"
+msgstr "创建Keoken的钱包"
 
 msgid "Create personal wallet"
 msgstr "创建个人钱包"
