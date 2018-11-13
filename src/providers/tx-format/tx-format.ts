@@ -14,6 +14,8 @@ export class TxFormatProvider {
   // TODO: implement configService
   public pendingTxProposalsCountForUs: number;
 
+  static readonly KEOKEN_OPCODE = '6a0400004b5010';
+
   constructor(
     private bwcProvider: BwcProvider,
     private rate: RateProvider,
@@ -136,10 +138,18 @@ export class TxFormatProvider {
       }
 
       for (var i = 0; i < outputsNr; i++) {
-        this.logger.debug("Tx Output " + i + " Script: " + tx.outputs[i].script + " Amount: " + tx.outputs[i].amount);
-        /*if (tx.outputs[i].amount == 0) {
-              //Decode script and store keo amount
-        }*/
+        this.logger.debug(
+          'Tx Output ' +
+            i +
+            ' Script: ' +
+            tx.outputs[i].script +
+            ' Amount: ' +
+            tx.outputs[i].amount
+        ); // TODO
+        if (this._isKeoOutput(tx.outputs[i])) {
+          tx.keoAmount = this._parseKeoAmount(tx.outputs[i]);
+          this.logger.debug('Keo amount detected: ' + tx.keoAmount); // TODO
+        }
       }
     }
 
@@ -183,7 +193,7 @@ export class TxFormatProvider {
     txps.push(txp);
     */
 
-    _.each(txps, function (tx) {
+    _.each(txps, function(tx) {
       // no future transactions...
       if (tx.createdOn > now) tx.createdOn = now;
 
@@ -273,5 +283,28 @@ export class TxFormatProvider {
     let satToUnit = 1 / unitToSatoshi;
     let unitDecimals = settings.unitDecimals;
     return parseFloat((amount * satToUnit).toFixed(unitDecimals));
+  }
+
+  private _isKeoOutput(output): boolean {
+    if (!output.script || Math.abs(output.amount - 0) > Number.EPSILON) {
+      return false;
+    }
+    // 6a0400004b50100000000100000001000000000000001c
+    let script = output.script;
+    if (!script.startsWith(TxFormatProvider.KEOKEN_OPCODE)) {
+      return false;
+    }
+    let TX_TYPE_POS = 14;
+    let TX_TYPE_LENGTH = 8;
+    let TX_TYPE_SEND_TOKENS = '00000001';
+    return (
+      script.substring(TX_TYPE_POS, TX_TYPE_POS + TX_TYPE_LENGTH) ==
+      TX_TYPE_SEND_TOKENS
+    );
+  }
+
+  private _parseKeoAmount(output): number {
+    let TX_AMOUNT_POS = 30;
+    return parseInt(output.script.substring(TX_AMOUNT_POS), 16);
   }
 }

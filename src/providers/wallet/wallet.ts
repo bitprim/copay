@@ -231,7 +231,6 @@ export class WalletProvider {
           this.logger.debug('balance ' + balance.amount);
         });
 
-
         // Spend unconfirmed funds
         if (config.spendUnconfirmed) {
           cache.lockedBalanceSat = balance.lockedAmount;
@@ -617,7 +616,7 @@ export class WalletProvider {
       let LIMIT = 50;
       let requestLimit = FIRST_LIMIT;
       let walletId = wallet.credentials.walletId;
-      this.progressFn[walletId] = opts.progressFn || (() => { });
+      this.progressFn[walletId] = opts.progressFn || (() => {});
       let foundLimitTx = [];
 
       let fixTxsUnit = (txs): void => {
@@ -707,7 +706,7 @@ export class WalletProvider {
                   if (!shouldContinue) {
                     this.logger.debug(
                       'Finished Sync: New / soft confirmed Txs: ' +
-                      newTxs.length
+                        newTxs.length
                     );
                     return resolve(newTxs);
                   }
@@ -1210,11 +1209,11 @@ export class WalletProvider {
         .then(() => {
           this.logger.debug(
             'Remote preferences saved for' +
-            lodash
-              .map(clients, (x: any) => {
-                return x.credentials.walletId;
-              })
-              .join(',')
+              lodash
+                .map(clients, (x: any) => {
+                  return x.credentials.walletId;
+                })
+                .join(',')
           );
 
           lodash.each(clients, c => {
@@ -1496,8 +1495,8 @@ export class WalletProvider {
             err && err.message
               ? err.message
               : this.translate.instant(
-                'The payment was created but could not be completed. Please try again from home screen'
-              );
+                  'The payment was created but could not be completed. Please try again from home screen'
+                );
           this.logger.debug('Sign error: ' + msg);
           this.events.publish('Local/TxAction', wallet.id);
           return reject(msg);
@@ -1581,16 +1580,16 @@ export class WalletProvider {
 
       return resolve(
         info.type +
-        '|' +
-        info.data +
-        '|' +
-        wallet.credentials.network.toLowerCase() +
-        '|' +
-        derivationPath +
-        '|' +
-        wallet.credentials.mnemonicHasPassphrase +
-        '|' +
-        wallet.coin
+          '|' +
+          info.data +
+          '|' +
+          wallet.credentials.network.toLowerCase() +
+          '|' +
+          derivationPath +
+          '|' +
+          wallet.credentials.mnemonicHasPassphrase +
+          '|' +
+          wallet.coin
       );
     });
   }
