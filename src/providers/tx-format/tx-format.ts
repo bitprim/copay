@@ -134,6 +134,13 @@ export class TxFormatProvider {
           ? this.toLegacyAddress(tx.toAddress)
           : this.toCashAddress(tx.toAddress);
       }
+
+      for (var i = 0; i < outputsNr; i++) {
+        this.logger.debug("Tx Output " + i + " Script: " + tx.outputs[i].script + " Amount: " + tx.outputs[i].amount);
+        /*if (tx.outputs[i].amount == 0) {
+              //Decode script and store keo amount
+        }*/
+      }
     }
 
     tx.amountStr = this.formatAmountStr(coin, tx.amount);
@@ -176,7 +183,7 @@ export class TxFormatProvider {
     txps.push(txp);
     */
 
-    _.each(txps, function(tx) {
+    _.each(txps, function (tx) {
       // no future transactions...
       if (tx.createdOn > now) tx.createdOn = now;
 
