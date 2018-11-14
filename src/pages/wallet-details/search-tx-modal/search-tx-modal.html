@@ -71,9 +71,10 @@
 
           <ion-note item-end text-end>
             <div class="amount">
-              <span [ngClass]="{'received': tx.action == 'received'}" *ngIf="tx.action != 'invalid'">{{tx.amount | satToUnit: wallet.coin}}</span>
+              <span [ngClass]="{'received': tx.action == 'received'}" *ngIf="tx.action != 'invalid'">{{tx.keoAmount}} Keo</span>
               <span class="double-spend" *ngIf="tx.action == 'invalid'" translate>(possible double spend)</span>
             </div>
+            <div class="alternative">{{tx.amountStr}}</div>
             <div class="date">
               <span *ngIf="tx.time && createdWithinPastDay(tx.time * 1000)">{{tx.time * 1000 | amTimeAgo}}</span>
               <span *ngIf="tx.time && !createdWithinPastDay(tx.time * 1000)">{{tx.time * 1000 | amDateFormat:'MMM D, YYYY'}}</span>
