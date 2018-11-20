@@ -557,8 +557,8 @@ msgstr "Crea un nuovo portafoglio"
 msgid "Create a new wallet to start using this app."
 msgstr ""
 
-msgid "Create bitcoin wallet"
-msgstr "Creare portafoglio bitcoin"
+msgid "Create Keoken wallet"
+msgstr "Creare portafoglio Keoken"
 
 msgid "Create personal wallet"
 msgstr "Creare il portafoglio personale"

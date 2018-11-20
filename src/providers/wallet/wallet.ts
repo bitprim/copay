@@ -231,7 +231,6 @@ export class WalletProvider {
           this.logger.debug('balance ' + balance.amount);
         });
 
-
         // Spend unconfirmed funds
         if (config.spendUnconfirmed) {
           cache.lockedBalanceSat = balance.lockedAmount;
@@ -277,25 +276,6 @@ export class WalletProvider {
 
         cache.alternativeName = config.settings.alternativeName;
         cache.alternativeIsoCode = config.settings.alternativeIsoCode;
-
-        // Check address
-        this.isAddressUsed(wallet, balance.byAddress)
-          .then(used => {
-            if (used) {
-              this.logger.debug('Address used. Creating new');
-              // Force new address
-              this.getAddress(wallet, true)
-                .then(addr => {
-                  this.logger.debug('New address: ', addr);
-                })
-                .catch(err => {
-                  return reject(err);
-                });
-            }
-          })
-          .catch(err => {
-            return reject(err);
-          });
 
         this.rateProvider
           .whenRatesAvailable(wallet.coin)
@@ -427,23 +407,6 @@ export class WalletProvider {
       _getStatus(walletStatusHash(null), 0)
         .then(status => {
           resolve(status);
-        })
-        .catch(err => {
-          return reject(err);
-        });
-    });
-  }
-
-  // Check address
-  private isAddressUsed(wallet, byAddress): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.persistenceProvider
-        .getLastAddress(wallet.id)
-        .then(addr => {
-          let used = lodash.find(byAddress, {
-            address: addr
-          });
-          return resolve(used);
         })
         .catch(err => {
           return reject(err);
@@ -617,7 +580,7 @@ export class WalletProvider {
       let LIMIT = 50;
       let requestLimit = FIRST_LIMIT;
       let walletId = wallet.credentials.walletId;
-      this.progressFn[walletId] = opts.progressFn || (() => { });
+      this.progressFn[walletId] = opts.progressFn || (() => {});
       let foundLimitTx = [];
 
       let fixTxsUnit = (txs): void => {
@@ -707,7 +670,7 @@ export class WalletProvider {
                   if (!shouldContinue) {
                     this.logger.debug(
                       'Finished Sync: New / soft confirmed Txs: ' +
-                      newTxs.length
+                        newTxs.length
                     );
                     return resolve(newTxs);
                   }
@@ -1210,11 +1173,11 @@ export class WalletProvider {
         .then(() => {
           this.logger.debug(
             'Remote preferences saved for' +
-            lodash
-              .map(clients, (x: any) => {
-                return x.credentials.walletId;
-              })
-              .join(',')
+              lodash
+                .map(clients, (x: any) => {
+                  return x.credentials.walletId;
+                })
+                .join(',')
           );
 
           lodash.each(clients, c => {
@@ -1496,8 +1459,8 @@ export class WalletProvider {
             err && err.message
               ? err.message
               : this.translate.instant(
-                'The payment was created but could not be completed. Please try again from home screen'
-              );
+                  'The payment was created but could not be completed. Please try again from home screen'
+                );
           this.logger.debug('Sign error: ' + msg);
           this.events.publish('Local/TxAction', wallet.id);
           return reject(msg);
@@ -1581,16 +1544,16 @@ export class WalletProvider {
 
       return resolve(
         info.type +
-        '|' +
-        info.data +
-        '|' +
-        wallet.credentials.network.toLowerCase() +
-        '|' +
-        derivationPath +
-        '|' +
-        wallet.credentials.mnemonicHasPassphrase +
-        '|' +
-        wallet.coin
+          '|' +
+          info.data +
+          '|' +
+          wallet.credentials.network.toLowerCase() +
+          '|' +
+          derivationPath +
+          '|' +
+          wallet.credentials.mnemonicHasPassphrase +
+          '|' +
+          wallet.coin
       );
     });
   }

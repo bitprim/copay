@@ -557,8 +557,8 @@ msgstr "Crear una nueva billetera"
 msgid "Create a new wallet to start using this app."
 msgstr "Crear una nueva billetera para comenzar a utilizar esta aplicación."
 
-msgid "Create bitcoin wallet"
-msgstr "Crear billetera"
+msgid "Create Keoken wallet"
+msgstr "Crear billetera Keoken"
 
 msgid "Create personal wallet"
 msgstr "Crear billetera personal"
