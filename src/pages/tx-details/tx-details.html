@@ -20,8 +20,8 @@
         <div class="amount-label">
           <div class="amount">
             <div>
-              {{btx.amountValueStr}}
-              <span class="amount-coin">{{btx.amountUnitStr}}</span>
+              {{btx.keoAmount}}
+              <span class="amount-coin">Keo</span>
             </div>
             <span *ngIf="btx.confirmations > 0">
               <img class="sending-img" src="assets/img/tx-action/icon-sent.svg" width="40" *ngIf="btx.action === 'sent'">
@@ -32,7 +32,7 @@
               <img class="sending-img" src="assets/img/tx-action/icon-confirming.svg">
             </span>
           </div>
-          <div class="alternative">{{btx.alternativeAmountStr}}</div>
+          <div class="alternative">{{btx.amountStr}}</div>
         </div>
       </div>
     </ion-item>
@@ -139,7 +139,8 @@
 
     <ion-item *ngIf="txsUnsubscribedForNotifications">
       <ion-label>{{'Notify me if confirmed' | translate}}</ion-label>
-      <ion-toggle checked="false" *ngIf="!btx.confirmations || btx.confirmations == 0" [(ngModel)]="txNotification.value" (ionChange)="txConfirmNotificationChange()"></ion-toggle>
+      <ion-toggle checked="false" *ngIf="!btx.confirmations || btx.confirmations == 0" [(ngModel)]="txNotification.value"
+        (ionChange)="txConfirmNotificationChange()"></ion-toggle>
     </ion-item>
 
     <div *ngIf="actionList && actionList[0]">
