@@ -138,17 +138,8 @@ export class TxFormatProvider {
       }
 
       for (var i = 0; i < outputsNr; i++) {
-        this.logger.debug(
-          'Tx Output ' +
-            i +
-            ' Script: ' +
-            tx.outputs[i].script +
-            ' Amount: ' +
-            tx.outputs[i].amount
-        ); // TODO
         if (this._isKeoOutput(tx.outputs[i])) {
           tx.keoAmount = this._parseKeoAmount(tx.outputs[i]);
-          this.logger.debug('Keo amount detected: ' + tx.keoAmount); // TODO
         }
       }
     }
@@ -289,7 +280,6 @@ export class TxFormatProvider {
     if (!output.script || Math.abs(output.amount - 0) > Number.EPSILON) {
       return false;
     }
-    // 6a0400004b50100000000100000001000000000000001c
     let script = output.script;
     if (!script.startsWith(TxFormatProvider.KEOKEN_OPCODE)) {
       return false;
