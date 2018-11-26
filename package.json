@@ -144,7 +144,7 @@
     "@zxing/ngx-scanner": "1.2.0",
     "angular2-moment": "1.7.1",
     "bitauth": "git+https://github.com/bitpay/bitauth.git#copay",
-    "keoken-wallet-client": "6.8.0",
+    "bitcore-wallet-client": "6.7.5",
     "buffer-compare": "1.1.1",
     "chalk": "2.4.1",
     "config": "2.0.1",
