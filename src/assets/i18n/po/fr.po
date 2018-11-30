@@ -2075,7 +2075,7 @@ msgstr "Ce mot de passe est seulement pour cet appareil, et il ne peut pas être
 msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
 msgstr "Cette phrase de récupération a été créée avec un mot de passe. Pour récupérer ce portefeuille, la phrase de récupération et le mot de passe sont requis."
 
-msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
+msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds themselves."
 msgstr "Ce montant de transaction est trop faible par rapport aux actuels frais de réseau Bitcoin. La dépense de ces fonds demandera des frais de réseau Bitcoin comparables aux fonds eux-mêmes."
 
 msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender."
