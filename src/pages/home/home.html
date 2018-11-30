@@ -34,10 +34,7 @@
             alt="Clipboard"
             width="20"
           />
-          <span
-            >{{ 'Copied' | translate }}
-            {{ validDataFromClipboard?.title }}</span
-          >
+          <span>{{'Copied' | translate}} {{validDataFromClipboard?.title}}</span>
         </div>
         <div item-end>
           <button
@@ -80,7 +77,7 @@
             <span translate>Create a new wallet to start using this app.</span>
           </div>
           <button ion-button class="button-standard" (click)="goToAddView()">
-            {{ 'Create a new wallet' | translate }}
+            {{'Create a new wallet' | translate}}
           </button>
         </div>
       </div>
@@ -256,7 +253,7 @@
           </div>
           <div item-end *ngIf="showReorderBtc">
             <button ion-button clear color="secondary" (click)="reorderBtc()">
-              {{ 'Done' | translate }}
+              {{'Done' | translate}}
             </button>
           </div>
         </ion-item-divider>
@@ -286,18 +283,10 @@
             </ion-icon>
             <div class="item-title">{{ wallet.name }}</div>
             <div class="item-subtitle">
-              <span
-                class="wallet-warning"
-                *ngIf="!wallet.isComplete()"
-                translate
-              >
+              <span class="wallet-warning" *ngIf="!wallet.isComplete()" translate>
                 Incomplete
               </span>
-              <span
-                class="wallet-warning"
-                *ngIf="wallet.isComplete() && wallet.needsBackup"
-                translate
-              >
+              <span class="wallet-warning" *ngIf="wallet.isComplete() && wallet.needsBackup" translate>
                 Needs Backup
               </span>
               <span *ngIf="wallet.isComplete() && !wallet.needsBackup">
@@ -375,7 +364,7 @@
           </div>
           <div item-end *ngIf="showReorderBch">
             <button ion-button clear color="secondary" (click)="reorderBch()">
-              {{ 'Done' | translate }}
+              {{'Done' | translate}}
             </button>
           </div>
         </ion-item-divider>
@@ -405,18 +394,10 @@
             </ion-icon>
             <div class="item-title">{{ wallet.name }}</div>
             <div class="item-subtitle">
-              <span
-                class="wallet-warning"
-                *ngIf="!wallet.isComplete()"
-                translate
-              >
+              <span class="wallet-warning" *ngIf="!wallet.isComplete()" translate>
                 Incomplete
               </span>
-              <span
-                class="wallet-warning"
-                *ngIf="wallet.isComplete() && wallet.needsBackup"
-                translate
-              >
+              <span class="wallet-warning" *ngIf="wallet.isComplete() && wallet.needsBackup" translate>
                 Needs Backup
               </span>
               <span *ngIf="wallet.isComplete() && !wallet.needsBackup">
@@ -502,17 +483,8 @@
               BitPay Visa&reg; Card ({{ card.lastFourDigits }})
             </div>
             <div class="item-subtitle">
-              {{
-                card.balance
-                  ? (card.balance | number: '1.2-2') + ' ' + card.currency
-                  : ('Add
-              funds to get started' | translate)
-              }}
-              {{
-                card.updatedOn
-                  ? ' &middot; ' + (card.updatedOn * 1000 | amTimeAgo)
-                  : ''
-              }}
+              {{card.balance ? (card.balance | number: '1.2-2') + ' ' + card.currency : ('Add funds to get started' | translate)}}
+              {{card.updatedOn ? ' &middot; ' + (card.updatedOn * 1000 | amTimeAgo) : ''}}
             </div>
           </button>
         </ion-list>

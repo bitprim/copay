@@ -1,8 +1,8 @@
 <ion-header class="wallet-details-header">
   <ion-navbar>
-    <ion-title>{{ 'Confirm' | translate }}</ion-title>
+    <ion-title>{{'Confirm' | translate}}</ion-title>
     <ion-buttons right *ngIf="isWithinWalletTabs()">
-      <button (click)="close()" ion-button>{{ 'Cancel' | translate }}</button>
+      <button (click)="close()" ion-button>{{'Cancel' | translate}}</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -64,13 +64,13 @@
                 *ngIf="tx.txp[wallet.id].feeTooHigh"
                 name="warning"
               ></ion-icon>
-              {{ tx.txp[wallet.id].feeRatePerStr }}
+              {{tx.txp[wallet.id].feeRatePerStr}}
               <span translate> of total amount</span>
             </span>
           </span>
         </div>
       </div>
-      <ion-note item-right> {{ tx.feeLevelName | translate }} </ion-note>
+      <ion-note item-right> {{tx.feeLevelName | translate}} </ion-note>
     </button>
 
     <ion-item *ngIf="tx.paypro">
@@ -78,9 +78,7 @@
       <ion-note *ngIf="!paymentExpired" item-end>{{
         remainingTimeStr
       }}</ion-note>
-      <ion-note *ngIf="paymentExpired" [ngStyle]="{ color: 'red' }" item-end>{{
-        'Expired' | translate
-      }}</ion-note>
+      <ion-note *ngIf="paymentExpired" [ngStyle]="{ color: 'red' }" item-end>{{'Expired' | translate}}</ion-note>
     </ion-item>
 
     <ion-item class="container-to">
@@ -240,8 +238,7 @@
       (focus)="memoFocused = $event"
       (valChange)="tx.description = $event"
       [value]="tx.description"
-      [itemPlaceholder]="'Enter a transaction memo' | translate"
-    >
+      [itemPlaceholder]="'Enter a transaction memo' | translate">
       <span item-label translate>Memo</span>
     </editable-item>
   </ion-list>

@@ -1,6 +1,6 @@
 <ion-header class="wallet-details-header">
   <ion-navbar>
-    <ion-title>{{ title | translate }}</ion-title>
+    <ion-title>{{title | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,8 +14,7 @@
           <span *ngIf="btx.action === 'moved'" translate>Moved</span>
         </div>
         <div class="sending-label" *ngIf="btx.confirmations === 0">
-          <span *ngIf="btx.action == 'sent' || btx.action == 'moved'" translate
-            >Sending</span
+          <span *ngIf="btx.action == 'sent' || btx.action == 'moved'" translate>Sending</span
           >
           <span *ngIf="btx.action == 'received'" translate>Receiving</span>
         </div>
@@ -59,9 +58,8 @@
     <label-tip class="low-fees" type="warn" *ngIf="btx.lowAmount">
       <span label-tip-title translate>Amount Too Low To Spend</span>
       <div label-tip-body translate>
-        This transaction amount is too small compared to current Bitcoin network
-        fees. Spending these funds will need a Bitcoin network fee cost
-        comparable to the funds itself. <br />
+        This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself.
+        <br />
         <a class="label-tip-link" (click)="readMore()" translate>Learn More</a>
       </div>
     </label-tip>
@@ -70,13 +68,12 @@
       class="with-label"
       *ngIf="btx && btx.feeStr && btx.action != 'received'"
     >
-      <div class="fee-title">{{ 'Fee' | translate }}</div>
+      <div class="fee-title">{{'Fee' | translate}}</div>
       <ion-note>
         <span class="fee-amount">{{ btx.feeStr }}</span>
         <div class="fee-details">
           {{ btx.feeFiatStr }} &middot;
-          <span *ngIf="btx.feeRateStr" translate
-            >{{ btx.feeRateStr }} of the total amount</span
+          <span *ngIf="btx.feeRateStr" translate>{{btx.feeRateStr}} of the total amount</span
           >
         </div>
       </ion-note>
@@ -84,10 +81,7 @@
 
     <label-tip *ngIf="btx.action == 'received' && btx.lowFees" type="danger">
       <span label-tip-title translate>Low Fee</span>
-      <div label-tip-body translate>
-        This transaction could take a long time to confirm or could be dropped
-        due to the low fees set by the sender.
-      </div>
+      <div label-tip-body translate>This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender.</div>
     </label-tip>
 
     <ion-item *ngIf="btx.action === 'sent'" class="container-to">
@@ -141,12 +135,12 @@
     </ion-item>
 
     <ion-item *ngIf="btx.action != 'received' && isShared">
-      <ion-label>{{ 'Created by' | translate }}</ion-label>
+      <ion-label>{{'Created by' | translate}}</ion-label>
       <ion-note item-end> {{ btx.creatorName }} </ion-note>
     </ion-item>
 
     <ion-item *ngIf="btx.ts || btx.createdOn || btx.time">
-      <ion-label>{{ 'Date' | translate }}</ion-label>
+      <ion-label>{{'Date' | translate}}</ion-label>
       <ion-note item-end>
         <time>{{
           (btx.ts || btx.createdOn || btx.time) * 1000
@@ -156,7 +150,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>{{ 'Confirmations' | translate }}</ion-label>
+      <ion-label>{{'Confirmations' | translate}}</ion-label>
       <ion-note item-end>
         <span *ngIf="!btx.confirmations || btx.confirmations == 0" translate>
           Unconfirmed
@@ -187,7 +181,7 @@
     </ion-item>
 
     <ion-item *ngIf="txsUnsubscribedForNotifications">
-      <ion-label>{{ 'Notify me if confirmed' | translate }}</ion-label>
+      <ion-label>{{'Notify me if confirmed' | translate}}</ion-label>
       <ion-toggle
         checked="false"
         *ngIf="!btx.confirmations || btx.confirmations == 0"
@@ -197,7 +191,7 @@
     </ion-item>
 
     <div *ngIf="actionList && actionList[0]">
-      <ion-item-divider>{{ 'Timeline' | translate }}</ion-item-divider>
+      <ion-item-divider>{{'Timeline' | translate}}</ion-item-divider>
       <div
         class="timeline-item"
         [ngClass]="{
@@ -233,7 +227,7 @@
 
     <div text-center padding>
       <button ion-button clear (click)="viewOnBlockchain()">
-        {{ 'View on blockchain' | translate }}
+        {{'View on blockchain' | translate}}
       </button>
     </div>
   </ion-list>
