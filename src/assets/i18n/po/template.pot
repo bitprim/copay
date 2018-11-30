@@ -2197,7 +2197,7 @@ msgstr ""
 msgid ""
 "This transaction amount is too small compared to current Bitcoin network "
 "fees. Spending these funds will need a Bitcoin network fee cost comparable "
-"to the funds itself."
+"to the funds themselves."
 msgstr ""
 
 msgid ""
