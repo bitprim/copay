@@ -533,7 +533,6 @@ export class HomePage {
           if (!err && balance.amount)
             wallet.status.keokenBalance = balance.amount;
         });
-
       })
       .catch(err => {
         this.logger.error(err);

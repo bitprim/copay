@@ -10,7 +10,7 @@ export class FaucetProvider {
 
   constructor(
     private homeIntegrationsProvider: HomeIntegrationsProvider,
-    private logger: Logger,
+    private logger: Logger
   ) {
     this.logger.info('Hello FaucetProvider Provider');
     this.credentials = {};

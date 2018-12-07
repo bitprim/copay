@@ -10,7 +10,7 @@ export class ExplorerProvider {
 
   constructor(
     private homeIntegrationsProvider: HomeIntegrationsProvider,
-    private logger: Logger,
+    private logger: Logger
   ) {
     this.logger.info('Hello ExplorerProvider Provider');
     this.credentials = {};

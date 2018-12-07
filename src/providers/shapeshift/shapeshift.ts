@@ -34,9 +34,9 @@ export class ShapeshiftProvider {
     }
 
     /*
-    * Development: 'testnet'
-    * Production: 'livenet'
-    */
+     * Development: 'testnet'
+     * Production: 'livenet'
+     */
     this.credentials.NETWORK = 'livenet';
     this.credentials.API_URL =
       this.credentials.NETWORK === 'testnet'

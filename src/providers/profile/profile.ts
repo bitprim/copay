@@ -196,9 +196,9 @@ export class ProfileProvider {
           if (wallet.status !== true)
             this.logger.debug(
               'Wallet + ' +
-              walletId +
-              ' status:' +
-              JSON.stringify(wallet.status)
+                walletId +
+                ' status:' +
+                JSON.stringify(wallet.status)
             );
         });
       }
@@ -309,7 +309,7 @@ export class ProfileProvider {
             this.profile.setChecked(this.platformProvider.ua, walletId);
           } else {
             this.logger.warn('Key Derivation failed for wallet:' + walletId);
-            this.persistenceProvider.clearLastAddress(walletId).then(() => { });
+            this.persistenceProvider.clearLastAddress(walletId).then(() => {});
           }
 
           this.storeProfileIfDirty();
@@ -841,9 +841,9 @@ export class ProfileProvider {
 
       this.logger.info(
         'Binding wallet:' +
-        credentials.walletId +
-        ' Validating?:' +
-        !skipKeyValidation
+          credentials.walletId +
+          ' Validating?:' +
+          !skipKeyValidation
       );
       return resolve(this.bindWalletClient(walletClient));
     });

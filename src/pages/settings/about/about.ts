@@ -27,7 +27,7 @@ export class AboutPage {
     private externalLinkProvider: ExternalLinkProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
     private translate: TranslateService
-  ) { }
+  ) {}
 
   ionViewDidLoad() {
     this.logger.debug('ionViewDidLoad AboutPage');
@@ -40,8 +40,7 @@ export class AboutPage {
   }
 
   public openExternalLink(): void {
-    let url =
-      'https://github.com/bitprim/copay/';
+    let url = 'https://github.com/bitprim/keoken/';
     let optIn = true;
     let title = this.translate.instant('Open GitHub Project');
     let message = this.translate.instant(

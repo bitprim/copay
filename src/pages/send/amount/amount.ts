@@ -383,8 +383,8 @@ export class AmountPage extends WalletTabsChild {
   private processAmount(): void {
     let formatedValue = this.format(this.expression);
     let result = this.evaluate(formatedValue);
-    this.allowSend = _.isNumber(result) && +result > 0 && Number.isInteger(+result);
-
+    this.allowSend =
+      _.isNumber(result) && +result > 0 && Number.isInteger(+result);
 
     if (_.isNumber(result)) {
       this.globalResult = this.isExpression(this.expression)
@@ -485,9 +485,6 @@ export class AmountPage extends WalletTabsChild {
     if (unit.isFiat) {
       coin = this.availableUnits[this.altUnitIndex].id;
     }
-    this.logger.warn(
-      'intento mandar : ' + _amount
-    );
 
     if (this.navParams.data.nextPage) {
       let amount = _amount;
@@ -534,9 +531,9 @@ export class AmountPage extends WalletTabsChild {
     this.processAmount();
     this.logger.debug(
       'Update unit coin @amount unit:' +
-      this.unit +
-      ' alternativeUnit:' +
-      this.alternativeUnit
+        this.unit +
+        ' alternativeUnit:' +
+        this.alternativeUnit
     );
   }
 
