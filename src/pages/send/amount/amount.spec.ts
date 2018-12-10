@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestUtils } from '../../../test';
 
 import { RateProvider } from '../../../providers/rate/rate';
-import { Coin } from '../../../providers/wallet/wallet';
 import { AmountPage } from './amount';
 
 describe('AmountPage', () => {
@@ -17,7 +16,7 @@ describe('AmountPage', () => {
       totalBalanceSat: 100000000,
       availableBalanceStr: '1.000000',
       availableBalanceSat: 100000000,
-      keokenBalance: 0
+      keokenBalance: 10
     }
   };
 
@@ -38,9 +37,7 @@ describe('AmountPage', () => {
       instance.wallet = wallet;
       instance.ionViewDidLoad();
       instance.sendMax();
-      expect(instance.expression).toBe(
-        instance.wallet.status.availableBalanceSat / 1e8
-      );
+      expect(instance.expression).toBe(instance.wallet.status.keokenBalance);
     });
 
     it('should fetch the bch rate if in bch wallet', () => {
@@ -50,10 +47,8 @@ describe('AmountPage', () => {
       instance.unitIndex = 1;
       const rateProvider: RateProvider = testBed.get(RateProvider);
       spyOn(rateProvider, 'getRate').and.returnValue(1000000);
-      const spy = spyOn(rateProvider, 'toFiat').and.returnValue(1000000);
       instance.sendMax();
-      expect(spy).toHaveBeenCalledWith(100000000, 'USD', Coin.BCH);
-      expect(instance.expression).toBe('1000000.00');
+      expect(instance.expression).toBe(10);
     });
 
     it('should skip rate calculations and go directly to confirm if not within wallet', () => {

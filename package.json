@@ -41,11 +41,11 @@
   "homepage": "https://keoken.io",
   "license": "MIT",
   "repository": {
-    "url": "git://github.com/bitprim/copay.git",
+    "url": "git://github.com/bitprim/keoken.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/bitprim/copay/issues"
+    "url": "https://github.com/bitprim/keoken/issues"
   },
   "scripts": {
     "postinstall": "sed -i  -e \"s/.*require(...\\/...);//g\" node_modules/asn1.js-rfc5280/index.js && run-s e2e:update env:dev prompt",

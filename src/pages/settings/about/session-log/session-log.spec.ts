@@ -140,7 +140,7 @@ describe('SessionLogPage', () => {
 
         expect(instance.socialSharing.shareViaEmail).toHaveBeenCalledWith(
           'logs',
-          'Copay Logs',
+          'Keoken Logs',
           null,
           null,
           null,
