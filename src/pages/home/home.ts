@@ -533,7 +533,6 @@ export class HomePage {
           if (!err && balance.amount)
             wallet.status.keokenBalance = balance.amount;
         });
-
       })
       .catch(err => {
         this.logger.error(err);
@@ -725,6 +724,7 @@ export class HomePage {
     this.walletsBch.splice(indexes.to, 0, element);
     _.each(this.walletsBch, (wallet, index: number) => {
       this.profileProvider.setWalletOrder(wallet.id, index);
+      wallet.assetsOpen = false;
     });
   }
 
@@ -797,5 +797,9 @@ export class HomePage {
 
   public settings() {
     this.navCtrl.push(SettingsPage);
+  }
+
+  public toggleWalletAssets(wallet) {
+    wallet.assetsOpen = !wallet.assetsOpen;
   }
 }
