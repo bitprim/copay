@@ -2554,3 +2554,6 @@ msgstr "{{wallet.m}}-de-{{wallet.n}}"
 
 msgid "Select asset"
 msgstr "Escolher asset"
+
+msgid "Add asset"
+msgstr "Adicionar asset"

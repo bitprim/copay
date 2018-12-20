@@ -2554,3 +2554,6 @@ msgstr "{{wallet.m}}-sur-{{wallet.n}}"
 
 msgid "Select asset"
 msgstr "Sélectionner un atout"
+
+msgid "Add asset"
+msgstr "Ajouter un atout"

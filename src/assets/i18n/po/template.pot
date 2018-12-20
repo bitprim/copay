@@ -2727,3 +2727,6 @@ msgstr ""
 
 msgid "Select asset"
 msgstr ""
+
+msgid "Add asset"
+msgstr ""

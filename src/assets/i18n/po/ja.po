@@ -2558,3 +2558,6 @@ msgstr "{{wallet.m}}-of-{{wallet.n}}"
 
 msgid "Select asset"
 msgstr "アセットを選択"
+
+msgid "Add asset"
+msgstr "アセットを追加"

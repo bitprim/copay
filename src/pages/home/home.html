@@ -447,7 +447,7 @@
             </button>
 
             <ion-list *ngIf="wallet.assetsOpen" no-lines inset inset>
-              <ion-item (click)="openAddAssetModal(wallet)">Add Asset</ion-item>
+              <ion-item (click)="openAddAssetModal(wallet)">{{'Add asset' | translate}}</ion-item>
             </ion-list>
           </ion-list-header>
         </ion-list>
