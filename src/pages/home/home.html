@@ -441,13 +441,13 @@
               </div>
             </button>
             <button ion-item (click)="toggleWalletAssets(wallet)" detail-none [ngClass]="{'section-active': wallet.assetsOpen, 'section': !wallet.assetsOpen}">
-              <!-- <ion-icon item-left name="arrow-forward" *ngIf="!wallet.assetsOpen"></ion-icon>
-              <ion-icon item-left name="arrow-down" *ngIf="wallet.assetsOpen"></ion-icon> -->
-              Assets <ion-icon name="arrow-dropdown" *ngIf="!wallet.assetsOpen"></ion-icon> <ion-icon name="arrow-dropright" *ngIf="wallet.assetsOpen"></ion-icon>
+              Assets
+              <ion-icon name="arrow-dropdown" *ngIf="!wallet.assetsOpen"></ion-icon>
+              <ion-icon name="arrow-dropright" *ngIf="wallet.assetsOpen"></ion-icon>
             </button>
 
             <ion-list *ngIf="wallet.assetsOpen" no-lines inset inset>
-              <ion-item>Add Asset</ion-item>
+              <ion-item (click)="openAddAssetModal(wallet)">Add Asset</ion-item>
             </ion-list>
           </ion-list-header>
         </ion-list>

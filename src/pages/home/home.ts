@@ -12,6 +12,7 @@ import { Observable, Subscription } from 'rxjs';
 
 // Pages
 import { AddPage } from '../add/add';
+import { AddAssetPage } from '../add/add-asset/add-asset';
 import { AmazonPage } from '../integrations/amazon/amazon';
 import { BitPayCardPage } from '../integrations/bitpay-card/bitpay-card';
 import { BitPayCardIntroPage } from '../integrations/bitpay-card/bitpay-card-intro/bitpay-card-intro';
@@ -801,5 +802,19 @@ export class HomePage {
 
   public toggleWalletAssets(wallet) {
     wallet.assetsOpen = !wallet.assetsOpen;
+  }
+
+  public openAddAssetModal(walletToModify): void {
+    let modal = this.modalCtrl.create(
+      AddAssetPage,
+      {
+        wallet: walletToModify
+      },
+      {
+        showBackdrop: true,
+        enableBackdropDismiss: true
+      }
+    );
+    modal.present();
   }
 }

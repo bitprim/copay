@@ -1,5 +1,6 @@
 /* Pages */
 import { AddPage } from '../pages/add/add';
+import { AddAssetPage } from '../pages/add/add-asset/add-asset';
 import { CopayersPage } from '../pages/add/copayers/copayers';
 import { CreateWalletPage } from '../pages/add/create-wallet/create-wallet';
 import { ImportWalletPage } from '../pages/add/import-wallet/import-wallet';
@@ -131,6 +132,7 @@ import { WalletTabsChild } from './wallet-tabs/wallet-tabs-child';
 
 export const PAGES = [
   ActivityPage,
+  AddAssetPage,
   AddPage,
   AmazonCardDetailsPage,
   AmazonPage,
