@@ -8,6 +8,7 @@ import { Logger } from '../../../providers/logger/logger';
 })
 export class AddAssetPage {
   public assets;
+  public readonly KEOS_ASSET_ID = 1;
   private wallet;
 
   constructor(public logger: Logger, private navParams: NavParams) {
@@ -18,7 +19,9 @@ export class AddAssetPage {
           this.logger.error('Failed to retrieve assets from backend: ' + err);
           return;
         }
-        this.assets = assets;
+        this.assets = assets.filter(
+          asset => asset.asset_id !== this.KEOS_ASSET_ID
+        );
       }.bind(this)
     );
   }
