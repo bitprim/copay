@@ -15,11 +15,10 @@ export class AddAssetPage {
     this.wallet.getKeokenAssets(
       function(err, assets) {
         if (err) {
-          // log error
+          this.logger.error('Failed to retrieve assets from backend: ' + err);
           return;
         }
         this.assets = assets;
-        this.logger.info(JSON.stringify(assets));
       }.bind(this)
     );
   }
