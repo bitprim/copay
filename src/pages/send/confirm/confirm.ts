@@ -417,9 +417,9 @@ export class ConfirmPage extends WalletTabsChild {
             let maxAllowedFee = feeRate * 2;
             this.logger.info(
               'Using Merchant Fee:' +
-              tx.feeRate +
-              ' vs. referent level:' +
-              maxAllowedFee
+                tx.feeRate +
+                ' vs. referent level:' +
+                maxAllowedFee
             );
             if (tx.network != 'testnet' && tx.feeRate > maxAllowedFee) {
               this.onGoingProcessProvider.set('calculatingFee');
@@ -621,8 +621,6 @@ export class ConfirmPage extends WalletTabsChild {
     return warningMsg.join('\n');
   }
 
-
-
   private getTxp(tx, wallet, dryRun: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
       // ToDo: use a credential's (or fc's) function for this
@@ -658,20 +656,19 @@ export class ConfirmPage extends WalletTabsChild {
       }
 
       txp.message = tx.description;
-      var pad = "0000000000000000";
-      var amountToSend = (pad + tx.keokenAmount.toString(16)).slice(-pad.length);
+      var pad = '0000000000000000';
+      var amountToSend = (pad + tx.keokenAmount.toString(16)).slice(
+        -pad.length
+      );
 
-      this.logger.debug('Estoy intentando crear con ' + tx.keokenAmount.toString(16));
       // Add op_return data
-      var script_raw = "6a0400004b50"; // op_return + keoken prefix
-      script_raw = script_raw + "1000000001" // 10hex = 16 bytes lenght + version (0) + simple send (1)
-      script_raw = script_raw + "00000001" // asset_id = keo (1)
+      var script_raw = '6a0400004b50'; // op_return + keoken prefix
+      script_raw = script_raw + '1000000001'; // 10hex = 16 bytes lenght + version (0) + simple send (1)
+      script_raw = script_raw + '00000001'; // asset_id = KEO (1)
       script_raw = script_raw + amountToSend; // amount to send (1)
 
-
       txp.outputs.push({ amount: 0, script: script_raw });
-      txp.keoken = { keoken_id: 1, keoken_amount: tx.keokenAmount }
-
+      txp.keoken = { keoken_id: 1, keoken_amount: tx.keokenAmount };
 
       if (tx.paypro) {
         txp.payProUrl = tx.paypro.url;
