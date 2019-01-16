@@ -2552,3 +2552,8 @@ msgstr "{{wallet.credentials.m}}- der -{{wallet.credentials.n}}"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-von-{{wallet.n}}"
 
+msgid "Select asset"
+msgstr "Vermögenswert auswählen"
+
+msgid "Add asset"
+msgstr "Vermögenswert hinzufügen"

@@ -12,6 +12,7 @@ import { Observable, Subscription } from 'rxjs';
 
 // Pages
 import { AddPage } from '../add/add';
+import { AddAssetPage } from '../add/add-asset/add-asset';
 import { AmazonPage } from '../integrations/amazon/amazon';
 import { BitPayCardPage } from '../integrations/bitpay-card/bitpay-card';
 import { BitPayCardIntroPage } from '../integrations/bitpay-card/bitpay-card-intro/bitpay-card-intro';
@@ -533,7 +534,6 @@ export class HomePage {
           if (!err && balance.amount)
             wallet.status.keokenBalance = balance.amount;
         });
-
       })
       .catch(err => {
         this.logger.error(err);
@@ -725,6 +725,7 @@ export class HomePage {
     this.walletsBch.splice(indexes.to, 0, element);
     _.each(this.walletsBch, (wallet, index: number) => {
       this.profileProvider.setWalletOrder(wallet.id, index);
+      wallet.assetsOpen = false;
     });
   }
 
@@ -797,5 +798,23 @@ export class HomePage {
 
   public settings() {
     this.navCtrl.push(SettingsPage);
+  }
+
+  public toggleWalletAssets(wallet) {
+    wallet.assetsOpen = !wallet.assetsOpen;
+  }
+
+  public openAddAssetModal(walletToModify): void {
+    let modal = this.modalCtrl.create(
+      AddAssetPage,
+      {
+        wallet: walletToModify
+      },
+      {
+        showBackdrop: true,
+        enableBackdropDismiss: true
+      }
+    );
+    modal.present();
   }
 }

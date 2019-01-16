@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{'Select asset' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-list>
+    <ion-item *ngFor="let asset of assets">
+      <ion-label>{{ asset.asset_name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

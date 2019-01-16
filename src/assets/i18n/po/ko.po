@@ -2552,3 +2552,8 @@ msgstr ""
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.n}}의 {{wallet.m}}"
 
+msgid "Select asset"
+msgstr "저작물 선택"
+
+msgid "Add asset"
+msgstr "저작물 추가"
