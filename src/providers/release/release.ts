@@ -40,10 +40,10 @@ export class ReleaseProvider {
     latestVersion: string,
     currentVersion?: string
   ): {
-      updateAvailable: boolean | null;
-      availableVersion: string | null;
-      error: string | null;
-    } {
+    updateAvailable: boolean | null;
+    availableVersion: string | null;
+    error: string | null;
+  } {
     if (!currentVersion) currentVersion = this.appVersion;
 
     let result = {

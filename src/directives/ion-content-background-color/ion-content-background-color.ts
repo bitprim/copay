@@ -9,7 +9,7 @@ export class IonContentBackgroundColor {
   @Input('ion-content-background-color')
   color: string;
 
-  constructor(private element: ElementRef, private app: AppProvider) { }
+  constructor(private element: ElementRef, private app: AppProvider) {}
 
   ngOnChanges() {
     this.setContentBackgroundColor(this.color);

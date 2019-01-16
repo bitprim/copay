@@ -32,9 +32,9 @@ export class AmazonProvider {
     this.logger.info('AmazonProvider initialized.');
     this.credentials = {};
     /*
-    * Development: 'testnet'
-    * Production: 'livenet'
-    */
+     * Development: 'testnet'
+     * Production: 'livenet'
+     */
     this.credentials.NETWORK = 'livenet';
     this.credentials.BITPAY_API_URL =
       this.credentials.NETWORK === 'testnet'
@@ -176,8 +176,8 @@ export class AmazonProvider {
             data.status == 'new'
               ? 'PENDING'
               : data.status == 'paid'
-                ? 'PENDING'
-                : data.status;
+              ? 'PENDING'
+              : data.status;
           data.status = status;
           this.logger.info('Amazon Gift Card Create/Update: ' + status);
           return cb(null, data);

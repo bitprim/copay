@@ -5,7 +5,7 @@ import { Logger } from '../../../providers/logger/logger';
 
 @Component({
   selector: 'page-explorer',
-  templateUrl: 'explorer.html',
+  templateUrl: 'explorer.html'
   // styleUrls: ['faucet.scss'],
 })
 export class ExplorerPage {
@@ -14,9 +14,8 @@ export class ExplorerPage {
 
   constructor(
     private externalLinkProvider: ExternalLinkProvider,
-    private logger: Logger,
-  ) {
-  }
+    private logger: Logger
+  ) {}
 
   ionViewDidLoad() {
     this.logger.info('ionViewDidLoad ExplorerPage');
@@ -25,5 +24,4 @@ export class ExplorerPage {
   public openExternalLink(url: string): void {
     this.externalLinkProvider.open(url);
   }
-
 }

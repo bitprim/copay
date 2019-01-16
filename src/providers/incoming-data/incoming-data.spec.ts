@@ -256,45 +256,42 @@ describe('Provider: Incoming Data Provider', () => {
         }
       });
     });
-    it(
-      'Should Handle Bitcoin Cash URI with legacy address',
-      fakeAsync(() => {
-        let data = 'bitcoincash:1ML5KKKrJEHw3fQqhhajQjHWkh3yKhNZpa';
-        expect(
-          incomingDataProvider.redir(data, { activePage: 'ScanPage' })
-        ).toBe(true);
-        expect(loggerSpy).toHaveBeenCalledWith(
-          'Incoming-data: Bitcoin Cash URI with legacy address'
-        );
+    it('Should Handle Bitcoin Cash URI with legacy address', fakeAsync(() => {
+      let data = 'bitcoincash:1ML5KKKrJEHw3fQqhhajQjHWkh3yKhNZpa';
+      expect(incomingDataProvider.redir(data, { activePage: 'ScanPage' })).toBe(
+        true
+      );
+      expect(loggerSpy).toHaveBeenCalledWith(
+        'Incoming-data: Bitcoin Cash URI with legacy address'
+      );
 
-        let parsed = bwcProvider
-          .getBitcore()
-          .URI(data.replace(/^bitcoincash:/, 'bitcoin:'));
+      let parsed = bwcProvider
+        .getBitcore()
+        .URI(data.replace(/^bitcoincash:/, 'bitcoin:'));
 
-        let oldAddr = parsed.address ? parsed.address.toString() : '';
+      let oldAddr = parsed.address ? parsed.address.toString() : '';
 
-        let a = bwcProvider
-          .getBitcore()
-          .Address(oldAddr)
-          .toObject();
-        let addr = bwcProvider
-          .getBitcoreCash()
-          .Address.fromObject(a)
-          .toString();
+      let a = bwcProvider
+        .getBitcore()
+        .Address(oldAddr)
+        .toObject();
+      let addr = bwcProvider
+        .getBitcoreCash()
+        .Address.fromObject(a)
+        .toString();
 
-        let stateParams = {
-          toAddress: addr,
-          description: null,
-          coin: 'bch'
-        };
-        let nextView = {
-          name: 'AmountPage',
-          params: stateParams
-        };
-        tick();
-        expect(eventsSpy).toHaveBeenCalledWith('IncomingDataRedir', nextView);
-      })
-    );
+      let stateParams = {
+        toAddress: addr,
+        description: null,
+        coin: 'bch'
+      };
+      let nextView = {
+        name: 'AmountPage',
+        params: stateParams
+      };
+      tick();
+      expect(eventsSpy).toHaveBeenCalledWith('IncomingDataRedir', nextView);
+    }));
     it('Should handle Bitcoin Livenet and Testnet Plain Address', () => {
       let data = [
         '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', // Genesis Bitcoin Address

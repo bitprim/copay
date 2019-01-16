@@ -32,9 +32,9 @@ export class MercadoLibreProvider {
 
     this.credentials = {};
     /*
-    * Development: 'testnet'
-    * Production: 'livenet'
-    */
+     * Development: 'testnet'
+     * Production: 'livenet'
+     */
     this.credentials.NETWORK = 'livenet';
     this.credentials.BITPAY_API_URL =
       this.credentials.NETWORK === 'testnet'
@@ -144,8 +144,8 @@ export class MercadoLibreProvider {
           data.status == 'new'
             ? 'PENDING'
             : data.status == 'paid'
-              ? 'PENDING'
-              : data.status;
+            ? 'PENDING'
+            : data.status;
         data.status = status;
         this.logger.info('Mercado Libre Gift Card Create/Update: ' + status);
         return cb(null, data);
@@ -161,8 +161,8 @@ export class MercadoLibreProvider {
   }
 
   /*
- * Disabled for now *
- */
+   * Disabled for now *
+   */
   /*
   public cancelGiftCard(data, cb) {
 

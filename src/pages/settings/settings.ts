@@ -201,7 +201,7 @@ export class SettingsPage {
 
   public openHelpExternalLink(): void {
     // TODO add help webpage
-    let url = 'https://github.com/bitprim/copay/issues'
+    let url = 'https://github.com/bitprim/keoken/issues';
 
     let optIn = true;
     let title = null;
