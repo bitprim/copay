@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Logger } from '../../providers/logger/logger';
-import { BwcProvider } from '../bwc/bwc';
 import { ConfigProvider } from '../config/config';
 import { FilterProvider } from '../filter/filter';
+import { KwcProvider } from '../kwc/kwc';
 import { RateProvider } from '../rate/rate';
 
 import * as _ from 'lodash';
@@ -17,14 +17,14 @@ export class TxFormatProvider {
   static readonly KEOKEN_OPCODE = '6a0400004b5010';
 
   constructor(
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private rate: RateProvider,
     private configProvider: ConfigProvider,
     private filter: FilterProvider,
     private logger: Logger
   ) {
     this.logger.info('TxFormatProvider initialized.');
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
   }
 
   public toCashAddress(address: string, withPrefix?: boolean): string {
@@ -52,7 +52,7 @@ export class TxFormatProvider {
     var opts = {
       fullPrecision: !!fullPrecision
     };
-    return this.bwcProvider
+    return this.kwcProvider
       .getUtils()
       .formatAmount(satoshis, settings.unitCode, opts);
   }

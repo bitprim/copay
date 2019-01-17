@@ -7,10 +7,10 @@ import { Logger } from '../../providers/logger/logger';
 
 // Providers
 import { BwcErrorProvider } from '../bwc-error/bwc-error';
-import { BwcProvider } from '../bwc/bwc';
 import { ConfigProvider } from '../config/config';
 import { FeeProvider } from '../fee/fee';
 import { FilterProvider } from '../filter/filter';
+import { KwcProvider } from '../kwc/kwc';
 import { LanguageProvider } from '../language/language';
 import { OnGoingProcessProvider } from '../on-going-process/on-going-process';
 import { PersistenceProvider } from '../persistence/persistence';
@@ -85,7 +85,7 @@ export class WalletProvider {
   private SOFT_CONFIRMATION_LIMIT: number = 12;
   private SAFE_CONFIRMATIONS: number = 6;
 
-  private errors = this.bwcProvider.getErrors();
+  private errors = this.kwcProvider.getErrors();
 
   private progressFn = {};
 
@@ -96,7 +96,7 @@ export class WalletProvider {
 
   constructor(
     private logger: Logger,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private txFormatProvider: TxFormatProvider,
     private configProvider: ConfigProvider,
     private persistenceProvider: PersistenceProvider,
@@ -1626,7 +1626,7 @@ export class WalletProvider {
 
   public copyCopayers(wallet, newWallet): Promise<any> {
     return new Promise((resolve, reject) => {
-      let walletPrivKey = this.bwcProvider
+      let walletPrivKey = this.kwcProvider
         .getBitcore()
         .PrivateKey.fromString(wallet.credentials.walletPrivKey);
       let copayer = 1;

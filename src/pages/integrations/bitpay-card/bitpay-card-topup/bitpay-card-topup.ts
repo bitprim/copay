@@ -13,10 +13,10 @@ import { ActionSheetProvider } from '../../../../providers/action-sheet/action-s
 import { BitPayCardProvider } from '../../../../providers/bitpay-card/bitpay-card';
 import { BitPayProvider } from '../../../../providers/bitpay/bitpay';
 import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
-import { BwcProvider } from '../../../../providers/bwc/bwc';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
 import { FeeProvider } from '../../../../providers/fee/fee';
+import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PayproProvider } from '../../../../providers/paypro/paypro';
 import { PlatformProvider } from '../../../../providers/platform/platform';
@@ -67,7 +67,7 @@ export class BitPayCardTopUpPage {
     private bitPayCardProvider: BitPayCardProvider,
     private bitPayProvider: BitPayProvider,
     private bwcErrorProvider: BwcErrorProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private configProvider: ConfigProvider,
     private externalLinkProvider: ExternalLinkProvider,
     private logger: Logger,
@@ -86,7 +86,7 @@ export class BitPayCardTopUpPage {
   ) {
     this.configWallet = this.configProvider.get().wallet;
     this.isCordova = this.platformProvider.isCordova;
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
   }
 
   ionViewDidLoad() {

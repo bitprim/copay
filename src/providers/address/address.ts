@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Providers
-import { BwcProvider } from '../../providers/bwc/bwc';
+import { KwcProvider } from '../kwc/kwc';
 
 @Injectable()
 export class AddressProvider {
@@ -9,9 +9,9 @@ export class AddressProvider {
   private bitcoreCash;
   private Bitcore;
 
-  constructor(private bwcProvider: BwcProvider) {
-    this.bitcore = this.bwcProvider.getBitcore();
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+  constructor(private kwcProvider: KwcProvider) {
+    this.bitcore = this.kwcProvider.getBitcore();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
     this.Bitcore = {
       btc: {
         lib: this.bitcore,

@@ -13,9 +13,9 @@ import { AmazonPage } from '../amazon';
 import { ActionSheetProvider } from '../../../../providers/action-sheet/action-sheet';
 import { AmazonProvider } from '../../../../providers/amazon/amazon';
 import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
-import { BwcProvider } from '../../../../providers/bwc/bwc';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
+import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PayproProvider } from '../../../../providers/paypro/paypro';
 import { PlatformProvider } from '../../../../providers/platform/platform';
@@ -69,7 +69,7 @@ export class BuyAmazonPage {
     private actionSheetProvider: ActionSheetProvider,
     private amazonProvider: AmazonProvider,
     private bwcErrorProvider: BwcErrorProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
     private externalLinkProvider: ExternalLinkProvider,
@@ -89,7 +89,7 @@ export class BuyAmazonPage {
     this.FEE_TOO_HIGH_LIMIT_PER = 15;
     this.configWallet = this.configProvider.get().wallet;
     this.amazonGiftCard = null;
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
     this.isCordova = this.platformProvider.isCordova;
     this.country = this.amazonProvider.country;
     this.pageTitle = this.amazonProvider.pageTitle;

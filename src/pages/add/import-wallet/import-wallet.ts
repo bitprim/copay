@@ -11,9 +11,9 @@ import { TabsPage } from '../../tabs/tabs';
 
 // Providers
 import { ActionSheetProvider } from '../../../providers/action-sheet/action-sheet';
-import { BwcProvider } from '../../../providers/bwc/bwc';
 import { ConfigProvider } from '../../../providers/config/config';
 import { DerivationPathHelperProvider } from '../../../providers/derivation-path-helper/derivation-path-helper';
+import { KwcProvider } from '../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../../providers/platform/platform';
 import { PopupProvider } from '../../../providers/popup/popup';
@@ -55,7 +55,7 @@ export class ImportWalletPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private form: FormBuilder,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private derivationPathHelperProvider: DerivationPathHelperProvider,
     private walletProvider: WalletProvider,
     private configProvider: ConfigProvider,
@@ -73,7 +73,7 @@ export class ImportWalletPage {
     this.cancelText = this.translate.instant('Cancel');
     this.reader = new FileReader();
     this.defaults = this.configProvider.getDefaults();
-    this.errors = bwcProvider.getErrors();
+    this.errors = kwcProvider.getErrors();
 
     this.isCordova = this.platformProvider.isCordova;
     this.isSafari = this.platformProvider.isSafari;
@@ -203,7 +203,7 @@ export class ImportWalletPage {
     let str2: string;
     let err = null;
     try {
-      str2 = this.bwcProvider
+      str2 = this.kwcProvider
         .getSJCL()
         .decrypt(this.importForm.value.filePassword, str);
     } catch (e) {

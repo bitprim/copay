@@ -14,10 +14,10 @@ import { ChooseFeeLevelPage } from '../choose-fee-level/choose-fee-level';
 // Providers
 import { ActionSheetProvider } from '../../../providers/action-sheet/action-sheet';
 import { BwcErrorProvider } from '../../../providers/bwc-error/bwc-error';
-import { BwcProvider } from '../../../providers/bwc/bwc';
 import { ConfigProvider } from '../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../providers/external-link/external-link';
 import { FeeProvider } from '../../../providers/fee/fee';
+import { KwcProvider } from '../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../../providers/platform/platform';
 import { PopupProvider } from '../../../providers/popup/popup';
@@ -79,7 +79,7 @@ export class ConfirmPage extends WalletTabsChild {
   constructor(
     private actionSheetProvider: ActionSheetProvider,
     private app: App,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     navCtrl: NavController,
     private navParams: NavParams,
     private logger: Logger,
@@ -101,8 +101,8 @@ export class ConfirmPage extends WalletTabsChild {
     private decimalPipe: DecimalPipe
   ) {
     super(navCtrl, profileProvider, walletTabsProvider);
-    this.bitcore = this.bwcProvider.getBitcore();
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcore = this.kwcProvider.getBitcore();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
     this.CONFIRM_LIMIT_USD = 20;
     this.FEE_TOO_HIGH_LIMIT_PER = 15;
     this.config = this.configProvider.get();

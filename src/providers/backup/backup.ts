@@ -3,15 +3,15 @@ import { Logger } from '../../providers/logger/logger';
 
 // Providers
 import { AppProvider } from '../../providers/app/app';
-import { BwcProvider } from '../../providers/bwc/bwc';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { ConfigProvider } from '../config/config';
+import { KwcProvider } from '../kwc/kwc';
 
 @Injectable()
 export class BackupProvider {
   constructor(
     private appProvider: AppProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private logger: Logger,
     private profileProvider: ProfileProvider,
     private configProvider: ConfigProvider
@@ -56,7 +56,7 @@ export class BackupProvider {
       let b = wallet.export(opts);
       if (opts.addressBook) b = this.addMetadata(b, opts);
 
-      let e = this.bwcProvider.getSJCL().encrypt(password, b, {
+      let e = this.kwcProvider.getSJCL().encrypt(password, b, {
         iter: 10000
       });
       return e;

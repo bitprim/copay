@@ -1,48 +1,48 @@
 import { Injectable } from '@angular/core';
 
-import { Logger } from '../../providers/logger/logger';
+import { Logger } from '../logger/logger';
 
-import * as BWC from 'keoken-wallet-client';
+import * as KWC from 'keoken-wallet-client';
 
 @Injectable()
-export class BwcProvider {
-  public buildTx = BWC.buildTx;
-  public parseSecret = BWC.parseSecret;
-  public Client = BWC;
+export class KwcProvider {
+  public buildTx = KWC.buildTx;
+  public parseSecret = KWC.parseSecret;
+  public Client = KWC;
   constructor(private logger: Logger) {
-    this.logger.info('BwcProvider initialized.');
+    this.logger.info('KwcProvider initialized.');
   }
   public getBitcore() {
-    return BWC.Bitcore;
+    return KWC.Bitcore;
   }
 
   public getBitcoreCash() {
-    return BWC.BitcoreCash;
+    return KWC.BitcoreCash;
   }
 
   public getErrors() {
-    return BWC.errors;
+    return KWC.errors;
   }
 
   public getSJCL() {
-    return BWC.sjcl;
+    return KWC.sjcl;
   }
 
   public getUtils() {
-    return BWC.Utils;
+    return KWC.Utils;
   }
 
   public getClient(walletData?, opts?) {
     opts = opts || {};
 
     // note opts use `bwsurl` all lowercase;
-    let bwc = new BWC({
+    let kwc = new KWC({
       baseUrl: opts.bwsurl || '__BWS_URL_PLACEHOLDER__',
       verbose: opts.verbose,
       timeout: 100000,
       transports: ['polling']
     });
-    if (walletData) bwc.import(walletData, opts);
-    return bwc;
+    if (walletData) kwc.import(walletData, opts);
+    return kwc;
   }
 }

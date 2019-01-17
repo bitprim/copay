@@ -6,8 +6,8 @@ import { Logger } from '../../providers/logger/logger';
 
 // providers
 import { AppProvider } from '../app/app';
-import { BwcProvider } from '../bwc/bwc';
 import { ConfigProvider } from '../config/config';
+import { KwcProvider } from '../kwc/kwc';
 import { PlatformProvider } from '../platform/platform';
 import { ProfileProvider } from '../profile/profile';
 
@@ -30,7 +30,7 @@ export class PushNotificationsProvider {
     public configProvider: ConfigProvider,
     public logger: Logger,
     public appProvider: AppProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private FCMPlugin: FCM,
     private events: Events
   ) {
@@ -203,7 +203,7 @@ export class PushNotificationsProvider {
 
   private _openWallet(walletIdHashed): void {
     let walletIdHash;
-    let sjcl = this.bwcProvider.getSJCL();
+    let sjcl = this.kwcProvider.getSJCL();
 
     let wallets = this.profileProvider.getWallets();
     let wallet = _.find(wallets, w => {

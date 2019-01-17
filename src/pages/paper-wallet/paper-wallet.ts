@@ -10,8 +10,8 @@ import { TabsPage } from '../tabs/tabs';
 // providers
 import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
 import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
-import { BwcProvider } from '../../providers/bwc/bwc';
 import { FeeProvider } from '../../providers/fee/fee';
+import { KwcProvider } from '../../providers/kwc/kwc';
 import { Logger } from '../../providers/logger/logger';
 import { OnGoingProcessProvider } from '../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../providers/platform/platform';
@@ -54,7 +54,7 @@ export class PaperWalletPage {
     private actionSheetProvider: ActionSheetProvider,
     private navCtrl: NavController,
     private navParams: NavParams,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private onGoingProcessProvider: OnGoingProcessProvider,
     private popupProvider: PopupProvider,
     private logger: Logger,
@@ -66,7 +66,7 @@ export class PaperWalletPage {
     private platformProvider: PlatformProvider,
     private bwcErrorProvider: BwcErrorProvider
   ) {
-    this.bitcore = this.bwcProvider.getBitcore();
+    this.bitcore = this.kwcProvider.getBitcore();
     this.isCordova = this.platformProvider.isCordova;
     this.isOpenSelector = false;
     this.scannedKey = this.navParams.data.privateKey;

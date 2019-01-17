@@ -11,10 +11,10 @@ import { ShapeshiftPage } from '../shapeshift';
 
 // Providers
 import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
-import { BwcProvider } from '../../../../providers/bwc/bwc';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
 import { FeeProvider } from '../../../../providers/fee/fee';
+import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../../../providers/platform/platform';
 import { PopupProvider } from '../../../../providers/popup/popup';
@@ -66,7 +66,7 @@ export class ShapeshiftConfirmPage {
   public network: string;
 
   constructor(
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private bwcErrorProvider: BwcErrorProvider,
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
@@ -88,8 +88,8 @@ export class ShapeshiftConfirmPage {
     this.configWallet = this.configProvider.get().wallet;
     this.currencyIsoCode = 'USD'; // Only USD
     this.isCordova = this.platformProvider.isCordova;
-    this.bitcore = this.bwcProvider.getBitcore();
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcore = this.kwcProvider.getBitcore();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
 
     this.useSendMax = this.navParams.data.useSendMax ? true : false;
 

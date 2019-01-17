@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Logger } from '../../providers/logger/logger';
 import { PersistenceProvider } from '../../providers/persistence/persistence';
-import { BwcProvider } from '../bwc/bwc';
+import { KwcProvider } from '../kwc/kwc';
 
 import * as _ from 'lodash';
 
 @Injectable()
 export class AddressBookProvider {
   constructor(
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private logger: Logger,
     private persistenceProvider: PersistenceProvider,
     private translate: TranslateService
@@ -20,10 +20,10 @@ export class AddressBookProvider {
   private getNetwork(address: string): string {
     let network;
     try {
-      network = this.bwcProvider.getBitcore().Address(address).network.name;
+      network = this.kwcProvider.getBitcore().Address(address).network.name;
     } catch (e) {
       this.logger.warn('No valid bitcoin address. Trying bitcoin cash...');
-      network = this.bwcProvider.getBitcoreCash().Address(address).network.name;
+      network = this.kwcProvider.getBitcoreCash().Address(address).network.name;
     }
     return network;
   }

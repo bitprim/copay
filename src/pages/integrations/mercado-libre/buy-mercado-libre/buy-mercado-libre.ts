@@ -12,10 +12,10 @@ import { MercadoLibrePage } from '../mercado-libre';
 // Provider
 import { ActionSheetProvider } from '../../../../providers/action-sheet/action-sheet';
 import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
-import { BwcProvider } from '../../../../providers/bwc/bwc';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { EmailNotificationsProvider } from '../../../../providers/email-notifications/email-notifications';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
+import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { MercadoLibreProvider } from '../../../../providers/mercado-libre/mercado-libre';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PayproProvider } from '../../../../providers/paypro/paypro';
@@ -67,7 +67,7 @@ export class BuyMercadoLibrePage {
     private actionSheetProvider: ActionSheetProvider,
     private mercadoLibreProvider: MercadoLibreProvider,
     private bwcErrorProvider: BwcErrorProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
     private emailNotificationsProvider: EmailNotificationsProvider,
@@ -88,7 +88,7 @@ export class BuyMercadoLibrePage {
     this.FEE_TOO_HIGH_LIMIT_PER = 15;
     this.configWallet = this.configProvider.get().wallet;
     this.mlGiftCard = null;
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
     this.isCordova = this.platformProvider.isCordova;
   }
 

@@ -15,7 +15,7 @@ import { DisclaimerPage } from '../../onboarding/disclaimer/disclaimer';
 
 // providers
 import { ActionSheetProvider } from '../../../providers/action-sheet/action-sheet';
-import { BwcProvider } from '../../../providers/bwc/bwc';
+import { KwcProvider } from '../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
 import { ProfileProvider } from '../../../providers/profile/profile';
 import { WalletProvider } from '../../../providers/wallet/wallet';
@@ -55,7 +55,7 @@ export class BackupGamePage {
     private logger: Logger,
     private profileProvider: ProfileProvider,
     private walletProvider: WalletProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private onGoingProcessProvider: OnGoingProcessProvider,
     private translate: TranslateService,
     public actionSheetProvider: ActionSheetProvider
@@ -225,7 +225,7 @@ export class BackupGamePage {
       }
 
       if (this.mnemonicHasPassphrase) {
-        let walletClient = this.bwcProvider.getClient();
+        let walletClient = this.kwcProvider.getClient();
         let separator = this.useIdeograms ? '\u3000' : ' ';
         let customSentence = customWordList.join(separator);
         let password = this.password || '';

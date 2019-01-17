@@ -8,7 +8,7 @@ import { AmountPage } from '../../../../pages/send/amount/amount';
 // Providers
 import { AddressBookProvider } from '../../../../providers/address-book/address-book';
 import { AddressProvider } from '../../../../providers/address/address';
-import { BwcProvider } from '../../../../providers/bwc/bwc';
+import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { PopupProvider } from '../../../../providers/popup/popup';
 
 @Component({
@@ -27,13 +27,13 @@ export class AddressbookViewPage {
   constructor(
     private addressBookProvider: AddressBookProvider,
     private addressProvider: AddressProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private navCtrl: NavController,
     private navParams: NavParams,
     private popupProvider: PopupProvider,
     private translate: TranslateService
   ) {
-    this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
     this.address = this.navParams.data.contact.address;
     this.name = this.navParams.data.contact.name;
     this.email = this.navParams.data.contact.email;

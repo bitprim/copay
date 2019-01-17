@@ -6,7 +6,7 @@ import { Logger } from '../../providers/logger/logger';
 // providers
 import { ActionSheetProvider } from '../action-sheet/action-sheet';
 import { AppProvider } from '../app/app';
-import { BwcProvider } from '../bwc/bwc';
+import { KwcProvider } from '../kwc/kwc';
 import { PayproProvider } from '../paypro/paypro';
 import { Coin } from '../wallet/wallet';
 
@@ -22,7 +22,7 @@ export class IncomingDataProvider {
   constructor(
     private actionSheetProvider: ActionSheetProvider,
     private events: Events,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private payproProvider: PayproProvider,
     private logger: Logger,
     private appProvider: AppProvider,
@@ -63,17 +63,17 @@ export class IncomingDataProvider {
 
   private isValidBitcoinUri(data: string): boolean {
     data = this.sanitizeUri(data);
-    return !!this.bwcProvider.getBitcore().URI.isValid(data);
+    return !!this.kwcProvider.getBitcore().URI.isValid(data);
   }
 
   private isValidBitcoinCashUri(data: string): boolean {
     data = this.sanitizeUri(data);
-    return !!this.bwcProvider.getBitcoreCash().URI.isValid(data);
+    return !!this.kwcProvider.getBitcoreCash().URI.isValid(data);
   }
 
   public isValidBitcoinCashUriWithLegacyAddress(data: string): boolean {
     data = this.sanitizeUri(data);
-    return !!this.bwcProvider
+    return !!this.kwcProvider
       .getBitcore()
       .URI.isValid(data.replace(/^bitcoincash:/, 'bitcoin:'));
   }
@@ -85,22 +85,22 @@ export class IncomingDataProvider {
 
   private isValidBitcoinAddress(data: string): boolean {
     return !!(
-      this.bwcProvider.getBitcore().Address.isValid(data, 'livenet') ||
-      this.bwcProvider.getBitcore().Address.isValid(data, 'testnet')
+      this.kwcProvider.getBitcore().Address.isValid(data, 'livenet') ||
+      this.kwcProvider.getBitcore().Address.isValid(data, 'testnet')
     );
   }
 
   public isValidBitcoinCashLegacyAddress(data: string): boolean {
     return !!(
-      this.bwcProvider.getBitcore().Address.isValid(data, 'livenet') ||
-      this.bwcProvider.getBitcore().Address.isValid(data, 'testnet')
+      this.kwcProvider.getBitcore().Address.isValid(data, 'livenet') ||
+      this.kwcProvider.getBitcore().Address.isValid(data, 'testnet')
     );
   }
 
   private isValidBitcoinCashAddress(data: string): boolean {
     return !!(
-      this.bwcProvider.getBitcoreCash().Address.isValid(data, 'livenet') ||
-      this.bwcProvider.getBitcoreCash().Address.isValid(data, 'testnet')
+      this.kwcProvider.getBitcoreCash().Address.isValid(data, 'livenet') ||
+      this.kwcProvider.getBitcoreCash().Address.isValid(data, 'testnet')
     );
   }
 
@@ -172,7 +172,7 @@ export class IncomingDataProvider {
     let amountFromRedirParams =
       redirParams && redirParams.amount ? redirParams.amount : '';
     const coin = Coin.BTC;
-    let parsed = this.bwcProvider.getBitcore().URI(data);
+    let parsed = this.kwcProvider.getBitcore().URI(data);
     let address = parsed.address ? parsed.address.toString() : '';
     let message = parsed.message;
     let amount = parsed.amount || amountFromRedirParams;
@@ -185,7 +185,7 @@ export class IncomingDataProvider {
     let amountFromRedirParams =
       redirParams && redirParams.amount ? redirParams.amount : '';
     const coin = Coin.BCH;
-    let parsed = this.bwcProvider.getBitcoreCash().URI(data);
+    let parsed = this.kwcProvider.getBitcoreCash().URI(data);
     let address = parsed.address ? parsed.address.toString() : '';
 
     // keep address in original format
@@ -203,7 +203,7 @@ export class IncomingDataProvider {
   private handleBitcoinCashUriLegacyAddress(data: string): void {
     this.logger.debug('Incoming-data: Bitcoin Cash URI with legacy address');
     const coin = Coin.BCH;
-    let parsed = this.bwcProvider
+    let parsed = this.kwcProvider
       .getBitcore()
       .URI(data.replace(/^bitcoincash:/, 'bitcoin:'));
 
@@ -211,11 +211,11 @@ export class IncomingDataProvider {
     if (!oldAddr)
       this.logger.error('Could not parse Bitcoin Cash legacy address');
 
-    let a = this.bwcProvider
+    let a = this.kwcProvider
       .getBitcore()
       .Address(oldAddr)
       .toObject();
-    let address = this.bwcProvider
+    let address = this.kwcProvider
       .getBitcoreCash()
       .Address.fromObject(a)
       .toString();
@@ -582,7 +582,7 @@ export class IncomingDataProvider {
     let isPK: boolean = this.checkRegex(privateKey);
     if (!isPK) return false;
     try {
-      this.bwcProvider.getBitcore().PrivateKey(privateKey, 'livenet');
+      this.kwcProvider.getBitcore().PrivateKey(privateKey, 'livenet');
     } catch (err) {
       return false;
     }

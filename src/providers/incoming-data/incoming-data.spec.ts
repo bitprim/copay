@@ -3,13 +3,13 @@ import { Events } from 'ionic-angular';
 import { AppProvider, PopupProvider } from '..';
 import { TestUtils } from '../../test';
 import { ActionSheetProvider } from '../action-sheet/action-sheet';
-import { BwcProvider } from '../bwc/bwc';
+import { KwcProvider } from '../kwc/kwc';
 import { Logger } from '../logger/logger';
 import { IncomingDataProvider } from './incoming-data';
 
 describe('Provider: Incoming Data Provider', () => {
   let incomingDataProvider: IncomingDataProvider;
-  let bwcProvider: BwcProvider;
+  let kwcProvider: KwcProvider;
   let logger: Logger;
   let events: Events;
   let loggerSpy;
@@ -39,7 +39,7 @@ describe('Provider: Incoming Data Provider', () => {
       { provide: PopupProvider, useClass: PopupProviderMock }
     ]);
     incomingDataProvider = testBed.get(IncomingDataProvider);
-    bwcProvider = testBed.get(BwcProvider);
+    kwcProvider = testBed.get(KwcProvider);
     logger = testBed.get(Logger);
     events = testBed.get(Events);
     loggerSpy = spyOn(logger, 'debug');
@@ -189,7 +189,7 @@ describe('Provider: Incoming Data Provider', () => {
       ];
 
       data.forEach(element => {
-        let parsed = bwcProvider.getBitcoreCash().URI(element);
+        let parsed = kwcProvider.getBitcoreCash().URI(element);
         let addr = parsed.address ? parsed.address.toString() : '';
 
         // keep address in original format
@@ -222,7 +222,7 @@ describe('Provider: Incoming Data Provider', () => {
         'bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa?amount=1.0000&label=Genesis%20Bitcoin%20Address&message=test%20message' // Basic Payment Protocol
       ];
       data.forEach(element => {
-        let parsed = bwcProvider.getBitcore().URI(element);
+        let parsed = kwcProvider.getBitcore().URI(element);
         let addr = parsed.address ? parsed.address.toString() : '';
         let message = parsed.message;
         let amount = parsed.amount ? parsed.amount : '';
@@ -265,17 +265,17 @@ describe('Provider: Incoming Data Provider', () => {
         'Incoming-data: Bitcoin Cash URI with legacy address'
       );
 
-      let parsed = bwcProvider
+      let parsed = kwcProvider
         .getBitcore()
         .URI(data.replace(/^bitcoincash:/, 'bitcoin:'));
 
       let oldAddr = parsed.address ? parsed.address.toString() : '';
 
-      let a = bwcProvider
+      let a = kwcProvider
         .getBitcore()
         .Address(oldAddr)
         .toObject();
-      let addr = bwcProvider
+      let addr = kwcProvider
         .getBitcoreCash()
         .Address.fromObject(a)
         .toString();

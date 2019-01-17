@@ -6,8 +6,8 @@ import { Logger } from '../../../../../providers/logger/logger';
 
 // Providers
 import { BwcErrorProvider } from '../../../../../providers/bwc-error/bwc-error';
-import { BwcProvider } from '../../../../../providers/bwc/bwc';
 import { ExternalLinkProvider } from '../../../../../providers/external-link/external-link';
+import { KwcProvider } from '../../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../../providers/on-going-process/on-going-process';
 import { PopupProvider } from '../../../../../providers/popup/popup';
 import { ProfileProvider } from '../../../../../providers/profile/profile';
@@ -42,7 +42,7 @@ export class BitcoinCashPage extends WalletTabsChild {
     private pushNotificationsProvider: PushNotificationsProvider,
     private externalLinkProvider: ExternalLinkProvider,
     private bwcErrorProvider: BwcErrorProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private logger: Logger,
     private translate: TranslateService,
     private events: Events,
@@ -51,7 +51,7 @@ export class BitcoinCashPage extends WalletTabsChild {
     public walletTabsProvider: WalletTabsProvider
   ) {
     super(navCtrl, profileProvider, walletTabsProvider);
-    this.errors = this.bwcProvider.getErrors();
+    this.errors = this.kwcProvider.getErrors();
   }
 
   ionViewWillEnter() {

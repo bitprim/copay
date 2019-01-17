@@ -529,7 +529,6 @@ export class HomePage {
         );
         this.updateTxps();
         this.stopUpdatingWalletId(walletId);
-        // wallet.status.keokenBalance = 0;
         wallet.getKeokenBalance(wallet.id, (err, balance) => {
           if (!err && balance.amount)
             wallet.status.keokenBalance = balance.amount;
@@ -606,7 +605,14 @@ export class HomePage {
             wallet.id,
             wallet.status.availableBalanceStr
           );
-          return cb();
+          wallet.getKeokenAssetsByWallet(wallet.id, function(err, assets) {
+            if (err) {
+              this.logger.warn(err);
+            } else {
+              wallet.assets = assets;
+            }
+            return cb();
+          });
         })
         .catch(err => {
           wallet.error =

@@ -8,8 +8,8 @@ import { Logger } from '../../providers/logger/logger';
 import { AppProvider } from '../../providers/app/app';
 import { LanguageProvider } from '../../providers/language/language';
 import { BwcErrorProvider } from '../bwc-error/bwc-error';
-import { BwcProvider } from '../bwc/bwc';
 import { ConfigProvider } from '../config/config';
+import { KwcProvider } from '../kwc/kwc';
 import { OnGoingProcessProvider } from '../on-going-process/on-going-process';
 import { PersistenceProvider } from '../persistence/persistence';
 import { PlatformProvider } from '../platform/platform';
@@ -28,14 +28,14 @@ export class ProfileProvider {
   private UPDATE_PERIOD = 15;
   private throttledBwsEvent;
   private validationLock: boolean = false;
-  private errors = this.bwcProvider.getErrors();
+  private errors = this.kwcProvider.getErrors();
 
   constructor(
     private logger: Logger,
     private persistenceProvider: PersistenceProvider,
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
-    private bwcProvider: BwcProvider,
+    private kwcProvider: KwcProvider,
     private bwcErrorProvider: BwcErrorProvider,
     private platformProvider: PlatformProvider,
     private appProvider: AppProvider,
@@ -331,7 +331,7 @@ export class ProfileProvider {
 
   public importWallet(str: string, opts): Promise<any> {
     return new Promise((resolve, reject) => {
-      let walletClient = this.bwcProvider.getClient(null, opts);
+      let walletClient = this.kwcProvider.getClient(null, opts);
 
       this.logger.debug('Importing Wallet:', opts);
 
@@ -580,7 +580,7 @@ export class ProfileProvider {
 
   public importExtendedPrivateKey(xPrivKey: string, opts): Promise<any> {
     return new Promise((resolve, reject) => {
-      let walletClient = this.bwcProvider.getClient(null, opts);
+      let walletClient = this.kwcProvider.getClient(null, opts);
       this.logger.debug('Importing Wallet xPrivKey');
 
       walletClient.importFromExtendedPrivateKey(xPrivKey, opts, err => {
@@ -621,7 +621,7 @@ export class ProfileProvider {
 
   public importMnemonic(words: string, opts): Promise<any> {
     return new Promise((resolve, reject) => {
-      let walletClient = this.bwcProvider.getClient(null, opts);
+      let walletClient = this.kwcProvider.getClient(null, opts);
 
       this.logger.debug('Importing Wallet Mnemonic');
 
@@ -665,7 +665,7 @@ export class ProfileProvider {
 
   public importExtendedPublicKey(opts): Promise<any> {
     return new Promise((resolve, reject) => {
-      let walletClient = this.bwcProvider.getClient(null, opts);
+      let walletClient = this.kwcProvider.getClient(null, opts);
       this.logger.debug('Importing Wallet XPubKey');
 
       walletClient.importFromExtendedPublicKey(
@@ -829,7 +829,7 @@ export class ProfileProvider {
         return (config.bwsFor && config.bwsFor[walletId]) || defaults.bws.url;
       };
 
-      let walletClient = this.bwcProvider.getClient(
+      let walletClient = this.kwcProvider.getClient(
         JSON.stringify(credentials),
         {
           bwsurl: getBWSURL(credentials.walletId)
@@ -878,7 +878,7 @@ export class ProfileProvider {
   private seedWallet(opts): Promise<any> {
     return new Promise((resolve, reject) => {
       opts = opts ? opts : {};
-      let walletClient = this.bwcProvider.getClient(null, opts);
+      let walletClient = this.kwcProvider.getClient(null, opts);
       let network = opts.networkName || 'livenet';
 
       if (opts.mnemonic) {
@@ -1040,7 +1040,7 @@ export class ProfileProvider {
       this.logger.debug('Joining Wallet:', opts);
 
       try {
-        var walletData = this.bwcProvider.parseSecret(opts.secret);
+        var walletData = this.kwcProvider.parseSecret(opts.secret);
 
         // check if exist
         if (
@@ -1332,7 +1332,7 @@ export class ProfileProvider {
           }
         });
 
-        let u = this.bwcProvider.getUtils();
+        let u = this.kwcProvider.getUtils();
         _.each(finale, x => {
           if (
             x.data &&
