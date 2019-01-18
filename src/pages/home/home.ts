@@ -605,13 +605,8 @@ export class HomePage {
             wallet.id,
             wallet.status.availableBalanceStr
           );
-          wallet.getKeokenAssetsByWallet(wallet.id, function(err, assets) {
-            if (err) {
-              this.logger.warn(err);
-            } else {
-              wallet.assets = assets;
-            }
-            return cb();
+          this.getWalletAssets(wallet, (assets: number[]) => {
+            wallet.assets = assets;
           });
         })
         .catch(err => {
@@ -635,6 +630,15 @@ export class HomePage {
           this.updateTxps();
         }
       });
+    });
+  }
+
+  private getWalletAssets(wallet, cb): void {
+    wallet.getKeokenAssetsByWallet(wallet.id, function(err, assets) {
+      if (err) {
+        this.logger.warn(err);
+      }
+      return cb(assets);
     });
   }
 
