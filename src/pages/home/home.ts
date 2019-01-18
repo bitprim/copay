@@ -90,6 +90,7 @@ export class HomePage {
   public showReorderBch: boolean;
   public showIntegration;
 
+  private assets: object;
   private isNW: boolean;
   private updatingWalletId: object;
   private zone;
@@ -631,6 +632,19 @@ export class HomePage {
         }
       });
     });
+    this.updateAssets();
+  }
+
+  private updateAssets(): void {
+    this.wallets[0].getKeokenAssets(
+      ((err: object, assets: object[]) => {
+        if (err) {
+          this.logger.warn(err);
+        } else {
+          this.assets = _.keyBy(assets, 'asset_id');
+        }
+      }).bind(this)
+    );
   }
 
   private getWalletAssets(wallet, cb): void {
@@ -826,5 +840,9 @@ export class HomePage {
       }
     );
     modal.present();
+  }
+
+  public getAssetName(assetId: number): string {
+    return this.assets[assetId].asset_name;
   }
 }
