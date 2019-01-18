@@ -13,10 +13,10 @@ import { ChooseFeeLevelPage } from '../choose-fee-level/choose-fee-level';
 
 // Providers
 import { ActionSheetProvider } from '../../../providers/action-sheet/action-sheet';
-import { BwcErrorProvider } from '../../../providers/bwc-error/bwc-error';
 import { ConfigProvider } from '../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../providers/external-link/external-link';
 import { FeeProvider } from '../../../providers/fee/fee';
+import { KwcErrorProvider } from '../../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../../providers/platform/platform';
@@ -89,7 +89,7 @@ export class ConfirmPage extends WalletTabsChild {
     profileProvider: ProfileProvider,
     private walletProvider: WalletProvider,
     private popupProvider: PopupProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private onGoingProcessProvider: OnGoingProcessProvider,
     private feeProvider: FeeProvider,
     private txConfirmNotificationProvider: TxConfirmNotificationProvider,
@@ -725,7 +725,7 @@ export class ConfirmPage extends WalletTabsChild {
 
     const errorInfoSheet = this.actionSheetProvider.createInfoSheet(
       'default-error',
-      { msg: this.bwcErrorProvider.msg(error), title: infoSheetTitle }
+      { msg: this.kwcErrorProvider.msg(error), title: infoSheetTitle }
     );
     errorInfoSheet.present();
     errorInfoSheet.onDidDismiss(() => {

@@ -7,8 +7,8 @@ import { Logger } from '../../providers/logger/logger';
 // providers
 import { AppProvider } from '../../providers/app/app';
 import { LanguageProvider } from '../../providers/language/language';
-import { BwcErrorProvider } from '../bwc-error/bwc-error';
 import { ConfigProvider } from '../config/config';
+import { KwcErrorProvider } from '../kwc-error/kwc-error';
 import { KwcProvider } from '../kwc/kwc';
 import { OnGoingProcessProvider } from '../on-going-process/on-going-process';
 import { PersistenceProvider } from '../persistence/persistence';
@@ -36,7 +36,7 @@ export class ProfileProvider {
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
     private kwcProvider: KwcProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private platformProvider: PlatformProvider,
     private appProvider: AppProvider,
     private languageProvider: LanguageProvider,
@@ -586,7 +586,7 @@ export class ProfileProvider {
       walletClient.importFromExtendedPrivateKey(xPrivKey, opts, err => {
         if (err) {
           if (err instanceof this.errors.NOT_AUTHORIZED) return reject(err);
-          this.bwcErrorProvider
+          this.kwcErrorProvider
             .cb(err, this.translate.instant('Could not import'))
             .then((msg: string) => {
               return reject(msg);
@@ -642,7 +642,7 @@ export class ProfileProvider {
               return reject(err);
             }
 
-            this.bwcErrorProvider
+            this.kwcErrorProvider
               .cb(err, this.translate.instant('Could not import'))
               .then((msg: string) => {
                 return reject(msg);
@@ -683,7 +683,7 @@ export class ProfileProvider {
             if (err instanceof this.errors.NOT_AUTHORIZED)
               err.name = 'WALLET_DOES_NOT_EXIST';
 
-            this.bwcErrorProvider
+            this.kwcErrorProvider
               .cb(err, this.translate.instant('Could not import'))
               .then((msg: string) => {
                 return reject(msg);
@@ -999,7 +999,7 @@ export class ProfileProvider {
               },
               err => {
                 if (err) {
-                  this.bwcErrorProvider
+                  this.kwcErrorProvider
                     .cb(err, this.translate.instant('Error creating wallet'))
                     .then((msg: string) => {
                       return reject(msg);
@@ -1069,7 +1069,7 @@ export class ProfileProvider {
             },
             err => {
               if (err) {
-                this.bwcErrorProvider
+                this.kwcErrorProvider
                   .cb(err, this.translate.instant('Could not join wallet'))
                   .then((msg: string) => {
                     return reject(msg);
@@ -1384,7 +1384,7 @@ export class ProfileProvider {
         pr(wallet, err => {
           if (err)
             this.logger.warn(
-              this.bwcErrorProvider.msg(
+              this.kwcErrorProvider.msg(
                 err,
                 'Error updating notifications for ' + wallet.name
               )

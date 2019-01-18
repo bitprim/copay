@@ -5,8 +5,8 @@ import { Logger } from '../../../../providers/logger/logger';
 
 // Provider
 import { AmazonProvider } from '../../../../providers/amazon/amazon';
-import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
+import { KwcErrorProvider } from '../../../../providers/kwc-error/kwc-error';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PopupProvider } from '../../../../providers/popup/popup';
 import { GiftCardNewData } from '../../gift-cards';
@@ -27,7 +27,7 @@ export class AmazonCardDetailsPage {
 
   constructor(
     private amazonProvider: AmazonProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private logger: Logger,
     private externalLinkProvider: ExternalLinkProvider,
     private navParams: NavParams,
@@ -55,7 +55,7 @@ export class AmazonCardDetailsPage {
       if (err) {
         this.popupProvider.ionicAlert(
           'Error canceling gift card',
-          this.bwcErrorProvider.msg(err.error)
+          this.kwcErrorProvider.msg(err.error)
         );
         return;
       }
@@ -96,7 +96,7 @@ export class AmazonCardDetailsPage {
               if (err) {
                 this.popupProvider.ionicAlert(
                   'Error',
-                  this.bwcErrorProvider.msg(err)
+                  this.kwcErrorProvider.msg(err)
                 );
                 return;
               }

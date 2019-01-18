@@ -11,10 +11,10 @@ import { MercadoLibrePage } from '../mercado-libre';
 
 // Provider
 import { ActionSheetProvider } from '../../../../providers/action-sheet/action-sheet';
-import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { EmailNotificationsProvider } from '../../../../providers/email-notifications/email-notifications';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
+import { KwcErrorProvider } from '../../../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { MercadoLibreProvider } from '../../../../providers/mercado-libre/mercado-libre';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
@@ -66,7 +66,7 @@ export class BuyMercadoLibrePage {
   constructor(
     private actionSheetProvider: ActionSheetProvider,
     private mercadoLibreProvider: MercadoLibreProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private kwcProvider: KwcProvider,
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
@@ -349,7 +349,7 @@ export class BuyMercadoLibrePage {
             .catch(err => {
               return reject({
                 title: this.translate.instant('Could not create transaction'),
-                message: this.bwcErrorProvider.msg(err)
+                message: this.kwcErrorProvider.msg(err)
               });
             });
         })
@@ -535,7 +535,7 @@ export class BuyMercadoLibrePage {
           this._resetValues();
           this.showError(
             this.translate.instant('Could not send transaction'),
-            this.bwcErrorProvider.msg(err)
+            this.kwcErrorProvider.msg(err)
           );
           return;
         });

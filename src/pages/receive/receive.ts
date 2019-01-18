@@ -14,8 +14,8 @@ import { AmountPage } from '../send/amount/amount';
 // Providers
 import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
 import { AddressProvider } from '../../providers/address/address';
-import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
 import { ExternalLinkProvider } from '../../providers/external-link/external-link';
+import { KwcErrorProvider } from '../../providers/kwc-error/kwc-error';
 import { PlatformProvider } from '../../providers/platform/platform';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { WalletProvider } from '../../providers/wallet/wallet';
@@ -49,7 +49,7 @@ export class ReceivePage extends WalletTabsChild {
     private platformProvider: PlatformProvider,
     private events: Events,
     private socialSharing: SocialSharing,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private translate: TranslateService,
     private externalLinkProvider: ExternalLinkProvider,
     private addressProvider: AddressProvider,
@@ -100,7 +100,7 @@ export class ReceivePage extends WalletTabsChild {
       .getAddress(this.wallet, newAddr)
       .catch(err => {
         this.loading = false;
-        this.logger.warn(this.bwcErrorProvider.msg(err, 'Server Error'));
+        this.logger.warn(this.kwcErrorProvider.msg(err, 'Server Error'));
       })) as string;
     this.loading = false;
     let address = await this.walletProvider.getAddressView(this.wallet, addr);

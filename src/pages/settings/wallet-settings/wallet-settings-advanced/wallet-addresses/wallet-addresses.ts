@@ -4,7 +4,7 @@ import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { Logger } from '../../../../../providers/logger/logger';
 
 // providers
-import { BwcErrorProvider } from '../../../../../providers/bwc-error/bwc-error';
+import { KwcErrorProvider } from '../../../../../providers/kwc-error/kwc-error';
 import { PopupProvider } from '../../../../../providers/popup/popup';
 import { ProfileProvider } from '../../../../../providers/profile/profile';
 import { TxFormatProvider } from '../../../../../providers/tx-format/tx-format';
@@ -44,7 +44,7 @@ export class WalletAddressesPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private logger: Logger,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private popupProvider: PopupProvider,
     private modalCtrl: ModalController,
     private txFormatProvider: TxFormatProvider,
@@ -95,7 +95,7 @@ export class WalletAddressesPage {
             this.logger.error(err);
             this.loading = false;
             this.popupProvider.ionicAlert(
-              this.bwcErrorProvider.msg(
+              this.kwcErrorProvider.msg(
                 err,
                 this.translate.instant('Could not update wallet')
               )
@@ -106,7 +106,7 @@ export class WalletAddressesPage {
         this.logger.error(err);
         this.loading = false;
         this.popupProvider.ionicAlert(
-          this.bwcErrorProvider.msg(
+          this.kwcErrorProvider.msg(
             err,
             this.translate.instant('Could not update wallet')
           )

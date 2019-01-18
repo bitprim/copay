@@ -9,7 +9,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 // Providers
 import { ActionSheetProvider } from '../../../providers/action-sheet/action-sheet';
 import { AppProvider } from '../../../providers/app/app';
-import { BwcErrorProvider } from '../../../providers/bwc-error/bwc-error';
+import { KwcErrorProvider } from '../../../providers/kwc-error/kwc-error';
 import { Logger } from '../../../providers/logger/logger';
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../../providers/platform/platform';
@@ -37,7 +37,7 @@ export class CopayersPage {
   constructor(
     private plt: Platform,
     private appProvider: AppProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private events: Events,
     private logger: Logger,
     private navParams: NavParams,
@@ -127,7 +127,7 @@ export class CopayersPage {
       })
       .catch(err => {
         let message = this.translate.instant('Could not update wallet');
-        this.popupProvider.ionicAlert(this.bwcErrorProvider.msg(err, message));
+        this.popupProvider.ionicAlert(this.kwcErrorProvider.msg(err, message));
         return;
       });
   }

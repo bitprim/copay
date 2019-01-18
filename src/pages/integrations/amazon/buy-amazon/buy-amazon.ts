@@ -12,9 +12,9 @@ import { AmazonPage } from '../amazon';
 // Provider
 import { ActionSheetProvider } from '../../../../providers/action-sheet/action-sheet';
 import { AmazonProvider } from '../../../../providers/amazon/amazon';
-import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
+import { KwcErrorProvider } from '../../../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PayproProvider } from '../../../../providers/paypro/paypro';
@@ -68,7 +68,7 @@ export class BuyAmazonPage {
   constructor(
     private actionSheetProvider: ActionSheetProvider,
     private amazonProvider: AmazonProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private kwcProvider: KwcProvider,
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
@@ -350,7 +350,7 @@ export class BuyAmazonPage {
             .catch(err => {
               return reject({
                 title: this.translate.instant('Could not create transaction'),
-                message: this.bwcErrorProvider.msg(err)
+                message: this.kwcErrorProvider.msg(err)
               });
             });
         })
@@ -581,7 +581,7 @@ export class BuyAmazonPage {
             this._resetValues();
             this.showError(
               this.translate.instant('Could not send transaction'),
-              this.bwcErrorProvider.msg(err)
+              this.kwcErrorProvider.msg(err)
             );
             return;
           });

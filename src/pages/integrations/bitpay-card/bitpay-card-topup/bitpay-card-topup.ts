@@ -12,10 +12,10 @@ import { BitPayCardPage } from '../bitpay-card';
 import { ActionSheetProvider } from '../../../../providers/action-sheet/action-sheet';
 import { BitPayCardProvider } from '../../../../providers/bitpay-card/bitpay-card';
 import { BitPayProvider } from '../../../../providers/bitpay/bitpay';
-import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
 import { FeeProvider } from '../../../../providers/fee/fee';
+import { KwcErrorProvider } from '../../../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PayproProvider } from '../../../../providers/paypro/paypro';
@@ -66,7 +66,7 @@ export class BitPayCardTopUpPage {
     private actionSheetProvider: ActionSheetProvider,
     private bitPayCardProvider: BitPayCardProvider,
     private bitPayProvider: BitPayProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private kwcProvider: KwcProvider,
     private configProvider: ConfigProvider,
     private externalLinkProvider: ExternalLinkProvider,
@@ -326,7 +326,7 @@ export class BitPayCardTopUpPage {
             .catch(err => {
               return reject({
                 title: this.translate.instant('Could not create transaction'),
-                message: this.bwcErrorProvider.msg(err)
+                message: this.kwcErrorProvider.msg(err)
               });
             });
         });
@@ -549,7 +549,7 @@ export class BitPayCardTopUpPage {
             this._resetValues();
             this.showError(
               this.translate.instant('Could not send transaction'),
-              this.bwcErrorProvider.msg(err)
+              this.kwcErrorProvider.msg(err)
             );
           });
       });

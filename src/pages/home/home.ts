@@ -36,7 +36,6 @@ import { AddressProvider } from '../../providers/address/address';
 import { AmazonProvider } from '../../providers/amazon/amazon';
 import { AppProvider } from '../../providers/app/app';
 import { BitPayCardProvider } from '../../providers/bitpay-card/bitpay-card';
-import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
 import { ClipboardProvider } from '../../providers/clipboard/clipboard';
 import { ConfigProvider } from '../../providers/config/config';
 import { EmailNotificationsProvider } from '../../providers/email-notifications/email-notifications';
@@ -44,6 +43,7 @@ import { ExternalLinkProvider } from '../../providers/external-link/external-lin
 import { FeedbackProvider } from '../../providers/feedback/feedback';
 import { HomeIntegrationsProvider } from '../../providers/home-integrations/home-integrations';
 import { IncomingDataProvider } from '../../providers/incoming-data/incoming-data';
+import { KwcErrorProvider } from '../../providers/kwc-error/kwc-error';
 import { Logger } from '../../providers/logger/logger';
 import { OnGoingProcessProvider } from '../../providers/on-going-process/on-going-process';
 import { PersistenceProvider } from '../../providers/persistence/persistence';
@@ -103,7 +103,7 @@ export class HomePage {
     private profileProvider: ProfileProvider,
     private releaseProvider: ReleaseProvider,
     private walletProvider: WalletProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private logger: Logger,
     private events: Events,
     private configProvider: ConfigProvider,
@@ -618,9 +618,9 @@ export class HomePage {
           wallet.error =
             err === 'WALLET_NOT_REGISTERED'
               ? 'Wallet not registered'
-              : this.bwcErrorProvider.msg(err);
+              : this.kwcErrorProvider.msg(err);
           this.logger.warn(
-            this.bwcErrorProvider.msg(
+            this.kwcErrorProvider.msg(
               err,
               'Error updating status for ' + wallet.name
             )

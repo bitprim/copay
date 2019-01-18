@@ -11,9 +11,9 @@ import { Logger } from '../../providers/logger/logger';
 
 // providers
 import { AddressBookProvider } from '../../providers/address-book/address-book';
-import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
 import { ConfigProvider } from '../../providers/config/config';
 import { FeeProvider } from '../../providers/fee/fee';
+import { KwcErrorProvider } from '../../providers/kwc-error/kwc-error';
 import { OnGoingProcessProvider } from '../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../providers/platform/platform';
 import { PopupProvider } from '../../providers/popup/popup';
@@ -61,7 +61,7 @@ export class TxpDetailsPage {
     private events: Events,
     private logger: Logger,
     private popupProvider: PopupProvider,
-    private bwcError: BwcErrorProvider,
+    private kwcError: KwcErrorProvider,
     private walletProvider: WalletProvider,
     private onGoingProcessProvider: OnGoingProcessProvider,
     private viewCtrl: ViewController,
@@ -271,7 +271,7 @@ export class TxpDetailsPage {
     this.loading = false;
     this.popupProvider.ionicAlert(
       this.translate.instant('Error'),
-      this.bwcError.msg(err, prefix)
+      this.kwcError.msg(err, prefix)
     );
   }
 

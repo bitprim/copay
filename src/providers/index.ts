@@ -28,7 +28,7 @@ export {
 } from '../providers/bitpay-account/bitpay-account';
 export { BitPayCardProvider } from '../providers/bitpay-card/bitpay-card';
 export { BitPayProvider } from '../providers/bitpay/bitpay';
-export { BwcErrorProvider } from '../providers/bwc-error/bwc-error';
+export { KwcErrorProvider } from '../providers/kwc-error/kwc-error';
 export { KwcProvider } from './kwc/kwc';
 export { ClipboardProvider } from '../providers/clipboard/clipboard';
 export { CoinbaseProvider } from '../providers/coinbase/coinbase';

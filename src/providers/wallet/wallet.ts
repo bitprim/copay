@@ -6,10 +6,10 @@ import encoding from 'text-encoding';
 import { Logger } from '../../providers/logger/logger';
 
 // Providers
-import { BwcErrorProvider } from '../bwc-error/bwc-error';
 import { ConfigProvider } from '../config/config';
 import { FeeProvider } from '../fee/fee';
 import { FilterProvider } from '../filter/filter';
+import { KwcErrorProvider } from '../kwc-error/kwc-error';
 import { KwcProvider } from '../kwc/kwc';
 import { LanguageProvider } from '../language/language';
 import { OnGoingProcessProvider } from '../on-going-process/on-going-process';
@@ -100,7 +100,7 @@ export class WalletProvider {
     private txFormatProvider: TxFormatProvider,
     private configProvider: ConfigProvider,
     private persistenceProvider: PersistenceProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private rateProvider: RateProvider,
     private filter: FilterProvider,
     private languageProvider: LanguageProvider,
@@ -445,10 +445,10 @@ export class WalletProvider {
           if (!forceNew && addr) return resolve(addr);
 
           if (!wallet.isComplete())
-            return reject(this.bwcErrorProvider.msg('WALLET_NOT_COMPLETE'));
+            return reject(this.kwcErrorProvider.msg('WALLET_NOT_COMPLETE'));
 
           if (wallet.needsBackup) {
-            return reject(this.bwcErrorProvider.msg('WALLET_NEEDS_BACKUP'));
+            return reject(this.kwcErrorProvider.msg('WALLET_NEEDS_BACKUP'));
           }
 
           this.createAddress(wallet)
@@ -483,14 +483,14 @@ export class WalletProvider {
             err instanceof this.errors.MAIN_ADDRESS_GAP_REACHED ||
             (err.message && err.message == 'MAIN_ADDRESS_GAP_REACHED')
           ) {
-            this.logger.warn(this.bwcErrorProvider.msg(err, 'Server Error'));
+            this.logger.warn(this.kwcErrorProvider.msg(err, 'Server Error'));
             prefix = null;
             if (!this.isPopupOpen) {
               this.isPopupOpen = true;
               this.popupProvider
                 .ionicAlert(
                   null,
-                  this.bwcErrorProvider.msg('MAIN_ADDRESS_GAP_REACHED')
+                  this.kwcErrorProvider.msg('MAIN_ADDRESS_GAP_REACHED')
                 )
                 .then(() => {
                   this.isPopupOpen = false;
@@ -507,7 +507,7 @@ export class WalletProvider {
               }
             );
           } else {
-            this.bwcErrorProvider.cb(err, prefix).then(msg => {
+            this.kwcErrorProvider.cb(err, prefix).then(msg => {
               return reject(msg);
             });
           }
@@ -1136,7 +1136,7 @@ export class WalletProvider {
           wallet.savePreferences(prefs, err => {
             if (err) {
               this.popupProvider.ionicAlert(
-                this.bwcErrorProvider.msg(
+                this.kwcErrorProvider.msg(
                   err,
                   this.translate.instant(
                     'Could not save preferences on the server'
@@ -1409,7 +1409,7 @@ export class WalletProvider {
           return resolve();
         })
         .catch(err => {
-          return reject(this.bwcErrorProvider.msg(err));
+          return reject(this.kwcErrorProvider.msg(err));
         });
     });
   }
@@ -1447,7 +1447,7 @@ export class WalletProvider {
                 return resolve(broadcastedTxp);
               })
               .catch(err => {
-                return reject(this.bwcErrorProvider.msg(err));
+                return reject(this.kwcErrorProvider.msg(err));
               });
           } else {
             this.events.publish('Local/TxAction', wallet.id);

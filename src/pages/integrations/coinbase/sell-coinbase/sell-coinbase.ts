@@ -10,10 +10,10 @@ import { CoinbasePage } from '../coinbase';
 // providers
 import { ActionSheetProvider } from '../../../../providers/action-sheet/action-sheet';
 import { AppProvider } from '../../../../providers/app/app';
-import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
 import { CoinbaseProvider } from '../../../../providers/coinbase/coinbase';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
+import { KwcErrorProvider } from '../../../../providers/kwc-error/kwc-error';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../../../providers/platform/platform';
 import { PopupProvider } from '../../../../providers/popup/popup';
@@ -53,7 +53,7 @@ export class SellCoinbasePage {
   constructor(
     private actionSheetProvider: ActionSheetProvider,
     private appProvider: AppProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private coinbaseProvider: CoinbaseProvider,
     private configProvider: ConfigProvider,
     private logger: Logger,
@@ -418,7 +418,7 @@ export class SellCoinbasePage {
                     })
                     .catch(err => {
                       this.onGoingProcessProvider.clear();
-                      this.showError(this.bwcErrorProvider.msg(err));
+                      this.showError(this.kwcErrorProvider.msg(err));
                       return;
                     });
                 })

@@ -9,8 +9,8 @@ import { TabsPage } from '../tabs/tabs';
 
 // providers
 import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
-import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
 import { FeeProvider } from '../../providers/fee/fee';
+import { KwcErrorProvider } from '../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../providers/kwc/kwc';
 import { Logger } from '../../providers/logger/logger';
 import { OnGoingProcessProvider } from '../../providers/on-going-process/on-going-process';
@@ -64,7 +64,7 @@ export class PaperWalletPage {
     private modalCtrl: ModalController,
     private translate: TranslateService,
     private platformProvider: PlatformProvider,
-    private bwcErrorProvider: BwcErrorProvider
+    private kwcErrorProvider: KwcErrorProvider
   ) {
     this.bitcore = this.kwcProvider.getBitcore();
     this.isCordova = this.platformProvider.isCordova;
@@ -209,7 +209,7 @@ export class PaperWalletPage {
         this.popupProvider
           .ionicAlert(
             this.translate.instant('Error scanning funds:'),
-            this.bwcErrorProvider.msg(err)
+            this.kwcErrorProvider.msg(err)
           )
           .then(() => {
             this.navCtrl.pop();
@@ -289,7 +289,7 @@ export class PaperWalletPage {
         this.logger.error(err);
         this.popupProvider.ionicAlert(
           this.translate.instant('Error sweeping wallet:'),
-          this.bwcErrorProvider.msg(err)
+          this.kwcErrorProvider.msg(err)
         );
       });
   }

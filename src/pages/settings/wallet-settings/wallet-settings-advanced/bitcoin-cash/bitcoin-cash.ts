@@ -5,8 +5,8 @@ import * as lodash from 'lodash';
 import { Logger } from '../../../../../providers/logger/logger';
 
 // Providers
-import { BwcErrorProvider } from '../../../../../providers/bwc-error/bwc-error';
 import { ExternalLinkProvider } from '../../../../../providers/external-link/external-link';
+import { KwcErrorProvider } from '../../../../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../../providers/on-going-process/on-going-process';
 import { PopupProvider } from '../../../../../providers/popup/popup';
@@ -41,7 +41,7 @@ export class BitcoinCashPage extends WalletTabsChild {
     private popupProvider: PopupProvider,
     private pushNotificationsProvider: PushNotificationsProvider,
     private externalLinkProvider: ExternalLinkProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private kwcProvider: KwcProvider,
     private logger: Logger,
     private translate: TranslateService,
@@ -96,7 +96,7 @@ export class BitcoinCashPage extends WalletTabsChild {
         this.availableWallet.error =
           err === 'WALLET_NOT_REGISTERED'
             ? this.translate.instant('Wallet not registered')
-            : this.bwcErrorProvider.msg(err);
+            : this.kwcErrorProvider.msg(err);
         this.logger.error(err);
       });
   }
@@ -118,7 +118,7 @@ export class BitcoinCashPage extends WalletTabsChild {
     };
 
     const setErr = err => {
-      this.bwcErrorProvider.cb(err, 'Could not duplicate').then(errorMsg => {
+      this.kwcErrorProvider.cb(err, 'Could not duplicate').then(errorMsg => {
         this.logger.warn('Duplicate BCH', errorMsg);
         this.popupProvider.ionicAlert(errorMsg, null, 'OK');
         return;

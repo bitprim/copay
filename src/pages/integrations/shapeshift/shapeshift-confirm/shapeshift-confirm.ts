@@ -10,10 +10,10 @@ import { FinishModalPage } from '../../../finish/finish';
 import { ShapeshiftPage } from '../shapeshift';
 
 // Providers
-import { BwcErrorProvider } from '../../../../providers/bwc-error/bwc-error';
 import { ConfigProvider } from '../../../../providers/config/config';
 import { ExternalLinkProvider } from '../../../../providers/external-link/external-link';
 import { FeeProvider } from '../../../../providers/fee/fee';
+import { KwcErrorProvider } from '../../../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../../../providers/kwc/kwc';
 import { OnGoingProcessProvider } from '../../../../providers/on-going-process/on-going-process';
 import { PlatformProvider } from '../../../../providers/platform/platform';
@@ -67,7 +67,7 @@ export class ShapeshiftConfirmPage {
 
   constructor(
     private kwcProvider: KwcProvider,
-    private bwcErrorProvider: BwcErrorProvider,
+    private kwcErrorProvider: KwcErrorProvider,
     private configProvider: ConfigProvider,
     private replaceParametersProvider: ReplaceParametersProvider,
     private externalLinkProvider: ExternalLinkProvider,
@@ -412,7 +412,7 @@ export class ShapeshiftConfirmPage {
         .catch(err => {
           return reject({
             title: this.translate.instant('Could not create transaction'),
-            message: this.bwcErrorProvider.msg(err)
+            message: this.kwcErrorProvider.msg(err)
           });
         });
     });
@@ -613,7 +613,7 @@ export class ShapeshiftConfirmPage {
           this.saveShapeshiftData();
         })
         .catch(err => {
-          this.logger.error(this.bwcErrorProvider.msg(err));
+          this.logger.error(this.kwcErrorProvider.msg(err));
           this.showErrorAndBack(
             null,
             this.translate.instant('Could not send transaction')
