@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { /*Events,*/ NavController, Platform } from 'ionic-angular';
 import { /*Observable,*/ Subscription } from 'rxjs';
-import { Logger } from '../../providers/logger/logger';
-
-// import { Logger } from '../../providers/logger/logger';
 
 // Native
 // import { SocialSharing } from '@ionic-native/social-sharing';
@@ -19,6 +16,7 @@ import { BackupWarningPage } from '../backup/backup-warning/backup-warning';
 // import { AddressProvider } from '../../providers/address/address';
 // import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
 import { ExternalLinkProvider } from '../../providers/external-link/external-link';
+import { Logger } from '../../providers/logger/logger';
 import { PlatformProvider } from '../../providers/platform/platform';
 import { ProfileProvider } from '../../providers/profile/profile';
 // import { WalletProvider } from '../../providers/wallet/wallet';
@@ -41,8 +39,8 @@ export class MakeBidPage extends WalletTabsChild {
   public loading: boolean;
   public playAnimation: boolean;
 
-  // public makeBidForm: FormGroup;
-  // public showAdvOpts: boolean;
+  public makeBidForm: FormGroup;
+  public showAdvOpts: boolean;
 
   private onResumeSubscription: Subscription;
 
@@ -60,17 +58,19 @@ export class MakeBidPage extends WalletTabsChild {
     private externalLinkProvider: ExternalLinkProvider,
     // private addressProvider: AddressProvider,
     walletTabsProvider: WalletTabsProvider,
-    private platform: Platform // private fb: FormBuilder
+    private platform: Platform,
+    private fb: FormBuilder
   ) {
     super(navCtrl, profileProvider, walletTabsProvider);
+    
     this.showShareButton = this.platformProvider.isCordova;
 
-    // this.showAdvOpts = false;
+    this.showAdvOpts = false;
 
-    /* this.makeBidForm = this.fb.group({
+    this.makeBidForm = this.fb.group({
       amount: [null, Validators.required],
       price: [null]
-    }); */
+    }); 
 
     this.logger.debug('testttt22222');
   }
