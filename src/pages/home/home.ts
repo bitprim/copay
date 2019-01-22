@@ -607,6 +607,7 @@ export class HomePage {
             wallet.status.availableBalanceStr
           );
           this.getWalletAssets(wallet, (assets: number[]) => {
+            this.logger.debug('---> KWC: ' + JSON.stringify(assets));
             wallet.assets = assets;
           });
         })
@@ -845,4 +846,5 @@ export class HomePage {
   public getAssetName(assetId: number): string {
     return this.assets[assetId].asset_name;
   }
+
 }

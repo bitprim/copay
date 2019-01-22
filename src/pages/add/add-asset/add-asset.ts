@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
+import * as _ from 'lodash';
 import { Logger } from '../../../providers/logger/logger';
 
 @Component({
@@ -19,9 +20,31 @@ export class AddAssetPage {
           this.logger.error('Failed to retrieve assets from backend: ' + err);
           return;
         }
+        this.logger.debug('---> TOPI: ' + JSON.stringify(this.wallet.assets));
         this.assets = assets.filter(
-          asset => asset.asset_id !== this.KEOS_ASSET_ID
+          asset =>
+            asset.asset_id !== this.KEOS_ASSET_ID &&
+            !_.includes(this.wallet.assets, asset.asset_id)
         );
+      }.bind(this)
+    );
+  }
+
+  public bindAssetToWallet(assetId: number) {
+    this.wallet.bindAssetToWallet(
+      this.wallet.id,
+      assetId,
+      function(err) {
+        if (err) {
+          this.logger.warn('Error binding asset to wallet: ' + err);
+        } else {
+          this.logger.info(
+            'Successfully bound asset ' +
+              assetId +
+              ' to wallet ' +
+              this.wallet.id
+          );
+        }
       }.bind(this)
     );
   }
