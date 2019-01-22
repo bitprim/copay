@@ -49,7 +49,6 @@ export class MakeBidPage extends WalletTabsChild {
   constructor(
     // private actionSheetProvider: ActionSheetProvider,
     navCtrl: NavController,
-    // private logger: Logger,
     profileProvider: ProfileProvider,
     // private walletProvider: WalletProvider,
     private platformProvider: PlatformProvider,
@@ -61,14 +60,9 @@ export class MakeBidPage extends WalletTabsChild {
     private externalLinkProvider: ExternalLinkProvider,
     // private addressProvider: AddressProvider,
     walletTabsProvider: WalletTabsProvider,
-    private platform: Platform,
-    // private fb: FormBuilder
+    private platform: Platform // private fb: FormBuilder
   ) {
-      super(navCtrl, profileProvider, walletTabsProvider);
-
-    this.logger.debug('testttt' + JSON.stringify(this.wallet));
-
-    
+    super(navCtrl, profileProvider, walletTabsProvider);
     this.showShareButton = this.platformProvider.isCordova;
 
     // this.showAdvOpts = false;
@@ -79,10 +73,10 @@ export class MakeBidPage extends WalletTabsChild {
     }); */
 
     this.logger.debug('testttt22222');
-
   }
 
   ngOnInit() {
+    super.ngOnInit();
     // this.createForm.get('amount').setValidators([Validators.required]);
   }
 
@@ -105,8 +99,6 @@ export class MakeBidPage extends WalletTabsChild {
       
     });*/
   }
-
-
 
   public goToBackup(): void {
     this.navCtrl.push(BackupWarningPage, {
@@ -132,10 +124,5 @@ export class MakeBidPage extends WalletTabsChild {
     );
   }
 
-  public makeBid(): void {
-
-
-    
-  };
-
+  public makeBid(): void {}
 }
