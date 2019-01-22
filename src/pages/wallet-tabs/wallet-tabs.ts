@@ -3,6 +3,7 @@ import { Events, NavParams, Platform } from 'ionic-angular';
 import { Subscription } from 'rxjs';
 
 // Pages
+import { MakeBidPage } from '../make-bid/make-bid';
 import { ReceivePage } from '../receive/receive';
 import { SendPage } from '../send/send';
 import { WalletDetailsPage } from '../wallet-details/wallet-details';
@@ -11,10 +12,12 @@ import { WalletDetailsPage } from '../wallet-details/wallet-details';
 import { PlatformProvider } from '../../providers/platform/platform';
 import { WalletTabsProvider } from './wallet-tabs.provider';
 
+
 @Component({
   template: `
     <ion-tabs selectedIndex="1" #tabs>
-      <ion-tab
+      
+    <ion-tab
         [root]="receiveRoot"
         tabTitle="{{ 'Receive' | translate }}"
         tabIcon="tab-receive"
@@ -29,6 +32,11 @@ import { WalletTabsProvider } from './wallet-tabs.provider';
         tabTitle="{{ 'Send' | translate }}"
         tabIcon="tab-send"
       ></ion-tab>
+      <ion-tab
+        [root]="makeBidRoot"
+        tabTitle="{{ 'Sell (Bid)' | translate }}"
+        tabIcon="tab-make-bid"
+      ></ion-tab>
     </ion-tabs>
   `
 })
@@ -39,6 +47,7 @@ export class WalletTabsPage {
   receiveRoot = ReceivePage;
   activityRoot = WalletDetailsPage;
   sendRoot = SendPage;
+  makeBidRoot = MakeBidPage;
 
   walletId: string;
 

@@ -1,0 +1,47 @@
+<ion-header class="wallet-details-header">
+  <ion-navbar [navbar-bg]="wallet.color">
+    <ion-buttons left>
+      <button class="modal-close-button" (click)="close()" ion-button>
+        <ion-icon ios="md-close" md="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{wallet && wallet.name || ('Sell (Bid)'|translate)}}</ion-title>
+  </ion-navbar>
+  <ion-toolbar [navbar-bg]="wallet.color">
+    <div *ngIf="!wallet.balanceHidden && !wallet.scanning && wallet.status" class="wallet-details-header__balance">
+      <span>{{wallet.status && wallet.status.totalBalanceStr}}</span>
+      <ion-icon *ngIf="wallet.status.totalBalanceSat != wallet.status.spendableAmount" ios="ios-timer-outline" md="md-timer"></ion-icon>
+    </div>
+    <div *ngIf="wallet.balanceHidden  && !wallet.scanning" class="wallet-details-header__balance-hidden">
+      <span class="title" translate>[Balance Hidden]</span>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <div class="wrapper">
+    <div class="prompt-user-fullscreen-container" *ngIf="wallet && wallet.isComplete() && wallet.needsBackup">
+      <div class="prompt-user">
+        <div class="title-icon">
+          <img src="assets/img/single-folded-content.svg" />
+        </div>
+        <div class="title-info">
+          <span translate>Needs Backup</span>
+        </div>
+        <div class="subtitle-info">
+          <span translate>Before retrieving your wallet address, it's recommended that you first write down your
+            recovery phrase and store it securely so that your wallet can be recovered in the case your device was lost
+            or stolen.</span>
+        </div>
+        <button ion-button class="button-standard" (click)="goToBackup()">
+          {{'Write Down Recovery Phrase' | translate}}
+        </button>
+      </div>
+    </div>
+
+
+  
+
+
+  </div>
+</ion-content>

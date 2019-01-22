@@ -9,6 +9,7 @@ import { BackupGamePage } from '../pages/backup/backup-game/backup-game';
 import { BackupWarningPage } from '../pages/backup/backup-warning/backup-warning';
 import { SendFeedbackPage } from '../pages/feedback/send-feedback/send-feedback';
 import { FinishModalPage } from '../pages/finish/finish';
+import { MakeBidPage } from '../pages/make-bid/make-bid';
 import { BackupRequestPage } from '../pages/onboarding/backup-request/backup-request';
 import { CollectEmailPage } from '../pages/onboarding/collect-email/collect-email';
 import { DisclaimerPage } from '../pages/onboarding/disclaimer/disclaimer';
@@ -133,6 +134,7 @@ import { WalletTabsChild } from './wallet-tabs/wallet-tabs-child';
 export const PAGES = [
   ActivityPage,
   AddAssetPage,
+  MakeBidPage,
   AddPage,
   AmazonCardDetailsPage,
   AmazonPage,
