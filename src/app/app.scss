@@ -335,6 +335,9 @@ ion-icon {
   &[class*='tab-receive'] {
     mask-image: url(../assets/img/tab-icons/ico-receive.svg);
   }
+  &[class*='tab-make-bid'] {
+    mask-image: url(../assets/img/tab-icons/ico-receive.svg);
+  }
   &[class*='tab-scan'] {
     mask-image: url(../assets/img/tab-icons/ico-scan.svg);
     width: 3rem !important;

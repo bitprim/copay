@@ -2936,3 +2936,6 @@ msgstr "Select asset"
 
 msgid "Add asset"
 msgstr "Add asset"
+
+msgid "Sell (Bid)"
+msgstr "Sell (Bid)"
