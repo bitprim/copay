@@ -20,7 +20,6 @@ export class AddAssetPage {
           this.logger.error('Failed to retrieve assets from backend: ' + err);
           return;
         }
-        this.logger.debug('---> TOPI: ' + JSON.stringify(this.wallet.assets));
         this.assets = assets.filter(
           asset =>
             asset.asset_id !== this.KEOS_ASSET_ID &&
