@@ -24,6 +24,20 @@ export enum Coin {
   BCH = 'bch'
 }
 
+
+export interface MakeBidOptions {
+  assetId:any;
+  amount: any;
+  price: any;
+  minAmount: any;
+  minAdvPayment: any;
+  period: any;
+  immutability: any;
+  paymentWindow: any;
+}
+
+
+
 export interface WalletOptions {
   name: any;
   m: any;

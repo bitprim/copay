@@ -40,10 +40,10 @@
     </div>
 
 
-   <form [formGroup]="makeBidForm" (ngSubmit)="makeBid()">
+    <form [formGroup]="makeBidForm">
       <ion-item>
         <ion-label>{{'Amount' | translate}}</ion-label>
-        <ion-input type="number" formControlName="amount" placeholder="{{'Enter amount'| translate}}"></ion-input>
+        <ion-input type="tel" pattern="[0-9]*" formControlName="amount" placeholder="{{'Enter amount'| translate}}"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -64,43 +64,43 @@
 
       <div *ngIf="showAdvOpts">
         <ion-item>
-          
           <ion-label stacked>{{'Min Amount' | translate}}</ion-label>
-          <ion-input type="tel" formControlName="minAmount"></ion-input>
+          <ion-input type="tel" pattern="[0-9]*" formControlName="minAmount"></ion-input>
         </ion-item>
 
-
         <ion-item>
-          
+
           <ion-label stacked>{{'Min Adv Payment' | translate}}</ion-label>
-          <ion-input type="tel" formControlName="minAdvPayment"></ion-input>
+          <ion-input type="number" formControlName="minAdvPayment"></ion-input>
         </ion-item>
 
         <ion-item>
-          
+
           <ion-label stacked>{{'Period' | translate}}</ion-label>
-          <ion-input type="tel" formControlName="period"></ion-input>
+          <ion-input type="tel" pattern="[0-9]*" formControlName="period"></ion-input>
         </ion-item>
 
         <ion-item>
-          
+
           <ion-label stacked>{{'Immutability' | translate}}</ion-label>
-          <ion-input type="tel" formControlName="immutability"></ion-input>
+          <ion-input type="tel" pattern="[0-9]*" formControlName="immutability"></ion-input>
         </ion-item>
 
         <ion-item>
-          
+
           <ion-label stacked>{{'Payment Window' | translate}}</ion-label>
-          <ion-input type="tel" formControlName="paymentWindow"></ion-input>
+          <ion-input type="tel" pattern="[0-9]*" formControlName="paymentWindow"></ion-input>
         </ion-item>
 
-        <!-- <button ion-button full class="button-footer" (click)="setOptsAndCreate()" [disabled]="!createForm.valid"> -->
+      </div>
 
-        <button ion-button full class="button-footer" (click)="makeBid()">
-          {{'Make Bid' | translate}}
-        </button>
+      <ion-item-divider></ion-item-divider>
 
-      </div> 
+      <button ion-button full class="button-footer" (click)="makeBid()" [disabled]="!makeBidForm.valid">
+        {{'Make Bid' | translate}}
+      </button>
+
+
     </form>
   </div>
 </ion-content>
