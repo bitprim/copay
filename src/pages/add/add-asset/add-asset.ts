@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 import * as _ from 'lodash';
 import { Logger } from '../../../providers/logger/logger';
 
@@ -12,7 +12,12 @@ export class AddAssetPage {
   public readonly KEOS_ASSET_ID = 1;
   private wallet;
 
-  constructor(public logger: Logger, private navParams: NavParams) {
+  constructor(
+    public alertCtrl: AlertController,
+    public logger: Logger,
+    public navCtrl: NavController,
+    private navParams: NavParams
+  ) {
     this.wallet = this.navParams.data.wallet;
     this.wallet.getKeokenAssets(
       function(err, assets) {
@@ -37,12 +42,26 @@ export class AddAssetPage {
         if (err) {
           this.logger.warn('Error binding asset to wallet: ' + err);
         } else {
-          this.logger.info(
+          let msg =
             'Successfully bound asset ' +
-              assetId +
-              ' to wallet ' +
-              this.wallet.id
-          );
+            assetId +
+            ' to wallet ' +
+            this.wallet.id;
+          this.logger.info(msg);
+          let opts = {
+            // TODO translate message
+            title: msg,
+            buttons: [
+              {
+                text: 'OK',
+                handler: () => {
+                  this.navCtrl.pop();
+                  this.wallet.assets.push(assetId);
+                }
+              }
+            ]
+          };
+          this.alertCtrl.create(opts).present();
         }
       }.bind(this)
     );
