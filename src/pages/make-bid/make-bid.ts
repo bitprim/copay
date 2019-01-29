@@ -12,18 +12,18 @@ import { BackupWarningPage } from '../backup/backup-warning/backup-warning';
 // import { AmountPage } from '../send/amount/amount';
 
 // Providers
+import { ConfigProvider } from '../../providers/config/config';
 // import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
 // import { AddressProvider } from '../../providers/address/address';
 // import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
 import { ExternalLinkProvider } from '../../providers/external-link/external-link';
-// import { Logger } from '../../providers/logger/logger';
+import { KwcProvider } from '../../providers/kwc/kwc';
+import { Logger } from '../../providers/logger/logger';
 // import { PlatformProvider } from '../../providers/platform/platform';
 import { OnGoingProcessProvider } from '../../providers/on-going-process/on-going-process';
 import { PopupProvider } from '../../providers/popup/popup';
 import { ProfileProvider } from '../../providers/profile/profile';
-import { MakeBidOptions } from '../../providers/wallet/wallet';
-
-// import { WalletProvider } from '../../providers/wallet/wallet';
+import { MakeBidOptions, WalletProvider } from '../../providers/wallet/wallet';
 
 // import * as _ from 'lodash';
 import { WalletTabsChild } from '../wallet-tabs/wallet-tabs-child';
@@ -48,17 +48,26 @@ export class MakeBidPage extends WalletTabsChild {
   public makeBidForm: FormGroup;
   public showAdvOpts: boolean;
 
+  public config;
+
+  public tx;
+
   private onResumeSubscription: Subscription;
+
+  private bitcore;
+  private bitcoreCash;
 
   constructor(
     // private actionSheetProvider: ActionSheetProvider,
     navCtrl: NavController,
     profileProvider: ProfileProvider,
+    private kwcProvider: KwcProvider,
     // private walletProvider: WalletProvider,
     // private platformProvider: PlatformProvider,
-    // private logger: Logger,
+    private logger: Logger,
     private popupProvider: PopupProvider,
     private onGoingProcessProvider: OnGoingProcessProvider,
+    private configProvider: ConfigProvider,
     // private events: Events,
     // private socialSharing: SocialSharing,
     // private bwcErrorProvider: BwcErrorProvider,
@@ -66,12 +75,17 @@ export class MakeBidPage extends WalletTabsChild {
     private externalLinkProvider: ExternalLinkProvider,
     // private addressProvider: AddressProvider,
     walletTabsProvider: WalletTabsProvider,
+    private walletProvider: WalletProvider,
     private platform: Platform,
     private fb: FormBuilder
   ) {
     super(navCtrl, profileProvider, walletTabsProvider);
 
     // this.showShareButton = this.platformProvider.isCordova;
+
+    this.config = this.configProvider.get();
+    this.bitcore = this.kwcProvider.getBitcore();
+    this.bitcoreCash = this.kwcProvider.getBitcoreCash();
 
     this.showAdvOpts = false;
 
@@ -194,16 +208,107 @@ export class MakeBidPage extends WalletTabsChild {
     // opts.assetId = this.wallet.assetId;
     // opts.wallet = this.wallet;
 
-    this.createMakeBid(/*opts*/);
+    this.createMakeBid(opts);
 
   }
 
-  private createMakeBid(/*opts*/): void {
+  private createMakeBid(opts): void {
     this.onGoingProcessProvider.set('creatingMakeBid');
 
     this.onGoingProcessProvider.clear();
 
+    let walletAddr;
+    let networkName;
 
+    this.walletProvider.getAddress(this.wallet, false)
+      .then((addr: string) => {
+        if (!addr) {
+          // Error is already formated
+          this.popupProvider.ionicAlert('Error - no address');
+          return;
+        }
+        this.logger.debug('Got address:' + addr + ' | ' + this.wallet.name);
+        walletAddr = addr;
+
+        let B = this.wallet.coin == 'bch' ? this.bitcoreCash : this.bitcore;
+
+        try {
+          networkName = new B.Address(walletAddr).network.name;
+        } catch (e) {
+          this.logger.error(e);
+          var message = this.translate.instant(
+            'Keoken only supports Bitcoin Cash using new version numbers addresses'
+          );
+          var backText = this.translate.instant('Go back');
+          var learnText = this.translate.instant('Learn more');
+          this.popupProvider
+            .ionicConfirm(null, message, backText, learnText)
+            .then(back => {
+              if (!back) {
+                var url =
+                  'https://support.bitpay.com/hc/en-us/articles/115004671663';
+                this.externalLinkProvider.open(url);
+              }
+
+            });
+          return;
+        }
+
+        let tx = {
+          toAddress: walletAddr,
+          sendMax: false,
+          amount: parseInt(opts.amount, 10),
+          description: '',
+          // paypro: this.navParams.data.paypro,
+          spendUnconfirmed: this.config.wallet.spendUnconfirmed,
+          keokenAmount: opts.amount,
+          // Vanity tx info (not in the real tx)
+          recipientType: this.wallet.recipientType,
+          name: this.wallet.name,
+          email: this.wallet.email,
+          color: this.wallet.color,
+          network: networkName,
+          coin: this.wallet.coin,
+          origToAddress: walletAddr,
+          txp: {}
+        };
+
+
+
+        // TODO
+
+
+        this.logger.debug(tx);
+
+      })
+      .catch(err => {
+        this.logger.error('Send: could not getAddress', err);
+      });
+
+
+
+
+    /*  if (this.navParams.data.requiredFeeRate) {
+        this.usingMerchantFee = true;
+        this.tx.feeRate = +this.navParams.data.requiredFeeRate;
+      } else {
+        this.tx.feeLevel =
+          this.tx.coin && this.tx.coin == 'bch' ? 'normal ' : this.configFeeLevel;
+      }
+  
+      if (this.tx.coin && this.tx.coin == 'bch') {
+        // Use legacy address
+        this.tx.toAddress = this.bitcoreCash
+          .Address(this.tx.toAddress)
+          .toString();
+      }
+  
+      this.getAmountDetails();
+  
+      const feeOpts = this.feeProvider.getFeeOpts();
+      this.tx.feeLevelName = feeOpts[this.tx.feeLevel];
+      
+  */
     /*
     this.profileProvider
       .createWallet(opts)
