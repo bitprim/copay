@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { /*Events,*/ NavController, Platform } from 'ionic-angular';
+import { /*Events,*/ App, NavController, Platform } from 'ionic-angular';
 import { /*Observable,*/ Subscription } from 'rxjs';
 
 // Native
@@ -9,23 +9,32 @@ import { /*Observable,*/ Subscription } from 'rxjs';
 
 // Pages
 import { BackupWarningPage } from '../backup/backup-warning/backup-warning';
+import { TabsPage } from '../tabs/tabs';
 // import { AmountPage } from '../send/amount/amount';
 
 // Providers
+import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
 import { ConfigProvider } from '../../providers/config/config';
-// import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
 // import { AddressProvider } from '../../providers/address/address';
 // import { BwcErrorProvider } from '../../providers/bwc-error/bwc-error';
 import { ExternalLinkProvider } from '../../providers/external-link/external-link';
+import { FeeProvider } from '../../providers/fee/fee';
+import { KwcErrorProvider } from '../../providers/kwc-error/kwc-error';
 import { KwcProvider } from '../../providers/kwc/kwc';
 import { Logger } from '../../providers/logger/logger';
 // import { PlatformProvider } from '../../providers/platform/platform';
 import { OnGoingProcessProvider } from '../../providers/on-going-process/on-going-process';
+import { PlatformProvider } from '../../providers/platform/platform';
 import { PopupProvider } from '../../providers/popup/popup';
 import { ProfileProvider } from '../../providers/profile/profile';
-import { MakeBidOptions, WalletProvider } from '../../providers/wallet/wallet';
+import { ReplaceParametersProvider } from '../../providers/replace-parameters/replace-parameters';
+import { TouchIdErrors } from '../../providers/touchid/touchid';
+import { TxConfirmNotificationProvider } from '../../providers/tx-confirm-notification/tx-confirm-notification';
+import { TxFormatProvider } from '../../providers/tx-format/tx-format';
+import { Coin, MakeBidOptions, TransactionProposal, WalletProvider } from '../../providers/wallet/wallet';
 
-// import * as _ from 'lodash';
+
+import * as _ from 'lodash';
 import { WalletTabsChild } from '../wallet-tabs/wallet-tabs-child';
 import { WalletTabsProvider } from '../wallet-tabs/wallet-tabs.provider';
 
@@ -49,8 +58,14 @@ export class MakeBidPage extends WalletTabsChild {
   public showAdvOpts: boolean;
 
   public config;
+  public configFeeLevel: string;
+
+  public FEE_TOO_HIGH_LIMIT_PER: number;
+  public CONFIRM_LIMIT_USD: number;
 
   public tx;
+
+  public isCordova: boolean;
 
   private onResumeSubscription: Subscription;
 
@@ -58,7 +73,8 @@ export class MakeBidPage extends WalletTabsChild {
   private bitcoreCash;
 
   constructor(
-    // private actionSheetProvider: ActionSheetProvider,
+    private actionSheetProvider: ActionSheetProvider,
+    private app: App,
     navCtrl: NavController,
     profileProvider: ProfileProvider,
     private kwcProvider: KwcProvider,
@@ -68,6 +84,12 @@ export class MakeBidPage extends WalletTabsChild {
     private popupProvider: PopupProvider,
     private onGoingProcessProvider: OnGoingProcessProvider,
     private configProvider: ConfigProvider,
+    private feeProvider: FeeProvider,
+    private platformProvider: PlatformProvider,
+    private kwcErrorProvider: KwcErrorProvider,
+    private txConfirmNotificationProvider: TxConfirmNotificationProvider,
+    private txFormatProvider: TxFormatProvider,
+    private replaceParametersProvider: ReplaceParametersProvider,
     // private events: Events,
     // private socialSharing: SocialSharing,
     // private bwcErrorProvider: BwcErrorProvider,
@@ -87,7 +109,17 @@ export class MakeBidPage extends WalletTabsChild {
     this.bitcore = this.kwcProvider.getBitcore();
     this.bitcoreCash = this.kwcProvider.getBitcoreCash();
 
+    this.configFeeLevel = this.config.wallet.settings.feeLevel
+      ? this.config.wallet.settings.feeLevel
+      : 'normal';
+
     this.showAdvOpts = false;
+
+    this.FEE_TOO_HIGH_LIMIT_PER = 15;
+
+    this.CONFIRM_LIMIT_USD = 20;
+
+    this.isCordova = this.platformProvider.isCordova;
 
     this.makeBidForm = this.fb.group({
       amount: [null, Validators.required],
@@ -212,6 +244,34 @@ export class MakeBidPage extends WalletTabsChild {
 
   }
 
+  private showErrorInfoSheet(
+    error: Error | string,
+    title?: string,
+    exit?: boolean
+  ): void {
+    if (!error)
+      return;
+    this.logger.warn('ERROR:', error);
+
+    if ((error as Error).message === TouchIdErrors.fingerprintCancelled) return;
+
+    let infoSheetTitle = title ? title : this.translate.instant('Error');
+
+    const errorInfoSheet = this.actionSheetProvider.createInfoSheet(
+      'default-error',
+      { msg: this.kwcErrorProvider.msg(error), title: infoSheetTitle }
+    );
+    errorInfoSheet.present();
+    errorInfoSheet.onDidDismiss(() => {
+      if (exit) {
+        this.isWithinWalletTabs()
+          ? this.navCtrl.popToRoot()
+          : this.app.getRootNavs()[0].setRoot(TabsPage);
+      }
+    });
+  }
+
+
   private createMakeBid(opts): void {
     this.onGoingProcessProvider.set('creatingMakeBid');
 
@@ -270,45 +330,54 @@ export class MakeBidPage extends WalletTabsChild {
           network: networkName,
           coin: this.wallet.coin,
           origToAddress: walletAddr,
+          feeLevel: this.wallet.coin && this.wallet.coin == 'bch' ? 'normal' : this.configFeeLevel,
           txp: {}
         };
 
+        this.tx = tx;
+
+        if (this.wallet.coin && this.wallet.coin == 'bch') {
+          // Use legacy address
+          tx.toAddress = this.bitcoreCash
+            .Address(this.tx.toAddress)
+            .toString();
+        }
 
 
-        // TODO
-
+        const feeOpts = this.feeProvider.getFeeOpts();
+        this.tx.feeLevelName = feeOpts[this.tx.feeLevel];
 
         this.logger.debug(tx);
 
+      })
+      .then(() => {
+
+        this.updateTx(this.tx, this.wallet, { dryRun: true }).catch(err => {
+
+          switch (err) {
+            case 'insufficient_funds':
+
+              this.showErrorInfoSheet(
+                this.translate.instant('Insufficient funds'),
+                null,
+                true
+              );
+
+              break;
+            default:
+              this.showErrorInfoSheet(err);
+              break;
+          }
+        });
+
+      })
+      .then(() => {
+        this.approve(this.tx, this.wallet);
       })
       .catch(err => {
         this.logger.error('Send: could not getAddress', err);
       });
 
-
-
-
-    /*  if (this.navParams.data.requiredFeeRate) {
-        this.usingMerchantFee = true;
-        this.tx.feeRate = +this.navParams.data.requiredFeeRate;
-      } else {
-        this.tx.feeLevel =
-          this.tx.coin && this.tx.coin == 'bch' ? 'normal ' : this.configFeeLevel;
-      }
-  
-      if (this.tx.coin && this.tx.coin == 'bch') {
-        // Use legacy address
-        this.tx.toAddress = this.bitcoreCash
-          .Address(this.tx.toAddress)
-          .toString();
-      }
-  
-      this.getAmountDetails();
-  
-      const feeOpts = this.feeProvider.getFeeOpts();
-      this.tx.feeLevelName = feeOpts[this.tx.feeLevel];
-      
-  */
     /*
     this.profileProvider
       .createWallet(opts)
@@ -331,5 +400,254 @@ export class MakeBidPage extends WalletTabsChild {
         this.popupProvider.ionicAlert(title, err);
         return;
       });*/
+  }
+
+  private updateTx(tx, wallet, opts): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (opts.clearCache) {
+        tx.txp = {};
+      }
+
+      this.tx = tx;
+
+      // End of quick refresh, before wallet is selected.
+      if (!wallet) {
+        return resolve();
+      }
+
+
+      this.onGoingProcessProvider.set('calculatingFee');
+      this.feeProvider
+        .getFeeRate(
+          wallet.coin,
+          tx.network,
+          this.tx.feeLevel
+        )
+        .then(feeRate => {
+
+          const feeOpts = this.feeProvider.getFeeOpts();
+          tx.feeLevelName = feeOpts[tx.feeLevel];
+          tx.feeRate = feeRate;
+
+          // txp already generated for this wallet?
+          if (tx.txp[wallet.id]) {
+            this.onGoingProcessProvider.clear();
+            return resolve();
+          }
+
+          this.buildTxp(tx, wallet, opts)
+            .then(() => {
+              this.onGoingProcessProvider.clear();
+              return resolve();
+            })
+            .catch(err => {
+              this.onGoingProcessProvider.clear();
+              return reject(err);
+            });
+
+        })
+        .catch(err => {
+          this.logger.warn('Error getting fee rate', err);
+          this.onGoingProcessProvider.clear();
+          return reject(this.translate.instant('Error getting fee rate'));
+        });
+    });
+  }
+
+  private getTxp(tx, wallet, dryRun: boolean): Promise<any> {
+    return new Promise((resolve, reject) => {
+      // ToDo: use a credential's (or fc's) function for this
+      if (tx.description && !wallet.credentials.sharedEncryptingKey) {
+        let msg = this.translate.instant(
+          'Could not add message to imported wallet without shared encrypting key'
+        );
+        return reject(msg);
+      }
+
+      if (tx.amount > Number.MAX_SAFE_INTEGER) {
+        let msg = this.translate.instant('Amount too big');
+        return reject(msg);
+      }
+
+      let txp: Partial<TransactionProposal> = {};
+
+      txp.outputs = [
+        {
+          toAddress: tx.toAddress,
+          amount: tx.amount,
+          message: tx.description
+        }
+      ];
+
+      if (tx.sendMaxInfo) {
+        txp.inputs = tx.sendMaxInfo.inputs;
+        txp.fee = tx.sendMaxInfo.fee;
+      } else {
+        txp.feeLevel = tx.feeLevel;
+      }
+
+      txp.message = tx.description;
+      var pad = '0000000000000000';
+      var amountToSend = (pad + tx.keokenAmount.toString(16)).slice(
+        -pad.length
+      );
+
+      // TODO Make bid Transaction
+      // Add op_return data
+      var script_raw = '6a0400004b50'; // op_return + keoken prefix
+      script_raw = script_raw + '1000000001'; // 10hex = 16 bytes lenght + version (0) + simple send (1)
+      script_raw = script_raw + '00000001'; // asset_id = KEO (1)
+      script_raw = script_raw + amountToSend; // amount to send (1)
+
+      txp.outputs.push({ amount: 0, script: script_raw });
+      txp.keoken = { keoken_id: 1, keoken_amount: tx.keokenAmount };
+
+      if (tx.paypro) {
+        txp.payProUrl = tx.paypro.url;
+      }
+      txp.excludeUnconfirmedUtxos = !tx.spendUnconfirmed;
+      txp.dryRun = dryRun;
+
+      if (tx.recipientType == 'wallet') {
+        txp.customData = {
+          toWalletName: tx.name ? tx.name : null
+        };
+      }
+
+      this.walletProvider
+        .createTx(wallet, txp)
+        .then(ctxp => {
+          return resolve(ctxp);
+        })
+        .catch(err => {
+          return reject(err);
+        });
+    });
+  }
+
+  private buildTxp(tx, wallet, opts): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.getTxp(_.clone(tx), wallet, opts.dryRun)
+        .then(txp => {
+          let per = (txp.fee / (txp.amount + txp.fee)) * 100;
+          txp.feeRatePerStr = per.toFixed(2) + '%';
+          txp.feeTooHigh = per > this.FEE_TOO_HIGH_LIMIT_PER;
+
+          if (txp.feeTooHigh) {
+            const coinName =
+              this.wallet.coin === Coin.BTC ? 'Bitcoin' : 'Bitcoin Cash';
+            const minerFeeInfoSheet = this.actionSheetProvider.createInfoSheet(
+              'miner-fee',
+              { coinName }
+            );
+            minerFeeInfoSheet.present();
+          }
+
+          tx.txp[wallet.id] = txp;
+          this.tx = tx;
+          this.logger.debug(
+            'Confirm. TX Fully Updated for wallet:' + wallet.id,
+            JSON.stringify(tx)
+          );
+          return resolve();
+        })
+        .catch(err => {
+          if (err.message == 'Insufficient funds') {
+            return reject('insufficient_funds');
+          } else {
+            return reject(err);
+          }
+        });
+    });
+  }
+
+  private approve(tx, wallet): Promise<void> {
+    if (!tx || !wallet) return undefined;
+
+    this.onGoingProcessProvider.set('creatingTx');
+    return this.getTxp(_.clone(tx), wallet, false)
+      .then(txp => {
+        return this.confirmTx(tx, txp, wallet).then((nok: boolean) => {
+          if (nok) {
+            this.onGoingProcessProvider.clear();
+            return;
+          }
+          this.publishAndSign(txp, wallet);
+        });
+      })
+      .catch(err => {
+        this.onGoingProcessProvider.clear();
+        this.logger.warn('Error getting transaction proposal', err);
+      });
+  }
+
+  private confirmTx(_, txp, wallet) {
+    return new Promise(resolve => {
+      if (this.walletProvider.isEncrypted(wallet)) return resolve();
+      this.txFormatProvider.formatToUSD(wallet.coin, txp.amount).then(val => {
+        let amountUsd = parseFloat(val);
+        if (amountUsd <= this.CONFIRM_LIMIT_USD) return resolve();
+
+        let amount = (this.tx.amount / 1e8).toFixed(8);
+        let unit = txp.coin.toUpperCase();
+        let name = wallet.name;
+        let message = this.replaceParametersProvider.replace(
+          this.translate.instant(
+            'Sending {{amount}} {{unit}} from your {{name}} wallet'
+          ),
+          { amount, unit, name }
+        );
+        let okText = this.translate.instant('Confirm');
+        let cancelText = this.translate.instant('Cancel');
+        this.popupProvider
+          .ionicConfirm(null, message, okText, cancelText)
+          .then((ok: boolean) => {
+            return resolve(!ok);
+          });
+      });
+    });
+  }
+
+  private publishAndSign = (txp, wallet): void => {
+    if (!wallet.canSign() && !wallet.isPrivKeyExternal()) {
+      this.onlyPublish(txp, wallet);
+      return;
+    }
+
+    this.walletProvider
+      .publishAndSign(wallet, txp)
+      .then(txp => {
+        this.onGoingProcessProvider.clear();
+        if (
+          this.config.confirmedTxsNotifications &&
+          this.config.confirmedTxsNotifications.enabled
+        ) {
+          this.txConfirmNotificationProvider.subscribe(wallet, {
+            txid: txp.txid
+          });
+        }
+        // TODO 
+        // this.openFinishModal();
+      })
+      .catch(err => {
+        this.onGoingProcessProvider.clear();
+        this.showErrorInfoSheet(err);
+      });
+  };
+
+  private onlyPublish(txp, wallet): Promise<void> {
+    this.logger.info('No signing proposal: No private key');
+    this.onGoingProcessProvider.set('sendingTx');
+    return this.walletProvider
+      .onlyPublish(wallet, txp)
+      .then(() => {
+        this.onGoingProcessProvider.clear();
+        // TODO
+        // this.openFinishModal(true);
+      })
+      .catch(err => {
+        this.onGoingProcessProvider.clear();
+        this.showErrorInfoSheet(err);
+      });
   }
 }
