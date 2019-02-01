@@ -273,9 +273,9 @@ export class MakeBidPage extends WalletTabsChild {
 
 
   private createMakeBid(opts): void {
-    this.onGoingProcessProvider.set('creatingMakeBid');
 
-    this.onGoingProcessProvider.clear();
+    // this.onGoingProcessProvider.set('creatingMakeBid');
+
 
     let walletAddr;
     let networkName;
@@ -352,7 +352,7 @@ export class MakeBidPage extends WalletTabsChild {
       })
       .then(() => {
 
-        this.updateTx(this.tx, this.wallet, { dryRun: true }).catch(err => {
+        this.updateTx(this.tx, this.wallet, { dryRun: true }, opts).catch(err => {
 
           switch (err) {
             case 'insufficient_funds':
@@ -372,37 +372,20 @@ export class MakeBidPage extends WalletTabsChild {
 
       })
       .then(() => {
-        this.approve(this.tx, this.wallet);
-      })
-      .catch(err => {
-        this.logger.error('Send: could not getAddress', err);
-      });
-
-    /*
-    this.profileProvider
-      .createWallet(opts)
-      .then(wallet => {
-        this.onGoingProcessProvider.clear();
-        this.events.publish('status:updated');
-        this.walletProvider.updateRemotePreferences(wallet);
-        this.pushNotificationsProvider.updateSubscription(wallet);
-
-        if (this.createForm.value.selectedSeed == 'set') {
-          this.profileProvider.setBackupFlag(wallet.credentials.walletId);
-        }
+        this.logger.debug(this.tx);
+        this.approve(this.tx, this.wallet, opts);
+        // this.onGoingProcessProvider.clear();
         this.navCtrl.popToRoot();
-        this.events.publish('OpenWallet', wallet);
       })
       .catch(err => {
-        this.onGoingProcessProvider.clear();
-        this.logger.error('Create: could not create wallet', err);
+        // this.onGoingProcessProvider.clear();
+        this.logger.error('Send: could not getAddress', err);
         let title = this.translate.instant('Error');
         this.popupProvider.ionicAlert(title, err);
-        return;
-      });*/
+      });
   }
 
-  private updateTx(tx, wallet, opts): Promise<any> {
+  private updateTx(tx, wallet, opts, makeBidOpts): Promise<any> {
     return new Promise((resolve, reject) => {
       if (opts.clearCache) {
         tx.txp = {};
@@ -435,7 +418,7 @@ export class MakeBidPage extends WalletTabsChild {
             return resolve();
           }
 
-          this.buildTxp(tx, wallet, opts)
+          this.buildTxp(tx, wallet, opts, makeBidOpts)
             .then(() => {
               this.onGoingProcessProvider.clear();
               return resolve();
@@ -454,7 +437,7 @@ export class MakeBidPage extends WalletTabsChild {
     });
   }
 
-  private getTxp(tx, wallet, dryRun: boolean): Promise<any> {
+  private getTxp(tx, wallet, dryRun: boolean, makeBidOpts): Promise<any> {
     return new Promise((resolve, reject) => {
       // ToDo: use a credential's (or fc's) function for this
       if (tx.description && !wallet.credentials.sharedEncryptingKey) {
@@ -487,20 +470,28 @@ export class MakeBidPage extends WalletTabsChild {
       }
 
       txp.message = tx.description;
-      var pad = '0000000000000000';
-      var amountToSend = (pad + tx.keokenAmount.toString(16)).slice(
-        -pad.length
-      );
+
 
       // TODO Make bid Transaction
       // Add op_return data
       var script_raw = '6a0400004b50'; // op_return + keoken prefix
-      script_raw = script_raw + '1000000001'; // 10hex = 16 bytes lenght + version (0) + simple send (1)
+      script_raw = script_raw + '1000000010'; // 10hex = 16 bytes lenght + version (0) + make bid (10)
       script_raw = script_raw + '00000001'; // asset_id = KEO (1)
-      script_raw = script_raw + amountToSend; // amount to send (1)
+      script_raw = script_raw + this.makeString64(tx.keokenAmount); // amount to send (1) 64
+
+      script_raw = script_raw + this.makeString64(makeBidOpts.minAmount); // 64
+      script_raw = script_raw + this.makeString64(makeBidOpts.price); // 64
+      script_raw = script_raw + this.makeString64(makeBidOpts.minAdvPayment); // 64
+
+      script_raw = script_raw + this.makeString16(makeBidOpts.period); // 16
+      script_raw = script_raw + this.makeString16(makeBidOpts.paymentWindow); // 16
+      script_raw = script_raw + this.makeString16(makeBidOpts.immutability); // 16
 
       txp.outputs.push({ amount: 0, script: script_raw });
-      txp.keoken = { keoken_id: 1, keoken_amount: tx.keokenAmount };
+      txp.keoken = {
+        keoken_id: 1,
+        keoken_amount: tx.keokenAmount
+      };
 
       if (tx.paypro) {
         txp.payProUrl = tx.paypro.url;
@@ -514,6 +505,8 @@ export class MakeBidPage extends WalletTabsChild {
         };
       }
 
+      this.logger.debug(txp);
+
       this.walletProvider
         .createTx(wallet, txp)
         .then(ctxp => {
@@ -525,9 +518,23 @@ export class MakeBidPage extends WalletTabsChild {
     });
   }
 
-  private buildTxp(tx, wallet, opts): Promise<any> {
+  private makeString64(value): string {
+
+    var pad = '0000000000000000';
+    var ret = (pad + value.toString(16)).slice(-pad.length);
+    return ret;
+  }
+
+  private makeString16(value): string {
+
+    var pad = '0000';
+    var ret = (pad + value.toString(16)).slice(-pad.length);
+    return ret;
+  }
+
+  private buildTxp(tx, wallet, opts, makeBidOpts): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.getTxp(_.clone(tx), wallet, opts.dryRun)
+      this.getTxp(_.clone(tx), wallet, opts.dryRun, makeBidOpts)
         .then(txp => {
           let per = (txp.fee / (txp.amount + txp.fee)) * 100;
           txp.feeRatePerStr = per.toFixed(2) + '%';
@@ -561,11 +568,11 @@ export class MakeBidPage extends WalletTabsChild {
     });
   }
 
-  private approve(tx, wallet): Promise<void> {
+  private approve(tx, wallet, makeBidOpts): Promise<void> {
     if (!tx || !wallet) return undefined;
 
     this.onGoingProcessProvider.set('creatingTx');
-    return this.getTxp(_.clone(tx), wallet, false)
+    return this.getTxp(_.clone(tx), wallet, false, makeBidOpts)
       .then(txp => {
         return this.confirmTx(tx, txp, wallet).then((nok: boolean) => {
           if (nok) {
